@@ -18,12 +18,14 @@ module.exports = {
 		
 		if ( spawn && mod ) {
 			var name = role + "_" + Math.round(Math.random() * 1000);
-			console.log("building " + name + " [" + role + "] ...");
 			
-			var creep = spawn.createCreep(role.body, name, {
-				"role" : role,
-				"target": target
-			});			
+			if ( spawn.canCreateCreep(mod.body, name) == 0 ) {
+				console.log("building " + name + " [" + role + "] ...");
+				var creep = spawn.createCreep(mod.body, name, {
+					"role" : role,
+					"target": target
+				});			
+			}
 			
 			return _.isString(creep);			
 		}
