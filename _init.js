@@ -98,7 +98,7 @@ module.exports = (function() {
             return false;		
 		},
 		hasMiner : function() {
-			return (this.room.creepsByTarget(this.id) > 0);
+			return (this.room.creepsByTarget(this.id).length > 0);
 		}
 	});
 	

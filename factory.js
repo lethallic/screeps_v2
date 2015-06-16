@@ -46,6 +46,7 @@ module.exports = {
 		// create a miner for each save resource
 		for ( var s in sources ) {
 			var source = sources[s];
+			console.log(source, source.hasMiner());
 			
 			if ( !source.hasMiner() ) {
 				// create miners
