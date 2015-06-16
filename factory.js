@@ -2,7 +2,7 @@ var config = {
 	
 	"miners" : {
 		"max" : 2
-	}
+	},
 	
 	"transporters" : {
 		"max" : 6
