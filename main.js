@@ -10,7 +10,7 @@ require("_init");
 	// process work for creeps
 	for ( var c in Game.creeps ) {
 		var creep = Game.creeps[c];
-		roles.process(creep);
+		roleManager.process(creep);
 	} 
 		
 })(
