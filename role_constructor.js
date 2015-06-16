@@ -7,7 +7,7 @@ module.exports = {
 		if ( creep.energy > 0 ) {
 			var target = null;
 			
-			if ( creep.target() !== "" ) {
+			if ( typeof creep.target() !== "undefined" ) {
 				// creep has current target
 				var target = Game.getObjectById(creep.target());
 			} else {
@@ -18,23 +18,35 @@ module.exports = {
 				});
 				
 				if ( constructions.length ) {
+				    console.log("fc");
+				    
 					target = constructions[0];
 				} else {
-					target = creep.pos.findClosest(FIND_STRUCTURE, function(s) {
-						if ( s.my || s.structureType == STRUCTURE_ROAD ) {
-							return s.needsRepair();
-						}
-					});
+				    var structures = creep.room.find(FIND_STRUCTURE, {
+				        filter : function(s) {
+				            return s.needsRepair();
+				        }
+				    });
+				    
+				    if ( structures.length ) {
+				        console.log("fs")
+				        target = stuctures[0];
+				    }
+				    
 				}
 			}
 			
 			if ( target ) {
 				// build / repair target
+				
+				console.log(target);
 				creep.moveTo(target);
+				
+				
 				if ( target.progress ) {
-					creep.build(target);
+					console.log("build", creep, creep.build(target));
 				} else {
-					creep.repair(target);
+				    console.log("repair", creep, creep.repair(target));
 				}
 				creep.target(target.id);
 			}
