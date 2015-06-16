@@ -22,12 +22,20 @@ module.exports = {
 			if ( extension ) {
 				creep.moveTo(extension);
 				creep.transferEnergy(extension);
+				return;
 			} else {
 				var spawn = creep.room.getSpawn();
-				if ( spawn ) {
+				if ( spawn && (spawn.energy < spawn.energyCapacity) ) {
 					creep.moveTo(spawn);
 					creep.transferEnergy(spawn);
+					return;
 				}	
+			}
+			
+			var controller = creep.room.controller;
+			if ( controller && controller.my ) {
+				creep.moveTo(controller);
+				creep.upgradeController(controller)
 			}
 		}
 	}
