@@ -11,7 +11,7 @@ module.exports = {
 				// creep has current target
 				var target = Game.getObjectById(creep.target());
 				if ( target && target._type ) {
-					if ( target._type = "structure" && !target.needsRepair ) {
+					if ( target._type == "structure" && !target.needsRepair ) {
 						target = null;
 					}
 				} else {
@@ -45,9 +45,9 @@ module.exports = {
 			if ( target ) {
 				// build / repair target
 				creep.moveTo(target);
-				
-				if ( target.progress ) {
-					creep, creep.build(target);
+
+				if ( typeof target.progress == "number" ) {
+					creep.build(target);
 				} else {
 				    creep.repair(target);
 				}
