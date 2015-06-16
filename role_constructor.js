@@ -30,9 +30,12 @@ module.exports = {
 			
 			if ( target ) {
 				// build / repair target
-				
-				console.log(typeop target);
-				
+				creep.moveTo(target);
+				if ( target.progress ) {
+					creep.build(target);
+				} else {
+					creep.repair(target);
+				}
 				creep.target(target.id);
 			}
 			
