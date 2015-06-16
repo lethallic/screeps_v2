@@ -10,10 +10,24 @@ module.exports = {
 				creep.pickup(energy);
 			}	
 		} else {
-			var spawn = creep.room.getSpawn();
-			if ( spawn ) {
-				creep.moveTo(spawn);
-				creep.transferEnergy(spawn);
+			var extension = creep.pos.findClosest(FIND_MY_STRUCTURES, {
+				filter : function(s) {
+					if ( s.structureType == STRUCTURE_EXTENSION ) {
+						return (s.energy < s.energyCapacity);
+					}
+					return false;					
+				}
+			});
+			
+			if ( extension ) {
+				creep.moveTo(extension);
+				creep.transferEnergy(extension);
+			} else {
+				var spawn = creep.room.getSpawn();
+				if ( spawn ) {
+					creep.moveTo(spawn);
+					creep.transferEnergy(spawn);
+				}	
 			}
 		}
 	}
