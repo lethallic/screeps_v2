@@ -1,6 +1,6 @@
 module.exports = {
 	
-	body : [MOVE, MOVE, CARRY],
+	body : [MOVE, MOVE, CARRY, CARRY],
 	
 	run : function(creep) {
 		if ( creep.energy < creep.energyCapacity ) {
