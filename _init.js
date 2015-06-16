@@ -35,7 +35,11 @@ module.exports = (function() {
 	
 	extend(Room.prototype, {
 		newSpawn : function() {
-										
+			var spawns = this.find(FIND_MY_SPAWNS);
+			if( spawns.length ) {
+				return spawns[0];
+			}
+								
 			return null;
 		},
 		
