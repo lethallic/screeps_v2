@@ -1,0 +1,68 @@
+var config = {
+	
+	"transporters" : {
+		"max" : 3
+	},
+	
+	"constructors" : {
+		"max": 2
+	}
+	
+};
+
+module.exports = {
+	
+	_createCreep : function(room, roleManager, role, target) {
+		var spawn = room.getSpawn();
+		var mod = roleManager.getRoleModule(role);
+		
+		if ( spawn && mod ) {
+			var name = role + "_" + Math.round(Math.random() * 1000);
+			
+			var creep = spawn.createCreep(role.body, name, {
+				"role" : role,
+				"target": target
+			});			
+			
+			return _.isString(creep);			
+		}
+		
+		return false;
+	},
+	
+	produce : function(room, roleManager) {
+		var sources = room.sources();
+		var transporters = room.getCreeps("transporter");
+		
+		// create one transporter first
+		if ( transporters.length == 0 ) {
+			this._createCreep(room, roleManager, "transporter");
+			return;
+		}
+		
+		// create a miner for each save resource
+		for ( var s in sources ) {
+			var source = sources[s];
+			
+			if ( !source.hasMiner() ) {
+				// create miners
+				this._createCreep(room, roleManager, "miner", source.id);
+				return;
+			}
+		}
+		
+		// create additional transporters, if count < config.transporters.max
+		if ( room.getCreeps("transporter").length < config.transporters.max ) {
+			this._createCreep(room, roleManager, "transporter");
+			return;
+		}
+		
+		// create constructors, if count < config.constructors.max
+		if ( room.getCreeps("constructor").length < config.constructors.max ) {
+			this._createCreep(room, roleManager, "constructor");
+			return;
+		}
+		
+	}
+			
+};
