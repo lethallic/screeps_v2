@@ -18,14 +18,6 @@ function recycleMemory() {
 module.exports = (function() {
 	recycleMemory();
 		
-	extend(Game.prototype, {
-		creepsByTarget : function(targetId) {
-			return _.find(this.creeps, function(c){
-				return (c.target() === targetId);
-			});
-		}
-	});
-	
 	extend(Creep.prototype, {
 		"role" : function(newRole) {
 			if ( newRole ) {
@@ -69,8 +61,22 @@ module.exports = (function() {
 					return (c.role() === role);
 				}				
 			});
-		}
+		},
 		
+		creepsByTarget : function(targetId) {
+			return this.find(FIND_MY_CREEPS, {
+				filter : function(c) {
+					return (c.target() === targetId);	
+				}
+			});
+		}
+
+	});
+	
+	extend(ConstructionSite.prototype, {
+		hasWorker : function() {
+			return (this.room.creepsByTarget(this.id) > 0);
+		}
 	});
 	
 	extend(Source.prototype, {
@@ -88,7 +94,7 @@ module.exports = (function() {
             return false;		
 		},
 		hasMiner : function() {
-			return (Game.creepsByTarget(this.id) > 0);
+			return (this.room.creepsByTarget(this.id) > 0);
 		}
 	});
 	

@@ -11,8 +11,11 @@ module.exports = {
 				// creep has current target
 				var target = Game.getObjectById(creep.target());
 			} else {
-				// no target defined, find new target
-											
+				var constructions = creep.room.find(FIND_CONSTRUCTION_SITE, {
+					filter : function(site) {
+						
+					}		
+				});
 			}
 			
 			if ( target ) {
