@@ -98,8 +98,9 @@ module.exports = (function() {
 
             return false;		
 		},
-		hasMiner : function() {
-			return (this.room.creepsByTarget(this.id).length > 0);
+		hasMiner : function(max) {
+			var maxMiners = max || 1;
+			return !(this.room.creepsByTarget(this.id).length < maxMiners);
 		}
 	});
 	

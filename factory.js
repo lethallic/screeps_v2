@@ -1,5 +1,9 @@
 var config = {
 	
+	"miners" : {
+		"max" : 2
+	}
+	
 	"transporters" : {
 		"max" : 6
 	},
@@ -46,7 +50,7 @@ module.exports = {
 		// create a miner for each save resource
 		for ( var s in sources ) {
 			var source = sources[s];
-			if ( !source.hasMiner() ) {
+			if ( !source.hasMiner(config.miners.max) ) {
 				// create miners
 				this._createCreep(room, roleManager, "miner", source.id);
 				return;
