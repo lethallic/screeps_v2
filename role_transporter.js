@@ -6,7 +6,9 @@ module.exports = {
 		if ( creep.energy < creep.energyCapacity ) {
 			var energy = creep.pos.findClosest(FIND_DROPPED_ENERGY, {
 				filter: function(e) {
-					return ( e.energy >= energyCapacity );
+					console.log(e, e.energy);
+					
+					return ( e.energy >= creep.energyCapacity );
 				}
 			});
 			if ( energy ) {
