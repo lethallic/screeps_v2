@@ -13,14 +13,27 @@ module.exports = {
 			} else {
 				var constructions = creep.room.find(FIND_CONSTRUCTION_SITE, {
 					filter : function(site) {
-						
+						return true;
 					}		
 				});
+				
+				if ( constructions.length ) {
+					target = constructions[0];
+				} else {
+					target = creep.pos.findClosest(FIND_STRUCTURE, function(s) {
+						if ( s.my || s.structureType == STRUCTURE_ROAD ) {
+							return s.needsRepair();
+						}
+					});
+				}
 			}
 			
 			if ( target ) {
 				// build / repair target
 				
+				console.log(typeop target);
+				
+				creep.target(target.id);
 			}
 			
 		} else if ( creep.energy == 0 ) {
