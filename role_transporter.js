@@ -4,7 +4,11 @@ module.exports = {
 	
 	run : function(creep) {
 		if ( creep.energy < creep.energyCapacity ) {
-			var energy = creep.pos.findClosest(FIND_DROPPED_ENERGY, function() { return true; });
+			var energy = creep.pos.findClosest(FIND_DROPPED_ENERGY, {
+				filter: function(e) {
+					return ( e.energy >= energyCapacity );
+				}
+			});
 			if ( energy ) {
 				creep.moveTo(energy);
 				creep.pickup(energy);
