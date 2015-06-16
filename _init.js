@@ -78,6 +78,7 @@ module.exports = (function() {
 	});
 	
 	extend(ConstructionSite.prototype, {
+		_type : "construction",
 		hasWorker : function() {
 			return (this.room.creepsByTarget(this.id) > 0);
 		}
@@ -109,6 +110,7 @@ module.exports = (function() {
 	});
 	
 	extend(Structure.prototype, {
+		_type : "structure",
 		needsRepair : function(name) {
             return this.hits < this.hitsMax / 2;
         }

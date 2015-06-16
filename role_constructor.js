@@ -10,27 +10,38 @@ module.exports = {
 			if ( typeof creep.target() !== "undefined" ) {
 				// creep has current target
 				var target = Game.getObjectById(creep.target());
-			} else {
-				var constructions = creep.room.find(FIND_CONSTRUCTION_SITE, {
+				if ( target && target._type ) {
+					if ( target._type = "struction" && !target.needsRepair ) {
+						target = null;
+					}
+				} else {
+				    target = null;
+				}
+			} 
+			
+			if  ( !target ) {
+				var constructions = creep.room.find(FIND_CONSTRUCTION_SITES, {
 					filter : function(site) {
 						return true;
 					}		
 				});
 				
-				if ( constructions.length ) {
-				    console.log("fc");
-				    
+				if ( constructions.length > 0 ) {
 					target = constructions[0];
 				} else {
-				    var structures = creep.room.find(FIND_STRUCTURE, {
+				    // console.log("structures");
+				    
+				    var structures = creep.room.find(FIND_STRUCTURES, {
 				        filter : function(s) {
+				            console.log("found", s);
 				            return s.needsRepair();
 				        }
 				    });
+				    console.log(structures);
 				    
 				    if ( structures.length ) {
 				        console.log("fs")
-				        target = stuctures[0];
+				        target = structures[0];
 				    }
 				    
 				}
@@ -38,15 +49,12 @@ module.exports = {
 			
 			if ( target ) {
 				// build / repair target
-				
-				console.log(target);
 				creep.moveTo(target);
 				
-				
 				if ( target.progress ) {
-					console.log("build", creep, creep.build(target));
+					// console.log("build", creep, creep.build(target));
 				} else {
-				    console.log("repair", creep, creep.repair(target));
+				    //console.log("repair", creep, creep.repair(target));
 				}
 				creep.target(target.id);
 			}
