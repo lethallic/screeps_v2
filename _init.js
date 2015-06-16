@@ -50,7 +50,7 @@ module.exports = (function() {
 		sources : function() {
 			return this.find(FIND_SOURCES, {
 				filter : function(source) {
-					return !sources.defended;
+					return !source.defended();
 				}
 			});
 		},
