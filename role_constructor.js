@@ -11,7 +11,7 @@ module.exports = {
 				// creep has current target
 				var target = Game.getObjectById(creep.target());
 				if ( target && target._type ) {
-					if ( target._type = "struction" && !target.needsRepair ) {
+					if ( target._type = "structure" && !target.needsRepair ) {
 						target = null;
 					}
 				} else {
@@ -29,18 +29,13 @@ module.exports = {
 				if ( constructions.length > 0 ) {
 					target = constructions[0];
 				} else {
-				    // console.log("structures");
-				    
 				    var structures = creep.room.find(FIND_STRUCTURES, {
 				        filter : function(s) {
-				            console.log("found", s);
 				            return s.needsRepair();
 				        }
 				    });
-				    console.log(structures);
 				    
 				    if ( structures.length ) {
-				        console.log("fs")
 				        target = structures[0];
 				    }
 				    
@@ -52,9 +47,9 @@ module.exports = {
 				creep.moveTo(target);
 				
 				if ( target.progress ) {
-					// console.log("build", creep, creep.build(target));
+					creep, creep.build(target);
 				} else {
-				    //console.log("repair", creep, creep.repair(target));
+				    creep.repair(target);
 				}
 				creep.target(target.id);
 			}
