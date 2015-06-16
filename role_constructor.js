@@ -11,7 +11,7 @@ module.exports = {
 				// creep has current target
 				var target = Game.getObjectById(creep.target());
 				if ( target && target._type ) {
-					if ( target._type == "structure" && !target.needsRepair ) {
+					if ( target._type == "structure" && !target.needsRepair() ) {
 						target = null;
 					}
 				} else {
