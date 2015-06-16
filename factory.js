@@ -18,6 +18,7 @@ module.exports = {
 		
 		if ( spawn && mod ) {
 			var name = role + "_" + Math.round(Math.random() * 1000);
+			console.log("building " + name + " [" + role + "] ...");
 			
 			var creep = spawn.createCreep(role.body, name, {
 				"role" : role,

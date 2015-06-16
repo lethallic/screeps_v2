@@ -1,15 +1,18 @@
 module.exports = {
 	
 	process : function(creep) {
-		var creepModule = this.getRoleModule(creep);
-		if ( creepModule ) {
-			creepModule.run(creep);
+		var role = creep.memory.role;
+		if ( role ) {
+			var creepModule = this.getRoleModule(role);
+			if ( creepModule ) {
+				creepModule.run(creep);
+			}
 		}
 	},
 			
-	getRoleModule : function(creep) {
+	getRoleModule : function(role) {
 		try {
-			var m = require("role_" + creep.memory.role);
+			var m = require("role_" + role);
 			if ( typeof m !== 'undefined' ) {
 				return m;
 			}
