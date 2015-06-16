@@ -49,20 +49,20 @@ module.exports = {
 			
 			if ( !source.hasMiner() ) {
 				// create miners
-				this._createCreep(room, roleManager, "miner", source.id);
+				// this._createCreep(room, roleManager, "miner", source.id);
 				return;
 			}
 		}
 		
 		// create additional transporters, if count < config.transporters.max
 		if ( room.getCreeps("transporter").length < config.transporters.max ) {
-			this._createCreep(room, roleManager, "transporter");
+			// this._createCreep(room, roleManager, "transporter");
 			return;
 		}
 		
 		// create constructors, if count < config.constructors.max
 		if ( room.getCreeps("constructor").length < config.constructors.max ) {
-			this._createCreep(room, roleManager, "constructor");
+			// this._createCreep(room, roleManager, "constructor");
 			return;
 		}
 		
