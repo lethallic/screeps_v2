@@ -25,17 +25,10 @@ module.exports = {
 				return;
 			} else {
 				var spawn = creep.room.getSpawn();
-				if ( spawn && (spawn.energy < spawn.energyCapacity) ) {
+				if ( spawn ) {
 					creep.moveTo(spawn);
 					creep.transferEnergy(spawn);
-					return;
-				}	
-			}
-			
-			var controller = creep.room.controller;
-			if ( controller && controller.my ) {
-				creep.moveTo(controller);
-				creep.upgradeController(controller)
+				}
 			}
 		}
 	}

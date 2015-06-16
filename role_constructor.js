@@ -52,6 +52,13 @@ module.exports = {
 				    creep.repair(target);
 				}
 				creep.target(target.id);
+				return;
+			}
+			
+			var controller = creep.room.controller;
+			if ( controller && controller.my ) {
+				creep.moveTo(controller);
+				creep.upgradeController(controller)
 			}
 			
 		} else if ( creep.energy == 0 ) {
