@@ -14,7 +14,9 @@ module.exports = {
 			//	}
 			// });
 			
-			var energy = creep.pos.findClosest(creep.room.droppedEnergy());
+			var energy = creep.pos.findClosest(creep.room.droppedEnergy(){
+				"algorithm" : "dijkstra"
+			});
 			if ( energy ) {
 				creep.moveTo(energy);
 				creep.pickup(energy);
