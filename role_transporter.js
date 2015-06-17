@@ -14,9 +14,20 @@ module.exports = {
 			//	}
 			// });
 			
+			var energyList = creep.room.find(FIND_DROPPED_ENERGY, {
+				filter : function(e) {
+					return ( e.energy >= creep.energyCapacity );
+				}
+			});
+			if ( energyList.length ) {
+				energy = energyList[0];
+			}
+			
+			/**
 			var energy = creep.pos.findClosest(creep.room.droppedEnergy(),{
 				"algorithm" : "dijkstra"
 			});
+			*/
 			
 			if ( energy ) {
 				creep.moveTo(energy);
