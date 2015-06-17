@@ -2,7 +2,7 @@ var Debug = require("_debug")
 
 module.exports = {
 	
-	body : [MOVE, CARRY, MOVE , CARRY],
+	body : [MOVE, CARRY, CARRY],
 	
 	run : function(creep) {
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
