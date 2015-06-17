@@ -48,7 +48,7 @@ module.exports = {
 				    debug.log();
 				    
 				    if ( structures.length ) {
-				    	target = _.min(structures, function() {
+				    	target = _.min(structures, function(e) {
 				    		return (e.hits * 100 / e.maxHits);
 				    	});
 				    	
