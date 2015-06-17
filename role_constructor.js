@@ -44,10 +44,15 @@ module.exports = {
 				            return s.needsRepair();
 				        }
 				    });
+				    
 				    debug.log();
 				    
 				    if ( structures.length ) {
-				        target = structures[0];
+				    	target = _.min(structures, function() {
+				    		return (e.hits * 100 / e.maxHits);
+				    	});
+				    	
+				        // target = structures[0];
 				    }
 				    
 				}
