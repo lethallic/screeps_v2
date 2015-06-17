@@ -147,14 +147,14 @@ module.exports = (function() {
 	
 	extend(Spawn.prototype, {
 		needsRepair : function(name) {
-            return this.hits < this.hitsMax / 2;
+            return this.hits < this.hitsMax;
         }
 	});
 	
 	extend(Structure.prototype, {
 		_type : "structure",
 		needsRepair : function(name) {
-            return this.hits < this.hitsMax / 2;
+            return this.hits < this.hitsMax;
         }
 	});
 	
