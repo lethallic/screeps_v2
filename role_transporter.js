@@ -34,7 +34,7 @@ module.exports = {
 					return false;					
 				}
 			});
-			debug.log()
+			debug.log();
 			
 			if ( extension ) {
 				creep.moveTo(extension);
