@@ -82,18 +82,18 @@ module.exports = (function() {
 		},
 		
 		droppedEnergy : function() {
-			var debug = new Debug("Room.droppedEnergy()", 2);
-			var e = this.find(FIND_DROPPED_ENERGY, {
-				filter: function(e) {
-					return ( e.energy >= 100 );
-				}
-			});
-			debug.log();
-			return e;
-		},
+			if ( _droppedEnergy == null ) {
+				var debug = new Debug("Room.droppedEnergy()", 2);
+				_droppedEnergy = this.find(FIND_DROPPED_ENERGY, {
+					filter: function(e) {
+						return ( e.energy >= 100 );
+					}
+				});
+				debug.log();
+			}
+			return _droppedEnergy;
+		}
 		
-		energy : (function(){ return droppedEnergy(); })()
-
 	});
 	
 	extend(ConstructionSite.prototype, {
