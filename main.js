@@ -1,5 +1,6 @@
 require("_init");
 
+var DEBUG = false;
 var _messages = [];
 
 (function(roleManager, factory){
@@ -28,5 +29,6 @@ var _messages = [];
 	require("factory")
 );
 
-
-console.log("DEBUG - Used CPU", _messages);
+if ( DEBUG ) {
+	console.log("DEBUG - Used CPU", _messages);
+}
