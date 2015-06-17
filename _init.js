@@ -110,7 +110,7 @@ module.exports = (function() {
 		},
 		
 		emptyExtensions : function() {
-			return _.find(this.extensions(), function(e){
+			return _.filter(this.extensions(), function(e){
 				return (e.energy < e.energyCapacity);
 			});
 		}

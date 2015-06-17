@@ -38,9 +38,7 @@ module.exports = {
 		} else {
 			var debug = new Debug("FIND EXTENSION", 5);
 			
-			var extension = creep.pos.findClosest(creep.room.emptyExtensions(), {
-				"algorithm" : "dijkstra"	
-			});
+			var extension = creep.pos.findClosest(creep.room.emptyExtensions());
 			
 			debug.log();
 			
