@@ -59,7 +59,10 @@ module.exports = {
 			
 			if ( target ) {
 				// build / repair target
-				if ( creep.moveTo(target) != 0 ) {
+				var m = creep.moveTo(target);
+				console.log(creep, "moveTo", m);
+				
+				if ( m != 0 ) {
 					if ( typeof target.progress == "number" ) {
 						creep.build(target);
 					} else {
