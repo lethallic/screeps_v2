@@ -49,11 +49,13 @@ module.exports = {
 			});
 			*/
 			
-			var e = creep.room.extensions();
-			var ee = creep.room.emptyExtensions()
-			console.log(creep)
-			console.log("ext", e.length, e);
-			console.log("empty", ee.length, ee);
+			 if ( false ) {
+	    	    var e = creep.room.extensions();
+	    		var ee = creep.room.emptyExtensions()
+	    		console.log(creep, creep.room)
+	    		console.log("ext", e.length, e);
+	    		console.log("empty", ee.length, ee);
+		    }
 			
 			var extension = creep.pos.findClosest(creep.room.extensions(), {
 				filter : function(s) {
