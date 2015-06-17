@@ -10,7 +10,10 @@ module.exports = {
 			if ( creepModule ) {
 				var start = Game.getUsedCpu();
 				creepModule.run(creep);
-				console.log("DEBUG - " + role, (Game.getUsedCpu() - start));
+				
+				if ( role === "transporter" )  {
+					console.log("DEBUG - " + role, (Game.getUsedCpu() - start));
+				}
 			}
 		}
 	},
