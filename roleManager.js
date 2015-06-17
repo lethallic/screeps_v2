@@ -11,8 +11,9 @@ module.exports = {
 				var start = Game.getUsedCpu();
 				creepModule.run(creep);
 				
-				if ( role === "transporter" )  {
-					console.log("DEBUG - " + role, (Game.getUsedCpu() - start));
+				var used = (Game.getUsedCpu() - start);
+				if ( used > 5) {
+					console.log("DEBUG - " + role, used);
 				}
 			}
 		}
