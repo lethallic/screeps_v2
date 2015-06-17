@@ -38,29 +38,7 @@ module.exports = {
 		} else {
 			var debug = new Debug("FIND EXTENSION", 5);
 			
-			/**
-			var extension = creep.room.find(FIND_MY_STRUCTURES, {
-				filter : function(s) {
-					if ( s.structureType == STRUCTURE_EXTENSION ) {
-						return (s.energy < s.energyCapacity);
-					}
-					return false;					
-				}
-			});
-			*/
-			
-			 if ( false ) {
-	    	    var e = creep.room.extensions();
-	    		var ee = creep.room.emptyExtensions()
-	    		console.log(creep, creep.room)
-	    		console.log("ext", e.length, e);
-	    		console.log("empty", ee.length, ee);
-		    }
-			
-			var extension = creep.pos.findClosest(creep.room.extensions(), {
-				filter : function(s) {
-					return (s.energy < 50);
-				},
+			var extension = creep.pos.findClosest(creep.room.emptyExtensions(), {
 				"algorithm" : "dijkstra"	
 			});
 			
