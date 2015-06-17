@@ -14,13 +14,10 @@ module.exports = {
 	
 				
 	getRoleModule : function(role) {
-		console.log(role, typeof this._modules[role]);
-		
-		if ( !this._modules[role] ) {
+		if ( typeof(this._modules[role]) !== 'object' ) {
 			this._modules[role] = this.loadModule(role);
 		}
-		
-		return this._modules[role] || null;
+		return this._modules[role];
 	},
 	
 	loadModule : function(role) {
