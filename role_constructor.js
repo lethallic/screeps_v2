@@ -23,7 +23,8 @@ module.exports = {
 				var constructions = creep.room.find(FIND_CONSTRUCTION_SITES, {
 					filter : function(site) {
 						return true;
-					}		
+					},
+					"algorithm" : "dijkstra"
 				});
 				
 				if ( constructions.length > 0 ) {
@@ -32,7 +33,8 @@ module.exports = {
 				    var structures = creep.room.find(FIND_STRUCTURES, {
 				        filter : function(s) {
 				            return s.needsRepair();
-				        }
+				        },
+				        "algorithm" : "dijkstra"
 				    });
 				    
 				    if ( structures.length ) {
