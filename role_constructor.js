@@ -65,13 +65,7 @@ module.exports = {
 				creep.target(target.id);
 				return;
 			}
-			
-			var controller = creep.room.controller;
-			if ( controller && controller.my ) {
-				creep.moveTo(controller);
-				creep.upgradeController(controller)
-			}
-			
+
 		} else if ( creep.energy == 0 ) {
 			// goto spawn, get energy
 			var spawn = creep.room.getSpawn();
