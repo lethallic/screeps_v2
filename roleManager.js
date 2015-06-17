@@ -12,7 +12,7 @@ module.exports = {
 			if ( creepModule ) {
 				var debug = new Debug("RoleManager." + role, 5);
 				creepModule.run(creep);
-				debug.log();
+				//debug.log();
 			}
 		}
 	},
