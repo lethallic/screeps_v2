@@ -12,7 +12,7 @@ module.exports = {
 			
 			if ( typeof creep.target() !== "undefined" ) {
 				// creep has current target
-				debug = new Debug("check target", 2);
+				debug = new Debug("check target", 1);
 				
 				var target = Game.getObjectById(creep.target());
 				if ( target && target._type ) {
@@ -26,7 +26,7 @@ module.exports = {
 			} 
 			
 			if  ( !target ) {
-				debug = new Debug("find constructions", 2);
+				debug = new Debug("find constructions", 1);
 				var constructions = creep.room.find(FIND_CONSTRUCTION_SITES, {
 					filter : function(site) {
 						return true;
@@ -38,7 +38,7 @@ module.exports = {
 				if ( constructions.length > 0 ) {
 					target = constructions[0];
 				} else {
-					debug = new Debug("find structures", 2);
+					debug = new Debug("find structures", 1);
 				    var structures = creep.room.find(FIND_STRUCTURES, {
 				        filter : function(s) {
 				            return s.needsRepair();
