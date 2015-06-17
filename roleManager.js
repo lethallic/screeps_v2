@@ -14,6 +14,8 @@ module.exports = {
 	
 				
 	getRoleModule : function(role) {
+		console.log(role, typeof this._modules[role]);
+		
 		if ( typeof this._modules[role] == 'undefined' ) {
 			this._modules[role] = this.loadModule(role);
 		}
