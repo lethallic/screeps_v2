@@ -39,7 +39,7 @@ module.exports = {
 			var debug = new Debug("FIND EXTENSION", 2);
 			
 			/**
-			var extension = creep.pos.findClosest(FIND_MY_STRUCTURES, {
+			var extension = creep.room.find(FIND_MY_STRUCTURES, {
 				filter : function(s) {
 					if ( s.structureType == STRUCTURE_EXTENSION ) {
 						return (s.energy < s.energyCapacity);
@@ -52,7 +52,8 @@ module.exports = {
 			var extension = creep.pos.findClosest(creep.room.extensions(), {
 				filter : function(s) {
 					return (s.energy < 50);
-				}	
+				},
+				"algorithm" : "dijkstra"	
 			});
 			
 			debug.log();
