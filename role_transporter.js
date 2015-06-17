@@ -5,8 +5,8 @@ module.exports = {
 	body : [MOVE, CARRY, MOVE , CARRY],
 	
 	run : function(creep) {
-		if ( creep.energy < creep.energyCapacity ) {
-			var debug = new Debug("FIND DROPPED ENERGY", 2);
+		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
+			var debug = new Debug("FIND DROPPED ENERGY", 1);
 			
 			// var energy = creep.pos.findClosest(FIND_DROPPED_ENERGY, {
 			//	filter: function(e) {
@@ -17,6 +17,7 @@ module.exports = {
 			var energy = creep.pos.findClosest(creep.room.droppedEnergy(),{
 				"algorithm" : "dijkstra"
 			});
+			
 			if ( energy ) {
 				creep.moveTo(energy);
 				creep.pickup(energy);
@@ -24,7 +25,7 @@ module.exports = {
 			
 			debug.log();
 		} else {
-			var debug = new Debug("FIND EXTENSION", 2);
+			var debug = new Debug("FIND EXTENSION", 1);
 			
 			var extension = creep.pos.findClosest(FIND_MY_STRUCTURES, {
 				filter : function(s) {

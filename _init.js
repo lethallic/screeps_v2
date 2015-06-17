@@ -81,14 +81,11 @@ module.exports = (function() {
 		},
 		
 		droppedEnergy : function() {
-			if ( _droppedEnergy == null ) {
-				_droppedEnergy = this.find(FIND_DROPPED_ENERGY, {
-					filter: function(e) {
-						return ( e.energy >= 100 );
-					}
-				});
-			}
-			return _droppedEnergy;
+			return this.find(FIND_DROPPED_ENERGY, {
+				filter: function(e) {
+					return ( e.energy >= 100 );
+				}
+			});
 		}
 
 	});
