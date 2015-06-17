@@ -62,8 +62,7 @@ module.exports = {
 		}
 		
 		// create additional transporters, if count < config.transporters.max
-		console.log(room.getCreeps("miner").length);
-		var maxTransporters = config.transporters.max * config.miners.max;
+		var maxTransporters = config.transporters.max * room.getCreeps("miner").length;
 		if ( room.getCreeps("transporter").length < maxTransporters ) {
 			this._createCreep(room, roleManager, "transporter");
 			return;
