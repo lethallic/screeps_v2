@@ -42,8 +42,7 @@ module.exports = {
 				    var structures = creep.room.find(FIND_STRUCTURES, {
 				        filter : function(s) {
 				            return s.needsRepair();
-				        },
-				        "algorithm" : "dijkstra"
+				        }
 				    });
 				    debug.log();
 				    
