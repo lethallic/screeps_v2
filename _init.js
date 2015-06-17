@@ -1,3 +1,4 @@
+var Debug = require("_debug");
 var extend = require("extend");
 
 function recycleMemory() {
@@ -81,12 +82,17 @@ module.exports = (function() {
 		},
 		
 		droppedEnergy : function() {
-			return this.find(FIND_DROPPED_ENERGY, {
+			var debug = new Debug("Room.droppedEnergy()", 2);
+			var e = this.find(FIND_DROPPED_ENERGY, {
 				filter: function(e) {
 					return ( e.energy >= 100 );
 				}
 			});
-		}
+			debug.log();
+			return e;
+		},
+		
+		energy : droppedEnergy()
 
 	});
 	
