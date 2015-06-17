@@ -5,11 +5,11 @@ var config = {
 	},
 	
 	"transporters" : {
-		"max" : 7
+		"max" : 5
 	},
 	
 	"constructors" : {
-		"max": 5
+		"max": 6
 	}
 	
 };
