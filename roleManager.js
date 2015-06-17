@@ -11,7 +11,6 @@ module.exports = {
 			}
 		}
 	},
-	
 				
 	getRoleModule : function(role) {
 		if ( typeof(this._modules[role]) !== 'object' ) {
@@ -22,7 +21,6 @@ module.exports = {
 	
 	loadModule : function(role) {
 		try {
-			console.log("load module " + role);
 			var m = require("role_" + role);
 			if ( typeof m !== 'undefined' ) {
 				return m;
