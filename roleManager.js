@@ -1,3 +1,5 @@
+var Debug = require("_debug");
+
 module.exports = {
 	
 	_modules : {},
@@ -8,13 +10,11 @@ module.exports = {
 		if ( role ) {
 			var creepModule = this.getRoleModule(role);
 			if ( creepModule ) {
+				var debug = new Debug("RoleManager." + role, 7);
 				var start = Game.getUsedCpu();
 				creepModule.run(creep);
 				
-				var used = (Game.getUsedCpu() - start);
-				if ( used > 5) {
-					console.log("DEBUG - " + role, used);
-				}
+				debug.log();
 			}
 		}
 	},

@@ -23,7 +23,7 @@ module.exports = {
 				creep.pickup(energy);
 			}
 			
-			debug.log();
+			//debug.log();
 		} else {
 			var debug = new Debug("FIND EXTENSION", 1);
 			
@@ -35,7 +35,7 @@ module.exports = {
 					return false;					
 				}
 			});
-			debug.log();
+			//debug.log();
 			
 			if ( extension ) {
 				creep.moveTo(extension);
@@ -48,7 +48,7 @@ module.exports = {
 					creep.moveTo(spawn);
 					creep.transferEnergy(spawn);
 				}
-				debug.log();
+				//debug.log();
 			}
 		}
 	}
