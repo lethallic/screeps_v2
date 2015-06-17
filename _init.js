@@ -39,6 +39,7 @@ module.exports = (function() {
 	
 	var _droppedEnergy = null;
 	var _spawn = null;
+	var _extensions = null;
 	
 	extend(Room.prototype, {
 		newSpawn : function() {
@@ -94,6 +95,17 @@ module.exports = (function() {
 				debug.log();
 			}
 			return _droppedEnergy;
+		},
+		
+		extensions : function() {
+			if ( _extensions == null ) {
+				_extensions = this.find(FIND_MY_STRUCTURES, {
+					filter : function(s) {
+						return (s.structureType == STRUCTURE_EXTENSION);
+					}
+				});
+			}
+			return _extensions;
 		}
 		
 	});

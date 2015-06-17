@@ -38,6 +38,7 @@ module.exports = {
 		} else {
 			var debug = new Debug("FIND EXTENSION", 2);
 			
+			/**
 			var extension = creep.pos.findClosest(FIND_MY_STRUCTURES, {
 				filter : function(s) {
 					if ( s.structureType == STRUCTURE_EXTENSION ) {
@@ -46,6 +47,14 @@ module.exports = {
 					return false;					
 				}
 			});
+			*/
+			
+			var extension = creep.pos.findClosest(creep.room.extensions(), {
+				filter : function(s) {
+					return (s.energy < s.energyCapacity);
+				}	
+			});
+			
 			debug.log();
 			
 			if ( extension ) {
