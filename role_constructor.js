@@ -49,10 +49,9 @@ module.exports = {
 				    
 				    if ( structures.length ) {
 				    	target = _.min(structures, function(e) {
-				    		return (e.hits * 100 / e.maxHits);
+				    	    var p = (e.hits * 100 / e.hitsMax);
+				    		return p;
 				    	});
-				    	
-				        // target = structures[0];
 				    }
 				    
 				}
