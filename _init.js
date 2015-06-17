@@ -54,11 +54,17 @@ module.exports = (function() {
 		},
 		
 		getSpawn : function() {
-			var spawns = this.find(FIND_MY_SPAWNS);
-			if ( spawns.length ) {
-				return spawns[0];
-			}
-			return null;
+			if ( this._spawn == null ) {
+				var spawns = this.find(FIND_MY_STRUCTURES, {
+    		        filter : function(s) {
+    		            return (s.structureType == STRUCTURE_SPAWN);
+    		        }
+		        })
+				if( spawns.length ) {
+					this._spawn = spawns[0];
+				}
+			}				
+			return this._spawn;
 		},
 		
 		sources : function() {
