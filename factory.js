@@ -5,15 +5,15 @@ var config = {
 	},
 	
 	"transporters" : {
-		"max" : 2
+		"max" : 3
 	},
 	
 	"constructors" : {
-		"max": 3
+		"max": 5
 	},
 	
 	"upgraders" : {
-		"max" : 2
+		"max" : 3
 	}
 	
 };
