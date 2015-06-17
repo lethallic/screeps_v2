@@ -14,7 +14,7 @@ module.exports = {
 				var start = Game.getUsedCpu();
 				creepModule.run(creep);
 				
-				debug.log();
+				// debug.log();
 			}
 		}
 	},
@@ -34,6 +34,7 @@ module.exports = {
 			}
 		} catch ( e ) {
 			// role module not found
+			console.log(e);
 		}
 		return null;
 	}
