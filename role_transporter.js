@@ -36,7 +36,7 @@ module.exports = {
 			
 			debug.log();
 		} else {
-			var debug = new Debug("FIND EXTENSION", 2);
+			var debug = new Debug("FIND EXTENSION", 5);
 			
 			/**
 			var extension = creep.room.find(FIND_MY_STRUCTURES, {

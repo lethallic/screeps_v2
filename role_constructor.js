@@ -26,7 +26,7 @@ module.exports = {
 			} 
 			
 			if  ( !target ) {
-				debug = new Debug("find constructions", 1);
+				debug = new Debug("find constructions", 5);
 				var constructions = creep.room.find(FIND_CONSTRUCTION_SITES, {
 					filter : function(site) {
 						return true;
@@ -38,7 +38,7 @@ module.exports = {
 				if ( constructions.length > 0 ) {
 					target = constructions[0];
 				} else {
-					debug = new Debug("find structures", 1);
+					debug = new Debug("find structures", 5);
 				    var structures = creep.room.find(FIND_STRUCTURES, {
 				        filter : function(s) {
 				            return s.needsRepair();
