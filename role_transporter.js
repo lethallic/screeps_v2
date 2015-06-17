@@ -51,7 +51,7 @@ module.exports = {
 			
 			var extension = creep.pos.findClosest(creep.room.extensions(), {
 				filter : function(s) {
-					return (s.energy < s.energyCapacity);
+					return (s.energy < 50);
 				}	
 			});
 			
