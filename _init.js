@@ -16,6 +16,8 @@ function recycleMemory() {
 }
 
 module.exports = (function() {
+	var debug = require("_debug")("_init.js");
+	
 	recycleMemory();
 		
 	extend(Creep.prototype, {
@@ -116,6 +118,8 @@ module.exports = (function() {
             return this.hits < this.hitsMax / 2;
         }
 	});
+	
+	debug.log();
 	
 	return true;
 })();
