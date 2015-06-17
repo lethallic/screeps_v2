@@ -18,7 +18,7 @@ module.exports = {
 				energy = energyList[0];
 			}
 			
-			if ( energy ) {
+			if ( typeof energy !== "undefined" ) {
 				creep.moveTo(energy);
 				creep.pickup(energy);
 			}
