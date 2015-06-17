@@ -59,14 +59,16 @@ module.exports = {
 			
 			if ( target ) {
 				// build / repair target
-				creep.moveTo(target);
-
-				if ( typeof target.progress == "number" ) {
-					creep.build(target);
+				if ( creep.moveTo(target) != 0 ) {
+					if ( typeof target.progress == "number" ) {
+						creep.build(target);
+					} else {
+					    creep.repair(target);
+					}
+					creep.target(target.id);
 				} else {
-				    creep.repair(target);
+					creep.target("");
 				}
-				creep.target(target.id);
 				return;
 			}
 
