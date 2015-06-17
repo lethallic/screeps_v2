@@ -39,10 +39,9 @@ module.exports = (function() {
 	
 	
 	extend(Room.prototype, {
-		_droppedEnergy = null,
-		_spawn = null,
-		_extensions = null,
-		
+		_droppedEnergy : null,
+		_spawn : null,
+		_extensions : null,
 		
 		newSpawn : function() {
 			if ( this._spawn == null ) {
