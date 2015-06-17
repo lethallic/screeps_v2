@@ -37,19 +37,21 @@ module.exports = (function() {
 	});
 	
 	
-	var _droppedEnergy = null;
-	var _spawn = null;
-	var _extensions = null;
 	
 	extend(Room.prototype, {
+		_droppedEnergy = null,
+		_spawn = null,
+		_extensions = null,
+		
+		
 		newSpawn : function() {
-			if ( _spawn == null ) {
+			if ( this._spawn == null ) {
 				var spawns = this.find(FIND_MY_SPAWNS);
 				if( spawns.length ) {
-					_spawn = spawns[0];
+					this._spawn = spawns[0];
 				}
 			}				
-			return _spawn;
+			return this._spawn;
 		},
 		
 		getSpawn : function() {
@@ -85,27 +87,27 @@ module.exports = (function() {
 		},
 		
 		droppedEnergy : function() {
-			if ( _droppedEnergy == null ) {
+			if ( this._droppedEnergy == null ) {
 				var debug = new Debug("Room.droppedEnergy()", 1);
-				_droppedEnergy = this.find(FIND_DROPPED_ENERGY, {
+				this._droppedEnergy = this.find(FIND_DROPPED_ENERGY, {
 					filter: function(e) {
 						return ( e.energy >= 100 );
 					}
 				});
 				debug.log();
 			}
-			return _droppedEnergy;
+			return this._droppedEnergy;
 		},
 		
 		extensions : function() {
-			if ( _extensions == null ) {
-				_extensions = this.find(FIND_MY_STRUCTURES, {
+			if ( this._extensions == null ) {
+				this._extensions = this.find(FIND_MY_STRUCTURES, {
 					filter : function(s) {
 						return (s.structureType == STRUCTURE_EXTENSION);
 					}
 				});
 			}
-			return _extensions;
+			return this._extensions;
 		},
 		
 		emptyExtensions : function() {
