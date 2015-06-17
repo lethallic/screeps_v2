@@ -9,7 +9,7 @@ var config = {
 	},
 	
 	"constructors" : {
-		"max": 6
+		"max": 0
 	}
 	
 };
