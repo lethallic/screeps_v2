@@ -10,6 +10,10 @@ var config = {
 	
 	"constructors" : {
 		"max": 0
+	},
+	
+	"upgraders" : {
+		"max" : 2
 	}
 	
 };
@@ -63,6 +67,13 @@ module.exports = {
 			this._createCreep(room, roleManager, "transporter");
 			return;
 		}
+		
+		// create upgrader, if count < config.upgraders.max
+		if ( room.getCreeps("upgrader").length < config.upgraders.max ) {
+			this._createCreep(room, roleManager, "upgrader");
+			return;
+		}
+		
 		
 		// create constructors, if count < config.constructors.max
 		if ( room.getCreeps("constructor").length < config.constructors.max ) {
