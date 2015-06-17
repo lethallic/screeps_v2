@@ -12,6 +12,7 @@ module.exports = {
 			}
 		});
 		if ( flags.length ) {
+			creep.target("");
 			creep.moveTo(flags[0]);
 			return;
 		}
