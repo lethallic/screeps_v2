@@ -99,11 +99,13 @@ module.exports = (function() {
 		
 		extensions : function() {
 			if ( _extensions == null ) {
+				var debug = new Debug("Room.extensions()", 1);
 				_extensions = this.find(FIND_MY_STRUCTURES, {
 					filter : function(s) {
 						return (s.structureType == STRUCTURE_EXTENSION);
 					}
 				});
+				debug.log();
 			}
 			return _extensions;
 		}
