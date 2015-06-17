@@ -16,7 +16,7 @@ function recycleMemory() {
 }
 
 module.exports = (function() {
-	var debug = require("_debug")("_init.js");
+	// var debug = require("_debug")("_init.js");
 	
 	recycleMemory();
 		
@@ -119,7 +119,7 @@ module.exports = (function() {
         }
 	});
 	
-	debug.log();
+	// debug.log();
 	
 	return true;
 })();
