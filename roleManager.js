@@ -10,11 +10,9 @@ module.exports = {
 		if ( role ) {
 			var creepModule = this.getRoleModule(role);
 			if ( creepModule ) {
-				var debug = new Debug("RoleManager." + role, 7);
-				var start = Game.getUsedCpu();
+				var debug = new Debug("RoleManager." + role, 5);
 				creepModule.run(creep);
-				
-				// debug.log();
+				debug.log();
 			}
 		}
 	},
