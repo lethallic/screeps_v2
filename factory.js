@@ -9,11 +9,11 @@ var config = {
 	},
 	
 	"constructors" : {
-		"max": 5
+		"max": 3
 	},
 	
 	"upgraders" : {
-		"max" : 3
+		"max" : 2
 	}
 	
 };
