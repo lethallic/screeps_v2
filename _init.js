@@ -92,7 +92,7 @@ module.exports = (function() {
 			return e;
 		},
 		
-		energy : droppedEnergy()
+		energy : (function(){ return droppedEnergy(); })()
 
 	});
 	
