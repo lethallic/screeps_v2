@@ -85,7 +85,7 @@ module.exports = (function() {
 		
 		droppedEnergy : function() {
 			if ( _droppedEnergy == null ) {
-				var debug = new Debug("Room.droppedEnergy()", 2);
+				var debug = new Debug("Room.droppedEnergy()", 1);
 				_droppedEnergy = this.find(FIND_DROPPED_ENERGY, {
 					filter: function(e) {
 						return ( e.energy >= 100 );
