@@ -106,7 +106,14 @@ module.exports = (function() {
 				});
 			}
 			return _extensions;
+		},
+		
+		emptyExtensions : function() {
+			return _.find(this.extensions(), function(e){
+				return (e.energy < e.energyCapacity);
+			});
 		}
+		
 		
 	});
 	
