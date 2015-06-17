@@ -12,7 +12,7 @@ module.exports = {
 				creepModule.run(creep);
 				
 				var used = (Game.getUsedCpu() - start);
-				if ( used > 2) {
+				if ( used > 5) {
 					console.log("DEBUG - " + role, used);
 				}
 			}
