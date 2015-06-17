@@ -6,7 +6,7 @@ module.exports = {
 	
 	run : function(creep) {
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
-			var debug = new Debug("FIND DROPPED ENERGY", 1);
+			var debug = new Debug("FIND DROPPED ENERGY", 2);
 			
 			// var energy = creep.pos.findClosest(FIND_DROPPED_ENERGY, {
 			//	filter: function(e) {
@@ -23,9 +23,9 @@ module.exports = {
 				creep.pickup(energy);
 			}
 			
-			//debug.log();
+			debug.log();
 		} else {
-			var debug = new Debug("FIND EXTENSION", 1);
+			var debug = new Debug("FIND EXTENSION", 2);
 			
 			var extension = creep.pos.findClosest(FIND_MY_STRUCTURES, {
 				filter : function(s) {
@@ -35,11 +35,14 @@ module.exports = {
 					return false;					
 				}
 			});
-			//debug.log();
+			debug.log();
 			
 			if ( extension ) {
+				debug = new Debug("DO WORK", 2);
 				creep.moveTo(extension);
 				creep.transferEnergy(extension);
+				debug.log();
+				
 				return;
 			} else {
 				debug = new Debug("FIND SPAWN", 2);
@@ -48,7 +51,7 @@ module.exports = {
 					creep.moveTo(spawn);
 					creep.transferEnergy(spawn);
 				}
-				//debug.log();
+				debug.log();
 			}
 		}
 	}
