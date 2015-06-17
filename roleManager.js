@@ -1,6 +1,6 @@
 module.exports = {
 	
-	this._modules = {},
+	_modules = {},
 	
 	process : function(creep) {
 		var role = creep.memory.role;
