@@ -3,11 +3,14 @@ module.exports = {
 	_modules : {},
 	
 	process : function(creep) {
+		
 		var role = creep.memory.role;
 		if ( role ) {
 			var creepModule = this.getRoleModule(role);
 			if ( creepModule ) {
+				var start = Game.getUsedCpu();
 				creepModule.run(creep);
+				_messages.push("DEBUG - " + role + ": " + (Game.getUsedCpu() - start));
 			}
 		}
 	},
