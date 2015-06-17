@@ -12,8 +12,8 @@ module.exports = {
 			}
 		});
 		if ( flags.length ) {
-			console.log(flags);
 			creep.moveTo(flags[0]);
+			return;
 		}
 		
 		
