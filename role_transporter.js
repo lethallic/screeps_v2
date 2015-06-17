@@ -5,6 +5,17 @@ module.exports = {
 	body : [MOVE, CARRY, CARRY, MOVE, MOVE, CARRY],
 	
 	run : function(creep) {
+		
+		var flags = creep.room.find(FIND_FLAGS, {
+			filter: function(f) {
+				return f.color == COLOR_ORANGE;
+			}
+		});
+		if ( flags.length ) {
+			creep.moveTo(flags[0]);
+			return;
+		}
+		
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
 			// var debug = new Debug("FIND DROPPED ENERGY", 2);
 			
