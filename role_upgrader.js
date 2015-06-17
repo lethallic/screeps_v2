@@ -3,6 +3,17 @@ module.exports = {
 	body : [MOVE, MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK],
 	
 	run : function(creep) {
+		
+		var flags = creep.room.find(FIND_FLAGS, {
+			filter: function(f) {
+				return f.color == COLOR_YELLOW;
+			}
+		});
+		if ( flags.length ) {
+			creep.moveTo(flags[0]);
+			return;
+		}
+		
 		if ( creep.energy == 0 ) {
 			// goto spawn
 			var spawn = creep.room.getSpawn();
