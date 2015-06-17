@@ -28,6 +28,5 @@ var _messages = [];
 	require("factory")
 );
 
-for ( var i = 0; i < _messages.length; i++ ) {
-	console.log(_messages[i]);
-}
+
+console.log("DEBUG - Used CPU", _messages);
