@@ -6,6 +6,15 @@ module.exports = {
 	run : function(creep) {
 		var debug;
 		
+		var flags = creep.room.find(FIND_FLAGS, {
+			filter: function(f) {
+				return f.color == COLOR_BLUE;
+			}
+		});
+		if ( flags.length ) {
+			creep.moveTo(flags[0]);
+		}
+		
 		
 		if ( creep.energy > 0 ) {
 			var target = null;
@@ -60,7 +69,7 @@ module.exports = {
 			if ( target ) {
 				// build / repair target
 				var m = creep.moveTo(target);
-				console.log(creep, "moveTo", m);
+				// console.log(creep, "moveTo", m);
 				
 				if ( m != 0 ) {
 					if ( typeof target.progress == "number" ) {
