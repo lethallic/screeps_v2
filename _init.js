@@ -17,7 +17,7 @@ function recycleMemory() {
 }
 
 module.exports = (function() {
-	// var debug = require("_debug")("_init.js");
+	var debug = require("_debug")("_init.js");
 	
 	recycleMemory();
 		
@@ -99,6 +99,8 @@ module.exports = (function() {
 		
 		extensions : function() {
 			if ( _extensions == null ) {
+				console.log("get room extensions");
+				
 				var debug = new Debug("Room.extensions()", 1);
 				_extensions = this.find(FIND_MY_STRUCTURES, {
 					filter : function(s) {
@@ -152,7 +154,7 @@ module.exports = (function() {
         }
 	});
 	
-	// debug.log();
+	debug.log();
 	
 	return true;
 })();
