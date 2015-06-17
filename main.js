@@ -20,7 +20,7 @@ var _messages = [];
 		var creep = Game.creeps[c];
 		roleManager.process(creep);
 	}
-	var cpuRoles = cpuGame.getUsedCpu();
+	var cpuRoles = Game.getUsedCpu();
 	_messages.push("Roles: " + (cpuRoles - cpuFactory));
 		
 })(
