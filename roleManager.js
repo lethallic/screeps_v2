@@ -20,7 +20,7 @@ module.exports = {
 			this._modules[role] = this.loadModule(role);
 		}
 		
-		return this._modules[role];
+		return this._modules[role] || null;
 	},
 	
 	loadModule : function(role) {
