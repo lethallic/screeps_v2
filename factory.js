@@ -13,7 +13,7 @@ var config = {
 	},
 	
 	"upgraders" : {
-		"max" : 2
+		"max" : 1
 	}
 	
 };

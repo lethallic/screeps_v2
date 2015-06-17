@@ -49,6 +49,9 @@ module.exports = {
 			});
 			*/
 			
+			console.log("ext", creep.room.extensions());
+			console.log("empty, "creep.room.emptyExtensions());
+			
 			var extension = creep.pos.findClosest(creep.room.extensions(), {
 				filter : function(s) {
 					return (s.energy < 50);
