@@ -8,11 +8,13 @@ module.exports = {
 		if ( creep.energy < creep.energyCapacity ) {
 			var debug = new Debug("FIND DROPPED ENERGY", 2);
 			
-			var energy = creep.pos.findClosest(FIND_DROPPED_ENERGY, {
-				filter: function(e) {
-					return ( e.energy >= creep.energyCapacity );
-				}
-			});
+			// var energy = creep.pos.findClosest(FIND_DROPPED_ENERGY, {
+			//	filter: function(e) {
+			//		return ( e.energy >= creep.energyCapacity );
+			//	}
+			// });
+			
+			var energy = creep.pos.findClosest(creep.room.droppedEnergy());
 			if ( energy ) {
 				creep.moveTo(energy);
 				creep.pickup(energy);

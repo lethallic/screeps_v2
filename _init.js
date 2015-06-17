@@ -35,6 +35,9 @@ module.exports = (function() {
 		}
 	});
 	
+	
+	var _droppedEnergy = null;
+	
 	extend(Room.prototype, {
 		newSpawn : function() {
 			var spawns = this.find(FIND_MY_SPAWNS);
@@ -75,6 +78,17 @@ module.exports = (function() {
 					return (c.target() === targetId);	
 				}
 			});
+		},
+		
+		droppedEnergy : function() {
+			if ( _droppedEnergy == null ) {
+				_droppedEnergy = this.find(FIND_DROPPED_ENERGY, {
+					filter: function(e) {
+						return ( e.energy >= 100 );
+					}
+				});
+			}
+			return _droppedEnergy;
 		}
 
 	});
