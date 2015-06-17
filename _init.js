@@ -38,15 +38,17 @@ module.exports = (function() {
 	
 	
 	var _droppedEnergy = null;
+	var _spawn = null;
 	
 	extend(Room.prototype, {
 		newSpawn : function() {
-			var spawns = this.find(FIND_MY_SPAWNS);
-			if( spawns.length ) {
-				return spawns[0];
-			}
-								
-			return null;
+			if ( _spawn == null ) {
+				var spawns = this.find(FIND_MY_SPAWNS);
+				if( spawns.length ) {
+					_spawn = spawns[0];
+				}
+			}				
+			return _spawn;
 		},
 		
 		getSpawn : function() {
