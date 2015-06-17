@@ -21,7 +21,7 @@ module.exports = {
 			
 			var energyList = creep.room.find(FIND_DROPPED_ENERGY, {
 				filter : function(e) {
-					return ( e.energy >= creep.energyCapacity || e.energy > 50 );
+					return ( e.energy >= creep.energyCapacity );
 				}
 			});
 			
