@@ -13,7 +13,7 @@ module.exports = {
             return ( c.memory.role == "fighter" );
         });
         
-        var toHeal = _.sort(fighters, function(c) {
+        var toHeal = _.sortBy(fighters, function(c) {
             return c.hits;
         });
         
