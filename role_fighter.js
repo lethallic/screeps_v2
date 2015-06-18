@@ -26,7 +26,7 @@ module.exports = {
 	
 	_gotoFlag : function(creep) {
 	    var flag = _.find(Game.flags, function(f){
-		    return ( flag.color == COLOR_RED );
+		    return ( f.color == COLOR_RED );
 		});
         
 		if ( flag ) {

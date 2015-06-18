@@ -81,16 +81,24 @@ module.exports = {
 			return;
 		}
 		
+	},
+	
+	buildDefence : function(spawn, roleManager) {
 		// build defence		
 		var defence = ["fighter", "healer"];
+		var maxUnits = 1;
+		
 		for ( var d in defence ) {
 			var role = defence[d];
-			var creeps = room.getCreeps(role);
-			if ( creeps.length < 1 ) {
+			
+			var creeps = _.filter(Game.creeps, function(c){
+				return c.memory.role == role;
+			});
+			
+			if ( creeps.length < maxUnits ) {
 				this._createCreep(room, roleManager, role);
 			}
 		}
-
 	}
 			
 };
