@@ -87,7 +87,7 @@ module.exports = {
 			var role = defence[d];
 			var creeps = room.getCreeps(role);
 			if ( creeps.length < 1 ) {
-				this.createCreep(room, roleManager, role);
+				this._createCreep(room, roleManager, role);
 			}
 		}
 
