@@ -96,7 +96,7 @@ module.exports = {
 			});
 			
 			if ( creeps.length < maxUnits ) {
-				this._createCreep(room, roleManager, role);
+				this._createCreep(spawn.room, roleManager, role);
 			}
 		}
 	}
