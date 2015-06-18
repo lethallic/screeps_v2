@@ -21,13 +21,11 @@ module.exports = {
             var target = toHeal[i];
             
             if ( target && target.hits < target.hitsMax && target != creep ) {
-                console.log("heal", target);
                 creep.moveTo(target);
                 creep.heal(target);
                 return true;
             }    
         }
-        console.log("not target found to heal");
         return false;
 	},
 	
