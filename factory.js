@@ -5,7 +5,7 @@ var config = {
 	},
 	
 	"transporters" : {
-		"max" : 2
+		"max" : 3
 	},
 	
 	"constructors" : {
@@ -13,7 +13,7 @@ var config = {
 	},
 	
 	"upgraders" : {
-		"max" : 2
+		"max" : 3
 	}
 	
 };

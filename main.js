@@ -1,5 +1,7 @@
 require("_init");
 
+var RoomObjects = require("roomObjects");
+
 var DEBUG = false;
 var _messages = [];
 
@@ -9,6 +11,11 @@ var _messages = [];
 	
 	// process factory for every room
 	for ( var r in Game.rooms ) {
+		var objects = new RoomObjects(Game.rooms[r]);
+		for ( var e in objects ) {
+			console.log(e, objects[e]());
+		}
+		
 		factory.produce(Game.rooms[r], roleManager);
 	}
 	var cpuFactory = Game.getUsedCpu();
