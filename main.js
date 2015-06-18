@@ -21,7 +21,7 @@ var _messages = [];
 		
 		if ( spawn ) {
 			console.log(s);
-			//factory.buildDefence(spawn, roleManager)
+			factory.buildDefence(spawn, roleManager)
 		}
 		
 		continue;
