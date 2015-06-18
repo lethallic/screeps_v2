@@ -18,12 +18,9 @@ var _messages = [];
 	// build defence
 	for ( var s in Game.spawns ) {
 		var spawn = Game.spawns[s];
-		
 		if ( spawn ) {
-			console.log(s);
 			factory.buildDefence(spawn, roleManager)
 		}
-		
 		continue;
 	}
 	
