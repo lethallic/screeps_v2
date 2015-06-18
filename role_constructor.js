@@ -81,6 +81,19 @@ module.exports = {
 			}
 
 		} else if ( creep.energy == 0 ) {
+			
+			var energyList = creep.room.find(FIND_DROPPED_ENERGY, {
+				filter : function(e) {
+					return ( e.energy > 50 && e.energy < 200 );
+				}
+			});
+			
+			if ( energyList.length ) {
+				creep.moveTo(energy);
+				creep.pickup(energy);
+				return;
+			}
+			
 			// goto spawn, get energy
 			var spawn = creep.room.getSpawn();
 			if ( spawn ) {
