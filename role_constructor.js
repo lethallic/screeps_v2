@@ -84,13 +84,13 @@ module.exports = {
 			
 			var energyList = creep.room.find(FIND_DROPPED_ENERGY, {
 				filter : function(e) {
-					return ( e.energy > 40 && e.energy < 200 );
+					return ( e.energy > 20 && e.energy < 200 );
 				}
 			});
 			
 			if ( energyList.length ) {
-				creep.moveTo(energy);
-				creep.pickup(energy);
+				creep.moveTo(energyList[0]);
+				creep.pickup(energyList[0]);
 				return;
 			}
 			
