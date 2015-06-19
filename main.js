@@ -16,14 +16,15 @@ var _messages = [];
 	var cpuFactory = Game.getUsedCpu();
 	
 	// build defence
-	for ( var s in Game.spawns ) {
-		var spawn = Game.spawns[s];
-		if ( spawn ) {
-			factory.buildDefence(spawn, roleManager)
+	if ( Game.creeps.length > 20 ) {
+		for ( var s in Game.spawns ) {
+			var spawn = Game.spawns[s];
+			if ( spawn ) {
+				factory.buildDefence(spawn, roleManager)
+			}
+			continue;
 		}
-		continue;
 	}
-	
 	_messages.push("Factory: " + (cpuFactory - cpuStart));
 	
 	

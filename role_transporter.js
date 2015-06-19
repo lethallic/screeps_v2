@@ -2,7 +2,7 @@ var Debug = require("_debug")
 
 module.exports = {
 	
-	body : [MOVE, CARRY, CARRY, MOVE, MOVE, CARRY],
+	body : [MOVE, CARRY, CARRY, MOVE, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY],
 	
 	run : function(creep) {
 		
