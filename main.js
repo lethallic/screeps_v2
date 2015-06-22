@@ -9,7 +9,7 @@ var _messages = [];
 	var cpuStart = 0;
 	
 	// scout
-	require("scout")();
+	require("scout");
 	
 	// process factory for every room
 	for ( var r in Game.rooms ) {
