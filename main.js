@@ -8,6 +8,8 @@ var _messages = [];
 (function(roleManager, factory){
 	var cpuStart = 0;
 	
+	// scout
+	require("scout")();
 	
 	// process factory for every room
 	for ( var r in Game.rooms ) {
@@ -20,7 +22,7 @@ var _messages = [];
 		for ( var s in Game.spawns ) {
 			var spawn = Game.spawns[s];
 			if ( spawn ) {
-				factory.buildDefence(spawn, roleManager)
+				// factory.buildDefence(spawn, roleManager)
 			}
 			continue;
 		}

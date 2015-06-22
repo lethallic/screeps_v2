@@ -1,15 +1,15 @@
 var config = {
 	
 	"miners" : {
-		"max" : 1
+		"max" : 2
 	},
 	
 	"transporters" : {
-		"max" : 3
+		"max" : 1
 	},
 	
 	"constructors" : {
-		"max": 4
+		"max": 2//3
 	},
 	
 	"upgraders" : {
