@@ -1,6 +1,6 @@
 module.exports = {
 	
-	body : [MOVE, MOVE, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, HEAL],
+	body : [TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, HEAL],
 	
 	run : function(creep) {
         if ( !this._healFighter(creep) ) {

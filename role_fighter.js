@@ -1,6 +1,6 @@
 module.exports = {
 	
-	body : [MOVE , MOVE, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK],
+	body : [TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK],
 	
 	run : function(creep) {
         if ( !this._attackEnemy(creep) ){
