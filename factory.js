@@ -9,7 +9,7 @@ var config = {
 	},
 	
 	"constructors" : {
-		"max": 3
+		"max": 4
 	},
 	
 	"upgraders" : {
