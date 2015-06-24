@@ -7,7 +7,7 @@ module.exports = (function(factory){
         var getName = function(n){
             if ( _names.length == 0 ) return "UNIT_" + n;
         
-            var index = Math.round(Math.random() * names.length);
+            var index = Math.round(Math.random() * (names.length - 1));
             if ( index == _names.length ) index--;
             
             return _names[index] + "_" + n;
