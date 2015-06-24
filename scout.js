@@ -16,7 +16,7 @@ module.exports = function(){
             });
 
             // if ( !flag.memory.scout ) {
-            if ( scouts.length < 1 ) {
+            if ( scouts.length < 2 ) {
                 var roleBuilder = require("role_builder");
                 
                 // not scout, build one
