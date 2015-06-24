@@ -1,6 +1,6 @@
 module.exports = {
 	
-	body : null,
+	body : [MOVE, MOVE, CARRY, CARRY, WORK],
 	
 	run : function(creep) {
 		var target = _getObjectById(creep.target());

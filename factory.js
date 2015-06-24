@@ -14,6 +14,10 @@ var config = {
 	
 	"upgraders" : {
 		"max" : 3
+	},
+	
+	"builders" : {
+		"max" : 3
 	}
 	
 };
@@ -43,9 +47,21 @@ module.exports = {
 	
 	produce : function(room, roleManager) {
 		var sources = room.sources();
-		var transporters = room.getCreeps("transporter");
+		
+		if ( room.maxEnergy() < 500 ) {
+			// just build workers
+			var builders = room.getCreeps("builder");
+			
+			if ( builders.length < config.builders.max ) {
+				this._createCreep(room, roleManager, "builder");
+			}
+
+			return;
+		}
+		
 		
 		// create one transporter first
+		var transporters = room.getCreeps("transporter");
 		if ( transporters.length == 0 ) {
 			this._createCreep(room, roleManager, "transporter");
 			return;

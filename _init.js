@@ -119,9 +119,16 @@ module.exports = (function() {
 			return _.filter(this.extensions(), function(e){
 				return (e.energy < e.energyCapacity);
 			});
+		},
+		
+		maxEnergy : function() {
+			var spawn = this.getSpawn();
+			if ( spawn ) {
+				return 300 + (this.extensions().length * 50);
+			}
+			return 0;
 		}
-		
-		
+
 	});
 	
 	extend(ConstructionSite.prototype, {
