@@ -33,7 +33,7 @@ module.exports = {
 			var name = role + "_" + Math.round(Math.random() * 1000);
 			
 			var body = mod.body;
-			if ( room.maxEnergy() < _buildSmall && mod.body_small ) {
+			if ( room.maxEnergy() < this._buildSmall && mod.body_small ) {
 				body = mod.body_small;
 			}
 					
