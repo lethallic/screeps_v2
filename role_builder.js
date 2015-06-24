@@ -3,7 +3,7 @@ module.exports = {
 	body : [MOVE, MOVE, CARRY, CARRY, WORK],
 	
 	run : function(creep) {
-		var target = _getObjectById(creep.target());
+		var target =this._getObject(creep.target());
 		
 		if ( target ) {
 		    if ( target.ticksToRegeneration && creep.energy == creep.energyCapacity ) {

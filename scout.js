@@ -14,8 +14,6 @@ module.exports = function(){
                 var scoutName = "scout_" + flag.name;
                 
                 var scout = Game.spawns["Spawn1"].createCreep(roleBuilder.body, scoutName, { role : "scout", flag : flag.id});
-                console.log(scout);
-                
                 if ( _.isString(scout) ) {
                     flag.memory.scout = scoutName;
                     console.log("scout created", f, scout);  
@@ -23,13 +21,17 @@ module.exports = function(){
             } else {
                 var creep = Game.creeps[flag.memory.scout];
                 if ( creep ) {
-                    var controller = flag.room.controller;
-                    
-                    if ( !controller.owner ) {
-                        creep.moveTo(controller);
-                        creep.claimController(controller);
-                    } else {
+                    if ( !flag.room ) {
                         creep.moveTo(flag);
+                    } else {
+                        var controller = flag.room.controller;
+                        if ( controller.my ) {
+                            flag.remove()
+                            creep.memory.role = "builder";
+                        } else {
+                            creep.moveTo(controller);
+                            creep.claimController(controller);
+                        }
                     }
                 } 
             }
