@@ -167,6 +167,9 @@ module.exports = (function() {
 	extend(Structure.prototype, {
 		_type : "structure",
 		needsRepair : function(name) {
+			if ( this.structureType == STRUCTURE_RAMPART ) {
+				return this.hits < 1000000;
+			}
             return this.hits < this.hitsMax;
         }
 	});
