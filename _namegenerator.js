@@ -725,17 +725,20 @@ module.exports = (function(factory) {
         var _names = names || [];
 
         var getName = function(n) {
-            if (_names.length == 0) return "UNIT_" + n;
+            var append = ( n ? "_" + n : "");
 
             var index = Math.round(Math.random() * (names.length - 1));
             if (index == _names.length) index--;
 
-            return _names[index] + "_" + n;
+            return _names[index] + append;
         }
 
-        this.get = function() {
-            var num = Math.round(Math.random() * 1000);
-            return getName(num);
+        this.get = function(addNumber) {
+            if ( addNumber ) {
+                return getName(Math.round(Math.random() * 1000));    
+            } else {
+                return getName();
+            }
         }
 
     }
