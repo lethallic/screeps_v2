@@ -35,7 +35,7 @@ module.exports = function(){
                     var creep = scouts[c];
                     //var creep = Game.creeps[flag.memory.scout];
                     if ( creep ) {
-                        if ( !flag.room || flag.room != creep.room || !creep.pos.isNearTo(flag) ) {
+                        if ( !flag.room || flag.room != creep.room || !creep.pos.inRangeTo(flag, 20) ) {
                             creep.moveTo(flag);
                         } else {
                             var controller = flag.room.controller;
