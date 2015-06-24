@@ -23,7 +23,7 @@ var config = {
 };
 
 module.exports = {
-	_buildSmall = 600,
+	_buildSmall : 600,
 	
 	_createCreep : function(room, roleManager, role, target) {
 		var spawn = room.getSpawn();
