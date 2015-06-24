@@ -47,7 +47,7 @@ module.exports = {
 	},
 	
 	_findSource : function(creep) {
-        var sources = room.sources();
+        var sources = creep.room.sources();
         return creep.pos.findClosest(sources);
 	},
 	
