@@ -3,15 +3,13 @@ module.exports = function(){
         return (flag.color == COLOR_WHITE);
     });
     
-    
-    
-    for ( var id in Game.flags ) {
-        var flag = Game.flags[id];
+    for ( var id in flags ) {
+        var flag = flags[id];
         if ( flag.color == COLOR_WHITE) {
             var scouts = _.filter(Game.creeps, function(c) {
-                if ( c.memory.role == "scout" ) {
+                // if ( c.memory.role == "scout" ) {
                     return (c.memory.flag == flag.id);
-                }
+                //}
                 return false; 
             });
 
@@ -20,7 +18,7 @@ module.exports = function(){
                 var roleBuilder = require("role_builder");
                 
                 // not scout, build one
-                var scoutName = "scout_" + flag.name;
+                var scoutName = "scout_" + Math.round(Math.random() * 1000);
                 
                 var scout = Game.spawns["Spawn1"].createCreep(roleBuilder.body, scoutName, { role : "scout", flag : flag.id});
                 if ( _.isString(scout) ) {
