@@ -33,6 +33,14 @@ module.exports = (function() {
 				this.memory.target = newTarget;
 			}
 			return this.memory.target;
+		},
+		"work" : function() {
+			var target = Game.getObjectById(this.target());
+			if ( target ) {
+				
+								
+			}
+			return false;
 		}
 	});
 	
