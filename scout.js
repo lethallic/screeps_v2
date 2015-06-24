@@ -3,10 +3,20 @@ module.exports = function(){
         return (flag.color == COLOR_WHITE);
     });
     
+    
+    
     for ( var id in Game.flags ) {
         var flag = Game.flags[id];
         if ( flag.color == COLOR_WHITE) {
-            if ( !flag.memory.scout ) {
+            var scouts = _.filter(Game.creeps, function(c) {
+                if ( c.memory.role == "scout" ) {
+                    return (c.memory.flag == flag.id);
+                }
+                return false; 
+            });
+
+            // if ( !flag.memory.scout ) {
+            if ( scouts.length < 1 ) {
                 var roleBuilder = require("role_builder");
                 
                 // not scout, build one
@@ -17,24 +27,27 @@ module.exports = function(){
                     flag.memory.scout = scoutName;
                     console.log("scout created", flag, scout);  
                 } else {
-                    console.log(scout);
+                    // console.log(scout);
                 }
             } else {
-                var creep = Game.creeps[flag.memory.scout];
-                if ( creep ) {
-                    if ( !flag.room || flag.room != creep.room ) {
-                        creep.moveTo(flag);
-                    } else {
-                        var controller = flag.room.controller;
-                        if ( controller.my ) {
-                            flag.remove()
-                            creep.memory.role = "builder";
+                console.log(scouts)
+                for ( var c in scouts ) {
+                    var creep = scouts[c];
+                    //var creep = Game.creeps[flag.memory.scout];
+                    if ( creep ) {
+                        if ( !flag.room || flag.room != creep.room || !creep.pos.isNearTo(flag) ) {
+                            creep.moveTo(flag);
                         } else {
-                            creep.moveTo(controller);
-                            creep.claimController(controller);
+                            var controller = flag.room.controller;
+                            if ( controller.my ) {
+                                creep.memory.role = "builder";
+                            } else {
+                                creep.moveTo(controller);
+                                creep.claimController(controller);
+                            }
                         }
-                    }
-                } 
+                    } 
+                }
             }
         }
     }

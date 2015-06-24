@@ -21,19 +21,47 @@ module.exports = {
                 } else {
                     target = this._findSource(creep);
                 }
-            } else {
+            }
+            
+            if ( target == null ) {
+                var spawn = creep.room.getSpawn();
+                if ( spawn ) {
+                    if ( spawn.energy < spawn.energyCapacity ) {
+                        target = spawn;
+                    }
+                
+                    if ( target == null ) {
+                        var extensions = creep.room.emptyExtensions();
+                        if ( extensions.length ) {
+                            target = extensions[0];
+                        }
+                    }
+                
+                }
+            }
+            
+            if ( target == null ) {
                 target = this._findConstruction(creep);
+            }
+            
+            if ( target == null ) {
+                target = creep.room.controller;
             }
         }
 
 		if ( target ) {
 		    creep.moveTo(target);
-		    console.log(creep, target)
-		    if ( target.ticksToRegeneration ) {
+		    if ( target.hits && target.structureType && ( target.structureType == STRUCTURE_SPAWN || target.structureType == STRUCTURE_EXTENSION)) {
+                creep.transferEnergy(target);
+                creep.target(null);
+                return;
+		    } else if ( target.ticksToRegeneration ) {
 		        // energy
 		        creep.harvest(target);
 		    } else if ( target.energy ) {
 		        creep.pickup(target);
+		    } else if ( target.level ) {
+		        creep.upgradeController(target)
 		    } else { //if ( target.progress && target.structureType ) {
 		        // construction
 		        creep.build(target);

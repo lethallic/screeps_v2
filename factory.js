@@ -23,6 +23,7 @@ var config = {
 };
 
 module.exports = {
+	_buildSmall = 600,
 	
 	_createCreep : function(room, roleManager, role, target) {
 		var spawn = room.getSpawn();
@@ -31,9 +32,14 @@ module.exports = {
 		if ( spawn && mod ) {
 			var name = role + "_" + Math.round(Math.random() * 1000);
 			
-			if ( spawn.canCreateCreep(mod.body, name) == 0 ) {
+			var body = mod.body;
+			if ( room.maxEnergy() < _buildSmall && mod.body_small ) {
+				body = mod.body_small;
+			}
+					
+			if ( spawn.canCreateCreep(body, name) == 0 ) {
 				console.log("building " + name + " [" + role + "] ...");
-				var creep = spawn.createCreep(mod.body, name, {
+				var creep = spawn.createCreep(body, name, {
 					"role" : role,
 					"target": target
 				});			
