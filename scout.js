@@ -3,7 +3,6 @@ module.exports = function(){
         return (flag.color == COLOR_WHITE);
     });
     
-    
     for ( var id in Game.flags ) {
         var flag = Game.flags[id];
         if ( flag.color == COLOR_WHITE) {
@@ -16,12 +15,14 @@ module.exports = function(){
                 var scout = Game.spawns["Spawn1"].createCreep(roleBuilder.body, scoutName, { role : "scout", flag : flag.id});
                 if ( _.isString(scout) ) {
                     flag.memory.scout = scoutName;
-                    console.log("scout created", f, scout);  
+                    console.log("scout created", flag, scout);  
+                } else {
+                    console.log(scout);
                 }
             } else {
                 var creep = Game.creeps[flag.memory.scout];
                 if ( creep ) {
-                    if ( !flag.room ) {
+                    if ( !flag.room || flag.room != creep.room ) {
                         creep.moveTo(flag);
                     } else {
                         var controller = flag.room.controller;

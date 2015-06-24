@@ -6,8 +6,8 @@ module.exports = {
 		var target =this._getObject(creep.target());
 		
 		if ( target ) {
-		    if ( target.ticksToRegeneration && creep.energy == creep.energyCapacity ) {
-		        
+		    if ( (target.ticksToRegeneration || target.energy) && creep.energy == creep.energyCapacity ) {
+		        target = null;
 		    } else if ( creep.energy == 0 ) {
 		        target = null;
 		    }
@@ -15,7 +15,12 @@ module.exports = {
 		
         if ( target == null ) {
             if ( creep.energy == 0 ) {
-                target = this._findSource(creep);
+                var energy = creep.room.droppedEnergy();
+                if ( energy.length ) {
+                    target = energy[0];
+                } else {
+                    target = this._findSource(creep);
+                }
             } else {
                 target = this._findConstruction(creep);
             }
@@ -23,19 +28,19 @@ module.exports = {
 
 		if ( target ) {
 		    creep.moveTo(target);
-		    
-		    if (  target.ticksToRegeneration ) {
+		    console.log(creep, target)
+		    if ( target.ticksToRegeneration ) {
 		        // energy
 		        creep.harvest(target);
-		    } else if ( target.progress && target.structureType ) {
+		    } else if ( target.energy ) {
+		        creep.pickup(target);
+		    } else { //if ( target.progress && target.structureType ) {
 		        // construction
 		        creep.build(target);
 		    }
-		    
-		    creep.target(target);
+		    creep.target(target.id);
 		} else {
 		    creep.target(null)
-		    
 		}
 	},
 	
