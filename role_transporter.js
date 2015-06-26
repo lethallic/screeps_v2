@@ -27,7 +27,7 @@ module.exports = {
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
 			// var debug = new Debug("FIND DROPPED ENERGY", 2);
 			
-			var energyList = -.filter(creep.room.droppedEnergy(), function(e) {
+			var energyList = _.filter(creep.room.droppedEnergy(), function(e) {
 				for ( var i in upgrader ) {
 					if ( e.pos.isNearTo(upgrader[i], 3) ) {
 						return false;
