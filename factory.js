@@ -1,15 +1,15 @@
 var config = {
 	
 	"miners" : {
-		"max" : 2
-	},
-	
-	"transporters" : {
 		"max" : 1
 	},
 	
+	"transporters" : {
+		"max" : 2
+	},
+	
 	"constructors" : {
-		"max": 2//3
+		"max": 3
 	},
 	
 	"upgraders" : {
@@ -108,7 +108,7 @@ module.exports = {
 	buildDefence : function(spawn, roleManager) {
 		// build defence		
 		var defence = ["fighter", "healer"];
-		var maxUnits = 1;
+		var maxUnits = 2;
 		
 		for ( var d in defence ) {
 			var role = defence[d];
