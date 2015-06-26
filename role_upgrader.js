@@ -23,8 +23,9 @@ module.exports = {
 		if ( controller && controller.my ) {
 			var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 3);
 		    if ( creep.energy == 0 && energy.length ) {
-				creep.moveTo(energy[0]);
-				creep.pickup(energy[0]);
+		    	if ( creep.pickup(energy[0]) != OK ) {
+					creep.moveTo(energy[0]);
+		    	}
 		    } else if ( !creep.pos.isNearTo(controller) ) {
 				creep.moveTo(controller);
 			} else if ( creep.energy > 0 ) {
