@@ -29,7 +29,7 @@ module.exports = {
 			
 			var energyList = _.filter(creep.room.droppedEnergy(), function(e) {
 				for ( var i in upgrader ) {
-					if ( e.pos.isNearTo(upgrader[i], 3) ) {
+					if ( e.pos.inRangeTo(upgrader[i], 3) ) {
 						return false;
 					}
 				}
