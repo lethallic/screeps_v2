@@ -59,15 +59,22 @@ module.exports = {
 				}
 				
 				var upgrader = _.find(creep.room.find(FIND_MY_CREEPS), function(c){
-					if ( c.role() === "upgrader" ) {
-						return c.energy < c.energyCapacity;
-					}
-					return false;
+					return ( c.role() === "upgrader" );
+					// if ( c.role() === "upgrader" ) {
+					// 	return c.energy < c.energyCapacity;
+					// }
+					// return false;
 				});
 				
 				if ( upgrader ) {
 					creep.moveTo(upgrader);
-					creep.transferEnergy(upgrader);
+					
+					if ( upgrader.energy < upgrader.energyCapacity - 10 ) {
+						creep.transferEnergy(upgrader);
+					} else {
+						creep.dropEnergy();
+					}
+					
 				}
 				
 				
