@@ -24,6 +24,11 @@ module.exports = {
 				creep.moveTo(controller);
 			} else if ( creep.energy > 0 ) {
 				creep.upgradeController(controller);
+			} else if ( creep.energy == 0 ) {
+				var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 1);
+				if ( energy.length ) {
+					creep.pickup(energy);
+				}
 			}
 		}
 		
