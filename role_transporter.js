@@ -52,10 +52,25 @@ module.exports = {
 			} else {
 				// debug = new Debug("FIND SPAWN", 2);
 				var spawn = creep.room.getSpawn();
-				if ( spawn ) {
+				if ( spawn && spawn.energy < spawn.energyCapacity ) {
 					creep.moveTo(spawn);
 					creep.transferEnergy(spawn);
+					return;
 				}
+				
+				var upgrader = _.find(creep.room.find(FIND_MY_CREEPS), function(c){
+					if ( c.role() === "upgrader" ) {
+						return c.energy < c.energyCapacity;
+					}
+					return false;
+				});
+				
+				if ( upgrader ) {
+					creep.moveTo(upgrader);
+					creep.transferEnergy(upgrader);
+				}
+				
+				
 				// debug.log();
 			}
 		}

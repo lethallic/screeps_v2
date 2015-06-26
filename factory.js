@@ -13,7 +13,7 @@ var config = {
 	},
 	
 	"upgraders" : {
-		"max" : 3
+		"max" : 1
 	},
 	
 	"builders" : {
@@ -37,6 +37,7 @@ module.exports = {
 				body = mod.body_small;
 			}
 					
+			//console.log(spawn.canCreateCreep(body, name));
 			if ( spawn.canCreateCreep(body, name) == 0 ) {
 				console.log("building " + name + " [" + role + "] ...");
 				var creep = spawn.createCreep(body, name, {
@@ -44,7 +45,6 @@ module.exports = {
 					"target": target
 				});			
 			}
-			
 			return _.isString(creep);			
 		}
 		

@@ -1,6 +1,6 @@
 require("_init");
 
-var RoomObjects = require("roomObjects");
+// var RoomObjects = require("roomObjects");
 
 var DEBUG = false;
 var _messages = [];

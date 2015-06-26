@@ -1,18 +1,16 @@
 module.exports = function(){
-    var flags = _.find(Game.flags, function(flag){
-        return (flag.color == COLOR_WHITE);
-    });
-    
-    for ( var id in flags ) {
-        var flag = flags[id];
+    for ( var id in Game.flags ) {
+        var flag = Game.flags[id];
+        
         if ( flag.color == COLOR_WHITE) {
             var scouts = _.filter(Game.creeps, function(c) {
-                // if ( c.memory.role == "scout" ) {
+                if ( c.memory.role == "scout" || c.memory.role == "builder" ) {
                     return (c.memory.flag == flag.id);
-                //}
+                }
                 return false; 
             });
-
+            
+            // console.log(scouts);
             // if ( !flag.memory.scout ) {
             if ( scouts.length < 2 ) {
                 var roleBuilder = require("role_builder");

@@ -1,7 +1,10 @@
 module.exports = {
 	
-	body : [MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK, WORK, MOVE, CARRY, WORK],
-	body_small : [MOVE, MOVE, MOVE, CARRY, CARRY, WORK],
+	body : [MOVE, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK],
+	body_small : [MOVE, WORK, CARRY, CARRY],
+	
+	// body : [MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK, WORK, MOVE, CARRY, WORK],
+	// body_small : [MOVE, MOVE, MOVE, CARRY, CARRY, WORK],
 	
 	run : function(creep) {
 		
@@ -15,21 +18,30 @@ module.exports = {
 			return;
 		}
 		
-		if ( creep.energy == 0 ) {
-			// goto spawn
-			var spawn = creep.room.getSpawn();
-			if ( spawn ) {
-				creep.moveTo(spawn);
-				spawn.transferEnergy(creep);
-			}
-		} else {
-			// upgrade controller
-			var controller = creep.room.controller;
-			if ( controller && controller.my ) {
+		var controller = creep.room.controller;
+		if ( controller && controller.my ) {
+			if ( !creep.pos.isNearTo(controller) ) {
 				creep.moveTo(controller);
+			} else if ( creep.energy > 0 ) {
 				creep.upgradeController(controller);
 			}
 		}
+		
+		// if ( creep.energy == 0 ) {
+		// 	// goto spawn
+		// 	var spawn = creep.room.getSpawn();
+		// 	if ( spawn ) {
+		// 		creep.moveTo(spawn);
+		// 		spawn.transferEnergy(creep);
+		// 	}
+		// } else {
+		// 	// upgrade controller
+		// 	var controller = creep.room.controller;
+		// 	if ( controller && controller.my ) {
+		// 		creep.moveTo(controller);
+		// 		creep.upgradeController(controller);
+		// 	}
+		// }
 	}
 	
 };
