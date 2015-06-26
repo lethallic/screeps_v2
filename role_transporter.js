@@ -16,12 +16,21 @@ module.exports = {
 			return;
 		}
 		
+		var upgrader = _.filter(creep.room.find(FIND_MY_CREEPS), function(c){
+			return ( c.role() === "upgrader" );
+			// if ( c.role() === "upgrader" ) {
+			// 	return c.energy < c.energyCapacity;
+			// }
+			// return false;
+		});
+		
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
 			// var debug = new Debug("FIND DROPPED ENERGY", 2);
 			
 			var energyList = creep.room.find(FIND_DROPPED_ENERGY, {
 				filter : function(e) {
-					return ( e.energy >= creep.energyCapacity );
+				    return !e.pos.isNearTo(upgrader, 3);
+					// return ( e.energy >= creep.energyCapacity );
 				}
 			});
 			
@@ -58,26 +67,14 @@ module.exports = {
 					return;
 				}
 				
-				var upgrader = _.find(creep.room.find(FIND_MY_CREEPS), function(c){
-					return ( c.role() === "upgrader" );
-					// if ( c.role() === "upgrader" ) {
-					// 	return c.energy < c.energyCapacity;
-					// }
-					// return false;
-				});
-				
-				if ( upgrader ) {
-					creep.moveTo(upgrader);
-					
+				if ( upgrader.length ) {
+					creep.moveTo(upgrader[0]);
 					if ( upgrader.energy < upgrader.energyCapacity - 10 ) {
-						creep.transferEnergy(upgrader);
-					} else {
+						creep.transferEnergy(upgrader[0]);
+					} else if ( creep.pos.isNearTo(upgrader[0]) ) {
 						creep.dropEnergy();
 					}
-					
 				}
-				
-				
 				// debug.log();
 			}
 		}

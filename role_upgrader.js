@@ -2,6 +2,7 @@ module.exports = {
 	
 	body : [MOVE, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK],
 	body_small : [MOVE, WORK, CARRY, CARRY],
+	body_big : [MOVE, CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK, WORK, WORK],
 	
 	// body : [MOVE, MOVE, CARRY, CARRY, CARRY, WORK, WORK, WORK, MOVE, CARRY, WORK],
 	// body_small : [MOVE, MOVE, MOVE, CARRY, CARRY, WORK],
@@ -20,15 +21,14 @@ module.exports = {
 		
 		var controller = creep.room.controller;
 		if ( controller && controller.my ) {
-			if ( !creep.pos.isNearTo(controller) ) {
+			var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 3);
+		    if ( creep.energy == 0 && energy.length ) {
+				creep.moveTo(energy[0]);
+				creep.pickup(energy[0]);
+		    } else if ( !creep.pos.isNearTo(controller) ) {
 				creep.moveTo(controller);
 			} else if ( creep.energy > 0 ) {
 				creep.upgradeController(controller);
-			} else if ( creep.energy == 0 ) {
-				var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 1);
-				if ( energy.length ) {
-					creep.pickup(energy);
-				}
 			}
 		}
 		

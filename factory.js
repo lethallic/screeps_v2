@@ -24,6 +24,7 @@ var config = {
 
 module.exports = {
 	_buildSmall : 600,
+	_buildBig : 900,
 	
 	_createCreep : function(room, roleManager, role, target) {
 		var spawn = room.getSpawn();
@@ -35,6 +36,8 @@ module.exports = {
 			var body = mod.body;
 			if ( room.maxEnergy() < this._buildSmall && mod.body_small ) {
 				body = mod.body_small;
+			} else if ( room.maxEnergy() > this._buildBig && mod.body_big ) {
+				body = mod.body_big;
 			}
 					
 			//console.log(spawn.canCreateCreep(body, name));
