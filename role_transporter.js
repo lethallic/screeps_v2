@@ -3,6 +3,7 @@ var Debug = require("_debug")
 module.exports = {
 	
 	body : [MOVE, CARRY, CARRY, MOVE, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY],
+	body_small : [MOVE, CARRY],
 	
 	run : function(creep) {
 		
@@ -28,12 +29,7 @@ module.exports = {
 			// var debug = new Debug("FIND DROPPED ENERGY", 2);
 			
 			var energyList = _.filter(creep.room.droppedEnergy(), function(e) {
-				for ( var i in upgrader ) {
-					if ( e.pos.inRangeTo(upgrader[i], 3) ) {
-						return false;
-					}
-				}
-				return true;
+			    return !e.pos.inRangeTo(e.room.controller, 2);
 			});
 			
 			if ( energyList.length ) {
