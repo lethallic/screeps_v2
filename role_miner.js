@@ -1,7 +1,7 @@
 module.exports = {
 	
 	body: [MOVE, WORK, WORK, WORK, WORK, WORK],
-	body_small : [MOVE, WORK],
+	body_small : [MOVE, WORK, WORK],
 	
 	run : function(creep) {
 		if ( creep.target() ) {
