@@ -211,19 +211,23 @@ module.exports = (function() {
 
 		getFreeFields: function() {
 			return this._getCached("freeFields", function() {
-				var pos = this.pos;
-				var count = 0;
-
-				for (var x = -1; x < 2; x++) {
-					for (var y = -1; y < 2; y++) {
-						var terrain = this.room.lookForAt('terrain', pos.x + x, pos.y + y);
-						if (terrain != 'wall') {
-							count++;
+				if ( !this.room.memory.maxUpgraders ) {
+					var pos = this.pos;
+					var count = 0;
+		
+					for (var x = -1; x < 2; x++) {
+						for (var y = -1; y < 2; y++) {
+							var terrain = this.room.lookForAt('terrain', pos.x + x, pos.y + y);
+							if (terrain != 'wall') {
+								count++;
+							}
 						}
 					}
+		
+					return this.room.memory.maxUpgraders;	
 				}
-
-				return count;
+				
+				return this.room.memory.maxUpgraders;
 			});
 		}
 	});
