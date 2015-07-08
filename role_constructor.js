@@ -8,10 +8,8 @@ module.exports = {
 	run : function(creep) {
 		var debug;
 		
-		var flags = creep.room.find(FIND_FLAGS, {
-			filter: function(f) {
-				return f.color == COLOR_BLUE;
-			}
+		var flags = _.filter(creep.room.getFlags(), function(f) {
+			return f.color == COLOR_BLUE;
 		});
 		if ( flags.length ) {
 			creep.target("");

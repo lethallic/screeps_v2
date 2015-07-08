@@ -62,7 +62,12 @@ module.exports = (function() {
 
 	extend(Room.prototype, Cache);
 	extend(Room.prototype, {
-
+		getFlags : function() {
+			return this._getCached("flags", function() {
+				return this.find(FIND_FLAGS);
+			})	
+		},
+		
 		newSpawn: function() {
 			if (this._spawn == null) {
 				var spawns = this.find(FIND_MY_SPAWNS);

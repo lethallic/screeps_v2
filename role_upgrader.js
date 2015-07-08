@@ -9,11 +9,10 @@ module.exports = {
 	
 	run : function(creep) {
 		
-		var flags = creep.room.find(FIND_FLAGS, {
-			filter: function(f) {
-				return f.color == COLOR_YELLOW;
-			}
+		var flags = _.filter(creep.room.getFlags(), function(f) {
+			return f.color == COLOR_YELLOW;
 		});
+		
 		if ( flags.length ) {
 			creep.moveTo(flags[0]);
 			return;

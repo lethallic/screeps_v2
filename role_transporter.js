@@ -14,14 +14,18 @@ module.exports = {
 	//		creep.moveTo(flags[0]);
 	//		return;
 	//	}
+	
+	
 		
-		var upgrader = _.filter(creep.room.find(FIND_MY_CREEPS), function(c){
-			return ( c.role() === "upgrader" );
-			// if ( c.role() === "upgrader" ) {
-			// 	return c.energy < c.energyCapacity;
-			// }
-			// return false;
-		});
+		// var upgrader = _.filter(creep.room.find(FIND_MY_CREEPS), function(c){
+		// 	return ( c.role() === "upgrader" );
+		// 	// if ( c.role() === "upgrader" ) {
+		// 	// 	return c.energy < c.energyCapacity;
+		// 	// }
+		// 	// return false;
+		// });
+		
+		var upgrader = creep.room.getCreeps("upgrader");
 		
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
 			// var debug = new Debug("FIND DROPPED ENERGY", 2);
