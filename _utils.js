@@ -17,7 +17,7 @@ var _utils = {
     log : function(d, args) {
         if ( this.getDebug() && d ) {
             if ( d.log ) {
-                console.log(d.name(), d.duration(), arguments.join(", "));
+                console.log(d.name(), d.duration(), arguments.toString());
             } else {
                 console.log(d);
             }
