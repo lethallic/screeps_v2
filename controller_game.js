@@ -12,7 +12,6 @@ var RoomController = require("controller_room");
 	// process factory for every room
 	for ( var r in Game.rooms ) {
 		factory.produce(Game.rooms[r], roleManager);
-		// console.log(Game.rooms[r].sourcesEx());
 	}
 	var cpuFactory = Game.getUsedCpu();
 	

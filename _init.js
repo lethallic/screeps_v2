@@ -115,7 +115,12 @@ module.exports = (function() {
 				});
 			})
 		},
-
+		
+		getConstructionSites : function() {
+			return this._getCached("constructionSites", function(){
+				this.find(FIND_CONSTRUCTION_SITES);
+			});
+		},
 
 		creepsByTarget: function(targetId, role) {
 			return _.filter(this.getCreeps(role), function(c) {
@@ -155,17 +160,8 @@ module.exports = (function() {
 				return 300 + (this.extensions().length * 50);
 			}
 			return 0;
-		},
-
-		sourcesEx: function() {
-			return this._getCached("source", function() {
-				var sources = _.filter(this.find(FIND_SOURCES), function(s) {
-					return (s.pos.findInRange(FIND_HOSTILE_CREEPS, 10).length == 0 && s.pos.findInRange(FIND_HOSTILE_STRUCTURES, 10).length == 0);
-				});
-				return sources;
-			});
 		}
-
+		
 	});
 
 	extend(ConstructionSite.prototype, {
