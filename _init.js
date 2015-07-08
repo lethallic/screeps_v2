@@ -76,7 +76,7 @@ module.exports = (function() {
 		},
 
 		getSpawn: function() {
-			return _getCache("spawn", function() {
+			return this._getCached("spawn", function() {
 				var spawns = this.find(FIND_MY_SPAWNS);
 				if ( spawns.length ) {
 					return spawns[0];	
