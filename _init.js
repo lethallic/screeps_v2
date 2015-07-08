@@ -61,9 +61,6 @@ module.exports = (function() {
 
 	extend(Room.prototype, Cache);
 	extend(Room.prototype, {
-		// _droppedEnergy : null,
-		// _spawn : null,
-		// _extensions : null,
 
 		newSpawn: function() {
 			if (this._spawn == null) {
@@ -83,16 +80,6 @@ module.exports = (function() {
 				}
 				return null;
 			})
-
-			// var spawns = this.find(FIND_MY_STRUCTURES, {
-			// 	filter: function(s) {
-			// 		return (s.structureType == STRUCTURE_SPAWN);
-			// 	}
-			// })
-			// if (spawns.length) {
-			// 	return spawns[0];
-			// }
-			// return null;
 		},
 
 		sources: function() {
@@ -120,14 +107,19 @@ module.exports = (function() {
 		},
 
 		creepsByTarget: function(targetId, role) {
-			return this.find(FIND_MY_CREEPS, {
-				filter: function(c) {
-					if (role && c.memory.role !== role) {
-						return false;
-					}
-					return (c.target() === targetId);
-				}
+			return _.filter(this.getCreeps(role), function(){
+				return (c.target() === targetId);
 			});
+			
+			
+			// return this.find(FIND_MY_CREEPS, {
+			// 	filter: function(c) {
+			// 		if (role && c.memory.role !== role) {
+			// 			return false;
+			// 		}
+			// 		return (c.target() === targetId);
+			// 	}
+			// });
 		},
 
 		droppedEnergy: function() {
