@@ -14,12 +14,10 @@ var _utils = {
         return new Debug(name, (minUsed || _debugMinUsed));
     },
     
-    log : function(d, args) {
+    log : function(d) {
         if ( this.getDebug() && d ) {
             if ( d.log ) {
-                if ( d.duration() > _debugMinUsed) {
-                    console.log(d.name(), d.duration(), args);
-                }
+                d.log();
             } else {
                 console.log(d);
             }
@@ -44,7 +42,7 @@ var _utils = {
                 proxy[m] = function() {
                     var debug = _utils.debug(object.toString() + "." + m);
                     member.apply(proxy, arguments);
-                    _utils.log(debug, arguments);
+                    _utils.log(debug);
                 }
             } else {
                 proxy[m] = member;
