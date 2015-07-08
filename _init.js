@@ -224,7 +224,7 @@ module.exports = (function() {
 						}
 					}
 		
-					return this.room.memory.maxUpgraders;	
+					this.room.memory.maxUpgraders = count;	
 				}
 				
 				return this.room.memory.maxUpgraders;
