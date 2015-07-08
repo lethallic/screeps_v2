@@ -16,10 +16,11 @@ module.exports = {
 	},
 				
 	getRoleModule : function(role) {
-		if ( !this._modules[role] ) {
-		// if ( typeof(this._modules[role]) !== 'object' ) {
-			this._modules[role] = this.loadModule(role);
+	    if ( typeof(this._modules[role]) !== 'object' ) {
+	        var module = this.loadModule(role);
+			this._modules[role] = module;
 		}
+		
 		return this._modules[role] || null;
 	},
 	
@@ -27,7 +28,6 @@ module.exports = {
 		try {
 			var m = require("role_" + role);
 			if ( typeof m !== 'undefined' ) {
-				// return new utils.debugObject(m);
 				return m;
 			}
 		} catch ( e ) {

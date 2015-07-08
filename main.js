@@ -10,7 +10,7 @@ utils.log("------ NEW TICK ------");
 
 
 var GameController = require("controller_game");
-var gc = utils.debugObject(new GameController());
+var gc = new GameController();
 
 gc.doScout();
 gc.processRooms();
