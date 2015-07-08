@@ -39,15 +39,7 @@ module.exports = {
 			} 
 			
 			if  ( !target ) {
-				debug = new Debug("find constructions", 5);
-				var constructions = creep.room.find(FIND_CONSTRUCTION_SITES, {
-					filter : function(site) {
-						return true;
-					},
-					"algorithm" : "dijkstra"
-				});
-				debug.log();
-				
+				var constructions = creep.room.getConstructionSites()
 				if ( constructions.length > 0 ) {
 					target = constructions[0];
 				} else {
