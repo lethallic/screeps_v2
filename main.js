@@ -16,6 +16,6 @@ gc.doScout();
 utils.log(dScout);
 
 
-var dRoom = utils.debug("gc.processRooms");
+var dRooms = utils.debug("gc.processRooms");
 gc.processRooms();
 utils.log(dRooms);
