@@ -96,19 +96,27 @@ module.exports = (function() {
 		},
 
 		sources: function() {
-			return this.find(FIND_SOURCES, {
-				filter: function(source) {
-					return !source.defended();
-				}
-			});
+			return this._getCached("sources", function(){
+				return this.find(FIND_SOURCES, {
+					filter: function(source) {
+						return !source.defended();
+					}
+				});	
+			})
 		},
 
 		getCreeps: function(role) {
-			return this.find(FIND_MY_CREEPS, {
-				filter: function(c) {
+			var creeps = this._getCached("creeps", function() {
+				return this.find(FIND_MY_CREEPS);
+			})
+			
+			if ( role && role !== "" ) {
+				return _.filter(creeps, function(c){
 					return (c.role() === role);
-				}
-			});
+				})	
+			}
+			
+			return creeps;
 		},
 
 		creepsByTarget: function(targetId, role) {
