@@ -9,7 +9,7 @@ module.exports = {
 		var role = creep.memory.role;
 		if ( role ) {
 			var creepModule = this.getRoleModule(role);
-			if ( creepModule ) {
+			if ( typeof creepModule !== 'undefined' && creepModule != null ) {
 				creepModule.run(creep);
 			}
 		}
