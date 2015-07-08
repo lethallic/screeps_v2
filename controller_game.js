@@ -55,7 +55,7 @@ utils.extend(GameController.prototype, {
     
     processRooms : function() {
         for ( var r in Game.rooms ) {
-            var rc = new RoomController(this, Game.rooms[r]);
+            var rc = utils.debugObject(new RoomController(this, Game.rooms[r]));
             
             rc.produce();
             rc.doCreeps();
