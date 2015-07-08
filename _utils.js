@@ -13,10 +13,8 @@ module.exports = {
     },
     
     log : function(d) {
-        console.log(this.getDebug(), d);
-        
         if ( this.getDebug() && d ) {
-            d.log;
+            d.log();
         }
     },
     
