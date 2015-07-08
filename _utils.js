@@ -16,9 +16,16 @@ module.exports = {
     
     log : function(d) {
         if ( this.getDebug() && d ) {
-            d.log();
+            if ( d.log ) {
+                d.log();
+                
+            } else {
+                console.log(d);
+            }
         }
     },
+    
+    
     
     getDebug : function() {
         return Memory['_debug'] || false;
