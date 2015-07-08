@@ -89,7 +89,7 @@ module.exports = {
 	
 	_findConstruction : function(creep) {
 	    var constructions = creep.room.getConstructionSites();
-	    return creep.pos.findClosest(constructions, {"algorithm" : "astar"}); // dijkstra
+	    return creep.pos.findClosest(constructions, {"algorithm" : "dijkstra"}); // astar
 	}
 	
 };
