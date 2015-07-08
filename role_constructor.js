@@ -39,7 +39,7 @@ module.exports = {
 			} 
 			
 			if  ( !target ) {
-				var constructions = creep.room.getConstructionSites()
+				var constructions = creep.room.getConstructionSites();
 				if ( constructions.length > 0 ) {
 					target = constructions[0];
 				} else {
