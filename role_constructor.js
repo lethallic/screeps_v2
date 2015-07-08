@@ -1,8 +1,9 @@
 var Debug = require("_debug");
 module.exports = {
 	
-	body : [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, CARRY, CARRY, WORK],
+	body : [MOVE, MOVE, MOVE, CARRY, CARRY, WORK],
 	body_small : [MOVE, CARRY, WORK],
+	body_big : [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, CARRY, CARRY, WORK],
 	
 	run : function(creep) {
 		var debug;
@@ -83,17 +84,17 @@ module.exports = {
 
 		} else if ( creep.energy == 0 ) {
 			
-			var energyList = creep.room.find(FIND_DROPPED_ENERGY, {
-				filter : function(e) {
-					return ( e.energy > 50 );
-				}
-			});
+// 			var energyList = creep.room.find(FIND_DROPPED_ENERGY, {
+// 				filter : function(e) {
+// 					return ( e.energy > 200 );
+// 				}
+// 			});
 			
-			if ( energyList.length ) {
-				creep.moveTo(energyList[0]);
-				creep.pickup(energyList[0]);
-				return;
-			}
+// 			if ( energyList.length ) {
+// 				creep.moveTo(energyList[0]);
+// 				creep.pickup(energyList[0]);
+// 				return;
+// 			}
 			
 			// goto spawn, get energy
 			var spawn = creep.room.getSpawn();

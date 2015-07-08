@@ -19,7 +19,10 @@ module.exports = {
                 if ( energy.length ) {
                     target = energy[0];
                 } else {
-                    target = this._findSource(creep);
+                    var source = this._findSource(creep);
+                    if ( source && !target.hasMiner(1) ) {
+                        target = source;
+                    }
                 }
             }
             

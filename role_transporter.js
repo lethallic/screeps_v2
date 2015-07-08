@@ -7,15 +7,13 @@ module.exports = {
 	
 	run : function(creep) {
 		
-		var flags = creep.room.find(FIND_FLAGS, {
-			filter: function(f) {
-				return f.color == COLOR_ORANGE;
-			}
-		});
-		if ( flags.length ) {
-			creep.moveTo(flags[0]);
-			return;
-		}
+	//	var flags =_.(Game.flags, filter: function(f) {
+	//			return f.color == COLOR_ORANGE;
+	//	});
+	//	if ( flags.length ) {
+	//		creep.moveTo(flags[0]);
+	//		return;
+	//	}
 		
 		var upgrader = _.filter(creep.room.find(FIND_MY_CREEPS), function(c){
 			return ( c.role() === "upgrader" );

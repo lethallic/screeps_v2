@@ -26,7 +26,7 @@ module.exports = function(){
                     // console.log(scout);
                 }
             } else {
-                console.log(scouts)
+                // console.log(scouts)
                 for ( var c in scouts ) {
                     var creep = scouts[c];
                     //var creep = Game.creeps[flag.memory.scout];

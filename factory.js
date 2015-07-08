@@ -13,7 +13,7 @@ var config = {
 	},
 	
 	"upgraders" : {
-		"max" : 1
+		"max" : 2
 	},
 	
 	"builders" : {
@@ -23,8 +23,8 @@ var config = {
 };
 
 module.exports = {
-	_buildSmall : 600,
-	_buildBig : 900,
+	_buildSmall : 750,
+	_buildBig : 1200,
 	
 	_createCreep : function(room, roleManager, role, target) {
 		var spawn = room.getSpawn();
@@ -57,7 +57,7 @@ module.exports = {
 	produce : function(room, roleManager) {
 		var sources = room.sources();
 		
-		if ( room.maxEnergy() < 500 ) {
+		if ( room.maxEnergy() <= 600) {
 			// just build workers
 			var builders = room.getCreeps("builder");
 			
@@ -70,11 +70,11 @@ module.exports = {
 		
 		
 		// create one transporter first
-		var transporters = room.getCreeps("transporter");
-		if ( transporters.length == 0 ) {
-			this._createCreep(room, roleManager, "transporter");
-			return;
-		}
+// 		var transporters = room.getCreeps("transporter");
+// 		if ( transporters.length == 0 ) {
+// 			this._createCreep(room, roleManager, "transporter");
+// 			return;
+// 		}
 		
 		// create a miner for each save resource
 		for ( var s in sources ) {
@@ -98,7 +98,6 @@ module.exports = {
 			this._createCreep(room, roleManager, "upgrader");
 			return;
 		}
-		
 		
 		// create constructors, if count < config.constructors.max
 		if ( room.getCreeps("constructor").length < config.constructors.max ) {

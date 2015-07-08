@@ -16,6 +16,20 @@ function recycleMemory() {
 
 }
 
+var Cache = {
+	_getCached: function(key, result) {
+		if (!this._cache) this._cache = {};
+		var key = key + "_" + (this.id || this.name);
+
+		if (!this._cache[key]) {
+			this._cache[key] = result.call(this);
+		}
+
+		return this._cache[key];
+	}
+};
+
+
 module.exports = (function() {
 	// var debug = require("_debug")("_init.js");
 
@@ -45,7 +59,7 @@ module.exports = (function() {
 	});
 
 
-
+	extend(Room.prototype, Cache);
 	extend(Room.prototype, {
 		// _droppedEnergy : null,
 		// _spawn : null,
@@ -62,15 +76,23 @@ module.exports = (function() {
 		},
 
 		getSpawn: function() {
-			var spawns = this.find(FIND_MY_STRUCTURES, {
-				filter: function(s) {
-					return (s.structureType == STRUCTURE_SPAWN);
+			return _getCache("spawn", function() {
+				var spawns = this.find(FIND_MY_SPAWNS);
+				if ( spawns.length ) {
+					return spawns[0];	
 				}
+				return null;
 			})
-			if (spawns.length) {
-				return spawns[0];
-			}
-			return null;
+			
+			// var spawns = this.find(FIND_MY_STRUCTURES, {
+			// 	filter: function(s) {
+			// 		return (s.structureType == STRUCTURE_SPAWN);
+			// 	}
+			// })
+			// if (spawns.length) {
+			// 	return spawns[0];
+			// }
+			// return null;
 		},
 
 		sources: function() {
@@ -89,9 +111,12 @@ module.exports = (function() {
 			});
 		},
 
-		creepsByTarget: function(targetId) {
+		creepsByTarget: function(targetId, role) {
 			return this.find(FIND_MY_CREEPS, {
 				filter: function(c) {
+					if (role && c.memory.role !== role) {
+						return false;
+					}
 					return (c.target() === targetId);
 				}
 			});
@@ -145,6 +170,25 @@ module.exports = (function() {
 				return 300 + (this.extensions().length * 50);
 			}
 			return 0;
+		},
+
+		_getCached: function(key, func) {
+			this._cache = this._cache || {};
+
+			if (!this._cache[key]) {
+				this._cache[key] = func.call(this);
+			}
+
+			return this._cache[key];
+		},
+
+		sourcesEx: function() {
+			return this._getCached("source", function() {
+				var sources = _.filter(this.find(FIND_SOURCES), function(s) {
+					return (s.pos.findInRange(FIND_HOSTILE_CREEPS, 10).length == 0 && s.pos.findInRange(FIND_HOSTILE_STRUCTURES, 10).length == 0);
+				});
+				return sources;
+			});
 		}
 
 	});
@@ -172,7 +216,7 @@ module.exports = (function() {
 		},
 		hasMiner: function(max) {
 			var maxMiners = max || 1;
-			return !(this.room.creepsByTarget(this.id).length < maxMiners);
+			return !(this.room.creepsByTarget(this.id, "miner").length < maxMiners);
 		}
 	});
 
