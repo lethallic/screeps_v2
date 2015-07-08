@@ -9,7 +9,7 @@ module.exports = {
     },
     
     debug : function(name, minUsed) {
-        return new Debug(name, minUsed);
+        return new Debug(name, (minUsed || 2));
     },
     
     log : function(d) {
