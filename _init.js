@@ -107,7 +107,7 @@ module.exports = (function() {
 		},
 
 		creepsByTarget: function(targetId, role) {
-			return _.filter(this.getCreeps(role), function(){
+			return _.filter(this.getCreeps(role), function(c){
 				return (c.target() === targetId);
 			});
 			
