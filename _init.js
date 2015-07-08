@@ -118,7 +118,7 @@ module.exports = (function() {
 		
 		getConstructionSites : function() {
 			return this._getCached("constructionSites", function(){
-				this.find(FIND_CONSTRUCTION_SITES);
+				return this.find(FIND_CONSTRUCTION_SITES);
 			});
 		},
 
