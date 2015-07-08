@@ -55,7 +55,7 @@ module.exports = {
 						return s.needsRepair();
 					});
 					
-					console.log(Structures);
+					console.log(structures);
 					
 				    if ( structures.length ) {
 				    	target = _.min(structures, function(e) {
