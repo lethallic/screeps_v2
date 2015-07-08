@@ -6,24 +6,20 @@ function RoomController(gameController, room) {
 }
 
 utils.extend(RoomController.prototype, {
-    
-    produce : function() {
-        console.log("produce", this._room);
-        // this._controller.factory.produce(this._room, this._controller.roleManager);
+
+    produce: function() {
+        this._controller.factory.produce(this._room, this._controller.roleManager);
     },
-    
-    doCreeps : function() {
+
+    doCreeps: function() {
         var creeps = this._room.getCreeps();
-        
-        for ( var c in creeps ) {
+
+        for (var c in creeps) {
             var creep = creeps[c];
-            
-            console.log("do creep", creep);
-            
-            // this._controller.roleManager.process(creep);
+            this._controller.roleManager.process(creep);
         }
     }
-    
+
 });
 
 module.exports = RoomController;
