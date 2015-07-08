@@ -51,15 +51,12 @@ module.exports = {
 				if ( constructions.length > 0 ) {
 					target = constructions[0];
 				} else {
-					debug = new Debug("find structures", 5);
-				    var structures = creep.room.find(FIND_STRUCTURES, {
-				        filter : function(s) {
-				            return s.needsRepair();
-				        }
-				    });
-				    
-				    debug.log();
-				    
+					var structures = _.filter(creep.room.getStructures(), function(s){
+						return s.needsRepair();
+					});
+					
+					console.log(Structures);
+					
 				    if ( structures.length ) {
 				    	target = _.min(structures, function(e) {
 				    	    var p = (e.hits * 100 / e.hitsMax);

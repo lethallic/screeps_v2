@@ -90,7 +90,7 @@ module.exports = (function() {
 					}
 				});
 			});
-			
+
 			return sources;
 		},
 
@@ -108,20 +108,19 @@ module.exports = (function() {
 			return creeps;
 		},
 
+		getStructures: function() {
+			return this._getCached("structures", function() {
+				return _.filter(this.find(FIND_STRUCTURES), function(s) {
+					return (s.my || s.structureType == STRUCTURE_ROAD);
+				});
+			})
+		},
+
+
 		creepsByTarget: function(targetId, role) {
-			return _.filter(this.getCreeps(role), function(c){
+			return _.filter(this.getCreeps(role), function(c) {
 				return (c.target() === targetId);
 			});
-			
-			
-			// return this.find(FIND_MY_CREEPS, {
-			// 	filter: function(c) {
-			// 		if (role && c.memory.role !== role) {
-			// 			return false;
-			// 		}
-			// 		return (c.target() === targetId);
-			// 	}
-			// });
 		},
 
 		droppedEnergy: function() {
