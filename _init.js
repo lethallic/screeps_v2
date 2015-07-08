@@ -83,13 +83,15 @@ module.exports = (function() {
 		},
 
 		sources: function() {
-			return this._getCached("sources", function() {
+			var sources = this._getCached("sources", function() {
 				return this.find(FIND_SOURCES, {
 					filter: function(source) {
 						return !source.defended();
 					}
 				});
-			})
+			});
+			
+			return sources;
 		},
 
 		getCreeps: function(role) {
