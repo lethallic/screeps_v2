@@ -94,13 +94,10 @@ module.exports = {
 		}
 		
 		// create upgrader, if count < config.upgraders.max
-		
 		var maxUpgraders = room.controller.getFreeFields();
 		if ( maxUpgraders > config.upgraders.max ) {
 			maxUpgraders = config.upgraders.max
 		}
-		
-		console.log(room, "max upgraders:", maxUpgraders);
 		
 		// if ( room.getCreeps("upgrader").length < config.upgraders.max ) {
 		if ( room.getCreeps("upgrader").length < maxUpgraders ) {
