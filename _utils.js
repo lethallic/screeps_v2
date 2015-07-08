@@ -12,9 +12,11 @@ module.exports = {
         return new Debug(name, minUsed);
     },
     
-    log : function(debug) {
-        if ( this.getDebug() && debug ) {
-            debug.log;
+    log : function(d) {
+        console.log(this.getDebug(), d);
+        
+        if ( this.getDebug() && d ) {
+            d.log;
         }
     },
     
