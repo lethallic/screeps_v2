@@ -13,7 +13,7 @@ var gc = new GameController();
 
 var dScout = utils.debug("Scout");
 gc.doScout();
-utils.log(debug);
+utils.log(dScout);
 
 
 var dRoom = utils.debug("gc.processRooms");
