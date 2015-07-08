@@ -54,7 +54,7 @@ module.exports = {
 
 		if ( target ) {
 		    creep.moveTo(target);
-		    if ( target.hits && target.structureType && ( target.structureType == STRUCTURE_SPAWN || target.structureType == STRUCTURE_EXTENSION)) {
+		    if ( target.hits && target.structureType && (target.structureType == STRUCTURE_SPAWN || target.structureType == STRUCTURE_EXTENSION)) {
                 creep.transferEnergy(target);
                 creep.target(null);
                 return;
@@ -84,7 +84,7 @@ module.exports = {
 	
 	_findSource : function(creep) {
         var sources = creep.room.sources();
-        return creep.pos.findClosest(sources, {"algorithm" : "dijkstra"});
+        return creep.pos.findClosest(sources, {"algorithm" : "astar"});
 	},
 	
 	_findConstruction : function(creep) {
