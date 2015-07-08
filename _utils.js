@@ -1,5 +1,7 @@
 var Debug = require("_debug");
 
+var _debugMinUsed = 10;
+
 module.exports = {
     
     extend : function( proto , options ) {
@@ -9,7 +11,7 @@ module.exports = {
     },
     
     debug : function(name, minUsed) {
-        return new Debug(name, (minUsed || 2));
+        return new Debug(name, (minUsed || _debugMinUsed));
     },
     
     log : function(d) {
