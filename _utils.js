@@ -2,7 +2,7 @@ var Debug = require("_debug");
 
 var _debugMinUsed = 10;
 
-module.exports = {
+var _utils = {
     
     extend : function( proto , options ) {
     	for ( var key in options ) {
@@ -25,8 +25,6 @@ module.exports = {
         }
     },
     
-    
-    
     getDebug : function() {
         return Memory['_debug'] || false;
     },
@@ -43,9 +41,9 @@ module.exports = {
             
             if ( typeof member === 'function' ) {
                 proxy[m] = function() {
-                    var debug = this.debug(object.toString() + "." + m);
+                    var debug = _utils.debug(object.toString() + "." + m);
                     member.apply(proxy, arguments);
-                    this.log(debug);
+                    _utils.log(debug);
                 }
             } else {
                 proxy[m] = member;
@@ -54,6 +52,7 @@ module.exports = {
         
         return proxy;
     }
-    
-    
+
 };
+
+module.exports = _utils;
