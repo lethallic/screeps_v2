@@ -26,7 +26,8 @@ module.exports = {
 		try {
 			var m = require("role_" + role);
 			if ( typeof m !== 'undefined' ) {
-				return new utils.debugObject(m);
+				// return new utils.debugObject(m);
+				return m;
 			}
 		} catch ( e ) {
 			// role module not found
