@@ -42,7 +42,7 @@ var _utils = {
                 proxy[m] = function() {
                     var debug = _utils.debug(object.toString() + "." + m);
                     member.apply(proxy, arguments);
-                    _utils.log(debug);
+                    _utils.log(debug, arguments);
                 }
             } else {
                 proxy[m] = member;
