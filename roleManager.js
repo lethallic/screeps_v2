@@ -1,4 +1,4 @@
-var Debug = require("_debug");
+var utils = require("_utils");
 
 module.exports = {
 	
@@ -10,9 +10,7 @@ module.exports = {
 		if ( role ) {
 			var creepModule = this.getRoleModule(role);
 			if ( creepModule ) {
-				var debug = new Debug("RoleManager." + role, 5);
 				creepModule.run(creep);
-				//debug.log();
 			}
 		}
 	},
@@ -21,7 +19,7 @@ module.exports = {
 		if ( typeof(this._modules[role]) !== 'object' ) {
 			this._modules[role] = this.loadModule(role);
 		}
-		return this._modules[role];
+		return new utils.debugObject(this._modules[role]);
 	},
 	
 	loadModule : function(role) {
