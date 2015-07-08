@@ -78,12 +78,12 @@ module.exports = (function() {
 		getSpawn: function() {
 			return this._getCached("spawn", function() {
 				var spawns = this.find(FIND_MY_SPAWNS);
-				if ( spawns.length ) {
-					return spawns[0];	
+				if (spawns.length) {
+					return spawns[0];
 				}
 				return null;
 			})
-			
+
 			// var spawns = this.find(FIND_MY_STRUCTURES, {
 			// 	filter: function(s) {
 			// 		return (s.structureType == STRUCTURE_SPAWN);
@@ -96,12 +96,12 @@ module.exports = (function() {
 		},
 
 		sources: function() {
-			return this._getCached("sources", function(){
+			return this._getCached("sources", function() {
 				return this.find(FIND_SOURCES, {
 					filter: function(source) {
 						return !source.defended();
 					}
-				});	
+				});
 			})
 		},
 
@@ -109,13 +109,13 @@ module.exports = (function() {
 			var creeps = this._getCached("creeps", function() {
 				return this.find(FIND_MY_CREEPS);
 			})
-			
-			if ( role && role !== "" ) {
-				return _.filter(creeps, function(c){
+
+			if (role && role !== "") {
+				return _.filter(creeps, function(c) {
 					return (c.role() === role);
-				})	
+				})
 			}
-			
+
 			return creeps;
 		},
 
@@ -131,39 +131,23 @@ module.exports = (function() {
 		},
 
 		droppedEnergy: function() {
-			return this.find(FIND_DROPPED_ENERGY, {
-				filter: function(e) {
-					return (e.energy >= 100);
-				}
-			});
-
-			if (this._droppedEnergy == null) {
-				var debug = new Debug("Room.droppedEnergy()", 1);
-				this._droppedEnergy = this.find(FIND_DROPPED_ENERGY, {
+			return this._getCached("droppedEnergy", function() {
+				return this.find(FIND_DROPPED_ENERGY, {
 					filter: function(e) {
 						return (e.energy >= 100);
 					}
 				});
-				debug.log();
-			}
-			return this._droppedEnergy;
+			});
 		},
 
 		extensions: function() {
-			return this.find(FIND_MY_STRUCTURES, {
-				filter: function(s) {
-					return (s.structureType == STRUCTURE_EXTENSION);
-				}
-			});
-
-			if (this._extensions == null) {
-				this._extensions = this.find(FIND_MY_STRUCTURES, {
+			return this._getCached("structures", function() {
+				return this.find(FIND_MY_STRUCTURES, {
 					filter: function(s) {
 						return (s.structureType == STRUCTURE_EXTENSION);
 					}
 				});
-			}
-			return this._extensions;
+			});
 		},
 
 		emptyExtensions: function() {
@@ -178,16 +162,6 @@ module.exports = (function() {
 				return 300 + (this.extensions().length * 50);
 			}
 			return 0;
-		},
-
-		_getCached: function(key, func) {
-			this._cache = this._cache || {};
-
-			if (!this._cache[key]) {
-				this._cache[key] = func.call(this);
-			}
-
-			return this._cache[key];
 		},
 
 		sourcesEx: function() {
