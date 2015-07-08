@@ -57,7 +57,27 @@ module.exports = (function() {
 			return false;
 		}
 	});
-
+	
+	extend(Controller.prototype, Cache);
+	extend(Controller.prototype, {
+		getFreeFields : function() {
+			return this._getCached("freeSlots", function(){
+				var pos = this.pos;
+				var count = 0;
+				
+				for ( var x = -1; x < -2; x++ ) {
+					for ( var y = -1; y < -2; y++ ) {
+						var terrain = this.room.lookForAt('terrain', pos.x + x, pos.y + y);
+						if ( terrain != 'wall' ) {
+							count++;
+						}
+					}
+				}
+				
+				return count;
+			})
+		}
+	});
 
 	extend(Room.prototype, Cache);
 	extend(Room.prototype, {

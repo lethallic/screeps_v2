@@ -42,8 +42,6 @@ var RoomController = require("controller_room");
 );
  */
 
-
-
 function GameController() {
     this.roleManager = require("roleManager");
     this.factory = require("factory");
