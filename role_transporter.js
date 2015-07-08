@@ -7,24 +7,14 @@ module.exports = {
 	
 	run : function(creep) {
 		
-	//	var flags =_.(Game.flags, filter: function(f) {
-	//			return f.color == COLOR_ORANGE;
-	//	});
-	//	if ( flags.length ) {
-	//		creep.moveTo(flags[0]);
-	//		return;
-	//	}
+		var flags = _.filter(creep.room.getFlags(), function(f) {
+			return f.color == COLOR_ORANGE;
+		});
+		if ( flags.length ) {
+			creep.moveTo(flags[0]);
+			return;
+		}
 	
-	
-		
-		// var upgrader = _.filter(creep.room.find(FIND_MY_CREEPS), function(c){
-		// 	return ( c.role() === "upgrader" );
-		// 	// if ( c.role() === "upgrader" ) {
-		// 	// 	return c.energy < c.energyCapacity;
-		// 	// }
-		// 	// return false;
-		// });
-		
 		var upgrader = creep.room.getCreeps("upgrader");
 		
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {

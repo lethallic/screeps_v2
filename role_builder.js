@@ -88,7 +88,7 @@ module.exports = {
 	},
 	
 	_findConstruction : function(creep) {
-	    var constructions = creep.room.getConstructionSites(); //creep.room.find(FIND_CONSTRUCTION_SITES);
+	    var constructions = creep.room.getConstructionSites();
 	    return creep.pos.findClosest(constructions);
 	}
 	
