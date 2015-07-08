@@ -54,19 +54,18 @@ module.exports = {
 					debug = new Debug("find structures", 5);
 					
 					
-				    var structures = creep.room.find(FIND_STRUCTURES, {
-				        filter : function(s) {
-				            return s.needsRepair();
-				        }
-				    });
+				    // var structures = creep.room.find(FIND_STRUCTURES, {
+				    //     filter : function(s) {
+				    //         return s.needsRepair();
+				    //     }
+				    // });
 				    
 				    
-				 //   var structures = _.filter(creep.room.getStructures(), function(s){
-					// 	return s.needsRepair();
-					// });
+				 	var structures = _.filter(creep.room.getStructures(), function(s){
+						return s.needsRepair();
+					});
 					
 					console.log(structures);
-				    
 				    
 				    debug.log();
 				    
