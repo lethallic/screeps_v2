@@ -1,9 +1,15 @@
 require("_init");
 
-// var RoomObjects = require("roomObjects");
-
 var DEBUG = false;
 var _messages = [];
+
+var GameController = require("controller_game");
+
+
+var gc = new GameController();
+gc.doScout();
+gc.processRooms();
+
 
 (function(roleManager, factory){
 	var cpuStart = 0;

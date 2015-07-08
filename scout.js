@@ -10,8 +10,6 @@ module.exports = function(){
                 return false; 
             });
             
-            // console.log(scouts);
-            // if ( !flag.memory.scout ) {
             if ( scouts.length < 2 ) {
                 var roleBuilder = require("role_builder");
                 
@@ -20,16 +18,11 @@ module.exports = function(){
                 
                 var scout = Game.spawns["Spawn1"].createCreep(roleBuilder.body, scoutName, { role : "scout", flag : flag.id});
                 if ( _.isString(scout) ) {
-                    flag.memory.scout = scoutName;
                     console.log("scout created", flag, scout);  
-                } else {
-                    // console.log(scout);
                 }
             } else {
-                // console.log(scouts)
                 for ( var c in scouts ) {
                     var creep = scouts[c];
-                    //var creep = Game.creeps[flag.memory.scout];
                     if ( creep ) {
                         if ( !flag.room || flag.room != creep.room || !creep.pos.inRangeTo(flag, 20) ) {
                             creep.moveTo(flag);
