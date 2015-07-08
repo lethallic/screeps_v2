@@ -61,6 +61,7 @@ utils.extend(GameController.prototype, {
             var rc = new RoomController(this, Game.rooms[r]);
             
             rc.produce();
+            rc.doCreeps();
         }
     }
     
