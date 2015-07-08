@@ -19,7 +19,7 @@ module.exports = {
 		if ( typeof(this._modules[role]) !== 'object' ) {
 			this._modules[role] = this.loadModule(role);
 		}
-		return new utils.debugObject(this._modules[role]);
+		return this._modules[role];
 	},
 	
 	loadModule : function(role) {
