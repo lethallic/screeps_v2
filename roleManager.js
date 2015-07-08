@@ -16,7 +16,8 @@ module.exports = {
 	},
 				
 	getRoleModule : function(role) {
-		if ( typeof(this._modules[role]) !== 'object' ) {
+		if ( !this._modules[role] ) {
+		// if ( typeof(this._modules[role]) !== 'object' ) {
 			this._modules[role] = this.loadModule(role);
 		}
 		return this._modules[role];
