@@ -134,7 +134,7 @@ module.exports = (function() {
 		},
 
 		extensions: function() {
-			return this._getCached("structures", function() {
+			return this._getCached("extensions", function() {
 				return this.find(FIND_MY_STRUCTURES, {
 					filter: function(s) {
 						return (s.structureType == STRUCTURE_EXTENSION);
