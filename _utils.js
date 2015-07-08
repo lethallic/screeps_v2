@@ -14,11 +14,10 @@ var _utils = {
         return new Debug(name, (minUsed || _debugMinUsed));
     },
     
-    log : function(d) {
+    log : function(d, args) {
         if ( this.getDebug() && d ) {
             if ( d.log ) {
-                d.log();
-                
+                console.log(d.name(), d.duration(), arguments);
             } else {
                 console.log(d);
             }
