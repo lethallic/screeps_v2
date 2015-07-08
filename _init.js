@@ -57,8 +57,8 @@ module.exports = (function() {
 			return false;
 		}
 	});
-	
-	
+
+
 
 	extend(Room.prototype, Cache);
 	extend(Room.prototype, {
@@ -116,9 +116,9 @@ module.exports = (function() {
 				});
 			})
 		},
-		
-		getConstructionSites : function() {
-			return this._getCached("constructionSites", function(){
+
+		getConstructionSites: function() {
+			return this._getCached("constructionSites", function() {
 				return this.find(FIND_CONSTRUCTION_SITES);
 			});
 		},
@@ -162,7 +162,7 @@ module.exports = (function() {
 			}
 			return 0;
 		}
-		
+
 	});
 
 	extend(ConstructionSite.prototype, {
@@ -197,8 +197,8 @@ module.exports = (function() {
 			return this.hits < this.hitsMax;
 		}
 	});
-	
-	
+
+
 	extend(Structure.prototype, Cache);
 	extend(Structure.prototype, {
 		_type: "structure",
@@ -208,23 +208,23 @@ module.exports = (function() {
 			}
 			return this.hits < this.hitsMax;
 		},
-		
-		getFreeFields : function() {
-			return this._getCached("freeSlots", function(){
+
+		getFreeFields: function() {
+			return this._getCached("freeFields", function() {
 				var pos = this.pos;
 				var count = 0;
-				
-				for ( var x = -1; x < -2; x++ ) {
-					for ( var y = -1; y < -2; y++ ) {
+
+				for (var x = -1; x < 2; x++) {
+					for (var y = -1; y < 2; y++) {
 						var terrain = this.room.lookForAt('terrain', pos.x + x, pos.y + y);
-						if ( terrain != 'wall' ) {
+						if (terrain != 'wall') {
 							count++;
 						}
 					}
 				}
-				
+
 				return count;
-			})
+			});
 		}
 	});
 
