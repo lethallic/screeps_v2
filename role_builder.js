@@ -84,12 +84,12 @@ module.exports = {
 	
 	_findSource : function(creep) {
         var sources = creep.room.sources();
-        return creep.pos.findClosest(sources);
+        return creep.pos.findClosest(sources, {"algorithm" : "dijkstra"});
 	},
 	
 	_findConstruction : function(creep) {
 	    var constructions = creep.room.getConstructionSites();
-	    return creep.pos.findClosest(constructions);
+	    return creep.pos.findClosest(constructions, {"algorithm" : "dijkstra"});
 	}
 	
 };
