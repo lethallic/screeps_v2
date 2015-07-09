@@ -158,7 +158,6 @@ module.exports = (function() {
 
 		emptyExtensions: function() {
 			return _.filter(this.extensions(), function(e) {
-				console.log(e);
 				return (e.energy < e.energyCapacity);
 			});
 		},
