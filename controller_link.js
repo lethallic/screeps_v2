@@ -9,7 +9,7 @@ function LinkController(room) {
 utils.extend(LinkController.prototype, {
 
     getSenders: function() {
-        var sources = this.room.getSources();
+        var sources = this.room.sources();
         return _.filter(this.links, function(link) {
             for (var s in sources) {
                 if (link.pos.inRangeTo(sources[s], 5)) {
