@@ -91,13 +91,13 @@ module.exports = (function() {
 		sources: function() {
 			var arrSources = [];
 			
-			if ( !this.memory['sources'] ) {
+			// if ( !this.memory['sources'] ) {
 				var sources = this.find(FIND_SOURCES);
 				for ( var s in sources ) {
-					arrSources.push(s.id);
+					arrSources.push(sources[s].id);
 				}
 				this.memory['sources'] = arrSources;
-			}
+			// }
 			
 			
 			var sources = this._getCached("sources", function() {
