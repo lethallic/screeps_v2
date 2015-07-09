@@ -42,19 +42,19 @@ module.exports = {
 				extension = creep.pos.findClosest(emptyExtensions);
 			}
 			
-			// var links = creep.room.getSenderLinks();
-			// if ( links.length ) {
-			// 	for ( var l in links ) {
-			// 		var link = links[l];
-			// 		console.log(creep.room, link);
+			var links = creep.room.getSenderLinks();
+			if ( links.length ) {
+				for ( var l in links ) {
+					var link = links[l];
+					console.log(creep.room, link);
 					
-			// 		if ( creep.pos.inRangeTo(links, 10) ) {
-			// 			creep.moveTo(link);
-			// 			creep.transferEnergy(link);
-			// 			return;
-			// 		}	
-			// 	}
-			// }
+					if ( creep.pos.inRangeTo(links, 10) ) {
+						// creep.moveTo(link);
+						// creep.transferEnergy(link);
+						// return;
+					}	
+				}
+			}
 			
 
 			// debug.log();
