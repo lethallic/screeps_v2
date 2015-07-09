@@ -1,3 +1,4 @@
+
 module.exports = {
 	
 	body : [MOVE, MOVE, CARRY, CARRY, WORK],
@@ -88,7 +89,11 @@ module.exports = {
 	},
 	
 	_findConstruction : function(creep) {
+		var debug = utils.debug("FIND CONSTRUCTIONS");
+		
 	    var constructions = creep.room.getConstructionSites();
+	    utils.log(debug);
+	    
 	    return creep.pos.findClosest(constructions, {"algorithm" : "dijkstra"}); // astar
 	}
 	
