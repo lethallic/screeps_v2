@@ -92,10 +92,19 @@ module.exports = {
 	},
 
 	_findSource: function(creep) {
+		var debug = utils.debug(creep + " find sources");
 		var sources = creep.room.sources();
-		return creep.pos.findClosest(sources, {
-			"algorithm": "astar"
-		});
+		utils.log(debug);
+		
+		if ( sources.length ) {
+			var debug = utils.debug(creep + " find sources");
+			var source = creep.pos.findClosest(sources, {
+				"algorithm": "astar"
+			});
+			utils.log(debug);
+			return source;
+		}
+		return null;
 	},
 
 	_findConstruction: function(creep) {
