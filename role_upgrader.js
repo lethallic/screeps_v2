@@ -32,8 +32,9 @@ module.exports = {
 				} else {
 					var link = creep.pos.findInRange(FIND_MY_STRUCTURES, 2, { filter: { structureType: STRUCTURE_LINK } });
 					if ( link ) {
-						creep.moveTo(link);
-						link.transferEnergy(creep);
+						if ( link.transferEnergy(creep) != OK ) {
+							creep.moveTo(link);
+						}
 					}
 				}
 		    } else if ( !creep.pos.isNearTo(controller) ) {
