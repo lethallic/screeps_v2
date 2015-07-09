@@ -90,12 +90,15 @@ module.exports = {
 	},
 	
 	_findConstruction : function(creep) {
-		var debug = utils.debug("FIND CONSTRUCTIONS");
-		
+		var debug = utils.debug(creep + " find constructions", 2);
 	    var constructions = creep.room.getConstructionSites();
 	    utils.log(debug);
+	
+		debug = utils.debug(creep + " find nearest construction", 2);
+	    var c = creep.pos.findClosest(constructions, {"algorithm" : "dijkstra"}); // astar
+	    utils.log(debug);
 	    
-	    return creep.pos.findClosest(constructions, {"algorithm" : "dijkstra"}); // astar
+	    return c;
 	}
 	
 };
