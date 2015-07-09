@@ -99,7 +99,7 @@ module.exports = {
 		if ( sources.length ) {
 			var debug = utils.debug(creep + " find sources");
 			var source = creep.pos.findClosest(sources, {
-				"algorithm": "astar"
+				"algorithm": "dijkstra" //"astar"
 			});
 			utils.log(debug);
 			return source;
