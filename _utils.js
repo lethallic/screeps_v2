@@ -50,6 +50,12 @@ var _utils = {
         }
         
         return proxy;
+    },
+    
+    getTarget : function(creep, targets) {
+        
+        
+        return creep.pos.findClosest(targets);
     }
 
 };
