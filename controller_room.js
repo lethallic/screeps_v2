@@ -16,11 +16,19 @@ utils.extend(RoomController.prototype, {
     },
 
     doCreeps: function() {
+        var debugCreeps = utils.debug("doCreeps()");
+        
         var creeps = this._room.getCreeps();
         for (var c in creeps) {
             var creep = creeps[c];
+            var debugCreep = utils.debug("process creep: " + creep + " [" + creep.role() + "]");
+            
             this._controller.roleManager.process(creep);
+            
+            utils.log(debugCreep);
+            
         }
+        utils.log(debug);
     }
 
 });
