@@ -91,13 +91,23 @@ module.exports = (function() {
 		sources: function() {
 			var arrSources = [];
 			
-			// if ( !this.memory['sources'] ) {
+			if ( !this.memory['sources'] ) {
 				var sources = this.find(FIND_SOURCES);
 				for ( var s in sources ) {
 					arrSources.push(sources[s].id);
 				}
 				this.memory['sources'] = arrSources;
-			// }
+			}
+			
+			var result = [];
+			if ( this.memory['sources'] ) {
+				for ( var i in this.memory['sources'] ) {
+					var sourceId = this.memory['sources'][i];
+					result.push(Game.getObjectById(sourceId));
+					console.log(sourceId);
+				}
+			}
+			// return result;			
 			
 			
 			var sources = this._getCached("sources", function() {
