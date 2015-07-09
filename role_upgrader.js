@@ -20,20 +20,22 @@ module.exports = {
 		
 		var controller = creep.room.controller;
 		if ( controller && controller.my ) {
-			var link = creep.pos.findInRange(FIND_MY_STRUCTURES, 2, { filter: { structureType: STRUCTURE_LINK } });
-			console.log(creep, link);
 			
-			// if ( creep.enery == 0 ) {
-			// 	var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 2);
-				
-				
-			// }
+		    // if ( creep.energy == 0 && energy.length ) {
 			
-			
-		    if ( creep.energy == 0 && energy.length ) {
-		    	if ( creep.pickup(energy[0]) != OK ) {
-					creep.moveTo(energy[0]);
-		    	}
+			if ( creep.enery == 0 ) {
+				var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 2);
+				if ( energy.length ) {
+			    	if ( creep.pickup(energy[0]) != OK ) {
+						creep.moveTo(energy[0]);
+			    	}
+				} else {
+					var link = creep.pos.findInRange(FIND_MY_STRUCTURES, 2, { filter: { structureType: STRUCTURE_LINK } });
+					if ( link ) {
+						creep.moveTo(link);
+						link.transferEnergy(creep);
+					}
+				}
 		    } else if ( !creep.pos.isNearTo(controller) ) {
 				creep.moveTo(controller);
 			} else if ( creep.energy > 0 ) {
