@@ -43,6 +43,7 @@ module.exports = {
 			}
 			
 			var links = creep.room.getSenderLinks();
+			console.log(creep.room, links);
 			if ( links.length ) {
 				for ( var l in links ) {
 					var link = links[l];
