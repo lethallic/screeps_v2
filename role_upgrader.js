@@ -20,7 +20,16 @@ module.exports = {
 		
 		var controller = creep.room.controller;
 		if ( controller && controller.my ) {
-			var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 2);
+			var link = creep.pos.findInRange(FIND_MY_STRUCTURES, 2, { filter: { structureType: STRUCTURE_LINK } });
+			console.log(creep, link);
+			
+			// if ( creep.enery == 0 ) {
+			// 	var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 2);
+				
+				
+			// }
+			
+			
 		    if ( creep.energy == 0 && energy.length ) {
 		    	if ( creep.pickup(energy[0]) != OK ) {
 					creep.moveTo(energy[0]);
@@ -31,6 +40,7 @@ module.exports = {
 				creep.upgradeController(controller);
 			}
 		}
+		
 		
 		// if ( creep.energy == 0 ) {
 		// 	// goto spawn
