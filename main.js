@@ -6,6 +6,7 @@ require("_init");
 
 var utils = require("_utils");
 
+utils.setDebug(false);
 utils.log("------ NEW TICK ------");
 
 

@@ -94,7 +94,7 @@ module.exports = {
 	_findSource: function(creep) {
 		var debug = utils.debug(creep + " find sources");
 		var sources = creep.room.sources();
-		utils.log(debug);
+		// utils.log(debug);
 
 		if (sources.length) {
 			var debug = utils.debug(creep + " find sources");
@@ -102,7 +102,7 @@ module.exports = {
 			// var source = creep.pos.findClosest(sources, {
 			// 	"algorithm": "dijkstra" //"astar"
 			// });
-			utils.log(debug);
+			// utils.log(debug);
 			return source;
 		}
 		return null;
@@ -111,7 +111,7 @@ module.exports = {
 	_findConstruction: function(creep) {
 		var debug = utils.debug(creep + " find constructions");
 		var constructions = creep.room.getConstructionSites();
-		utils.log(debug);
+		// utils.log(debug);
 
 		if (constructions.length) {
 			debug = utils.debug(creep + " find nearest construction");
@@ -119,7 +119,7 @@ module.exports = {
 			// creep.pos.findClosest(constructions, {
 			// 	"algorithm": "dijkstra" // astar
 			// });
-			utils.log(debug);
+			// utils.log(debug);
 			return c;
 		}
 		return null;

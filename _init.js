@@ -152,6 +152,10 @@ module.exports = (function() {
 				return this.find(FIND_CONSTRUCTION_SITES);
 			});
 		},
+		
+		getLinks: function() {
+			return _.filter(this.getStructures(), { 'structureType' : STRUCTURE_LINK });
+		},
 
 		creepsByTarget: function(targetId, role) {
 			return _.filter(this.getCreeps(role), function(c) {
@@ -237,7 +241,7 @@ module.exports = (function() {
 	extend(Structure.prototype, {
 		_type: "structure",
 		needsRepair: function(name) {
-			if (this.structureType == STRUCTURE_RAMPART) {
+			if (this.structureType == STRUCTURE_RAMPART || this.structureType == STRUCTURE_WALL) {
 				return this.hits < 1000000;
 			}
 			return this.hits < this.hitsMax;
