@@ -89,6 +89,17 @@ module.exports = (function() {
 		},
 
 		sources: function() {
+			var arrSources = [];
+			
+			if ( !this.memory['sources'] ) {
+				var sources = this.find(FIND_SOURCES);
+				for ( var s in sources ) {
+					arrSources.push(s.id);
+				}
+				this.memory['sources'] = arrSources;
+			}
+			
+			
 			var sources = this._getCached("sources", function() {
 				return this.find(FIND_SOURCES, {
 					filter: function(source) {
