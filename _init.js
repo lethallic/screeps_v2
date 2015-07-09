@@ -146,16 +146,19 @@ module.exports = (function() {
 
 		extensions: function() {
 			return this._getCached("extensions", function() {
-				return this.find(FIND_MY_STRUCTURES, {
-					filter: function(s) {
-						return (s.structureType == STRUCTURE_EXTENSION);
-					}
-				});
+				return _.filter(this.getStructures(), {'structureType' : STRUCTURE_EXTENSION});
+				
+				// return this.find(FIND_MY_STRUCTURES, {
+				// 	filter: function(s) {
+				// 		return (s.structureType == STRUCTURE_EXTENSION);
+				// 	}
+				// });
 			});
 		},
 
 		emptyExtensions: function() {
 			return _.filter(this.extensions(), function(e) {
+				console.log(e);
 				return (e.energy < e.energyCapacity);
 			});
 		},
