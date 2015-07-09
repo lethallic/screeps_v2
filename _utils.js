@@ -53,8 +53,9 @@ var _utils = {
     },
     
     getTarget : function(creep, targets) {
-        
-        
+        if ( targets.length == 1 ) {
+            return targets[0];
+        }
         return creep.pos.findClosest(targets);
     }
 
