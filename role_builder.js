@@ -98,7 +98,7 @@ module.exports = {
 
 		if (sources.length) {
 			var debug = utils.debug(creep + " find sources");
-			var source = this._getTarget(creep, sources);
+			var source = utils.getTarget(creep, sources);
 			// var source = creep.pos.findClosest(sources, {
 			// 	"algorithm": "dijkstra" //"astar"
 			// });
@@ -115,7 +115,7 @@ module.exports = {
 
 		if (constructions.length) {
 			debug = utils.debug(creep + " find nearest construction");
-			var c = this._getTarget(creep, constructions);
+			var c = utils.getTarget(creep, constructions);
 			// creep.pos.findClosest(constructions, {
 			// 	"algorithm": "dijkstra" // astar
 			// });
@@ -124,15 +124,5 @@ module.exports = {
 		}
 		return null;
 	},
-
-	_getTarget: function(creep, targets) {
-		if (targets.length == 1) {
-			return targets[0];
-		}
-		return creep.pos.findClosest(targets);
-		// , {
-		// 	"algorithm": "dijkstra" // astar
-		// }); 
-	}
 
 };
