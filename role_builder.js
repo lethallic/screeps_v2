@@ -95,12 +95,13 @@ module.exports = {
 		var debug = utils.debug(creep + " find sources");
 		var sources = creep.room.sources();
 		utils.log(debug);
-		
-		if ( sources.length ) {
+
+		if (sources.length) {
 			var debug = utils.debug(creep + " find sources");
-			var source = creep.pos.findClosest(sources, {
-				"algorithm": "dijkstra" //"astar"
-			});
+			var source = this._getTarget(creep, sources);
+			// var source = creep.pos.findClosest(sources, {
+			// 	"algorithm": "dijkstra" //"astar"
+			// });
 			utils.log(debug);
 			return source;
 		}
@@ -114,13 +115,24 @@ module.exports = {
 
 		if (constructions.length) {
 			debug = utils.debug(creep + " find nearest construction");
-			var c = creep.pos.findClosest(constructions, {
-				"algorithm": "dijkstra" // astar
-			}); 
+			var c = this._getTarget(creep, constructions);
+			// creep.pos.findClosest(constructions, {
+			// 	"algorithm": "dijkstra" // astar
+			// });
 			utils.log(debug);
 			return c;
 		}
 		return null;
+	},
+
+	_getTarget: function(creep, targets) {
+		if (targets.length == 1) {
+			return targets[0];
+		}
+		return creep.pos.findClosest(targets);
+		// , {
+		// 	"algorithm": "dijkstra" // astar
+		// }); 
 	}
 
 };
