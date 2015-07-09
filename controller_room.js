@@ -21,7 +21,7 @@ utils.extend(RoomController.prototype, {
         var creeps = this._room.getCreeps();
         for (var c in creeps) {
             var creep = creeps[c];
-            var debugCreep = utils.debug("process creep: " + creep + " [" + creep.role() + "]");
+            var debugCreep = utils.debug("process creep: " + creep + " [" + creep.role() + ", " + creep.room + "]");
             
             this._controller.roleManager.process(creep);
             
