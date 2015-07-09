@@ -45,6 +45,12 @@ var RoomController = require("controller_room");
 function GameController() {
     this.roleManager = require("roleManager");
     this.factory = require("factory");
+    
+    this.rooms = {};
+    
+    for ( var r in Game.rooms ) {
+		this.rooms[r] = new RoomController(this, Game.rooms[r]);
+    }
 }
 
 utils.extend(GameController.prototype, {
@@ -54,11 +60,9 @@ utils.extend(GameController.prototype, {
     },
     
     processRooms : function() {
-        for ( var r in Game.rooms ) {
-            var rc = new RoomController(this, Game.rooms[r]);
-            
-            rc.produce();
-            rc.doCreeps();
+        for ( var r in this.rooms ) {
+            this.rooms[r].produce();
+            this.rooms[r].doCreeps();
         }
     }
     
