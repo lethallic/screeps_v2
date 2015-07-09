@@ -28,7 +28,7 @@ utils.extend(RoomController.prototype, {
             utils.log(debugCreep);
             
         }
-        utils.log(debug);
+        utils.log(debugCreeps);
     }
 
 });
