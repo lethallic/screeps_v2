@@ -7,7 +7,7 @@ function LinkController(room) {
 
 
 utils.extend(LinkController.prototype, {
-
+    
     getSenders: function() {
         var sources = this.room.sources();
         return _.filter(this.links, function(link) {
@@ -21,8 +21,14 @@ utils.extend(LinkController.prototype, {
     },
 
     getReceivers: function() {
+        var sources = this.room.sources();
         return _.filter(this.link, function(link) {
-            return link.pos.inRangeTo(room.getSpanw(), 5);
+            // return link.pos.inRangeTo(room.getSpanw(), 5);
+            for (var s in sources) {
+                if (!link.pos.inRangeTo(sources[s], 5)) {
+                    return true;
+                }
+            }
         });
     },
 

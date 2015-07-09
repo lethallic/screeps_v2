@@ -10,6 +10,7 @@ module.exports = {
 		var flags = _.filter(creep.room.getFlags(), function(f) {
 			return f.color == COLOR_ORANGE;
 		});
+		
 		if ( flags.length ) {
 			creep.moveTo(flags[0]);
 			return;
@@ -41,13 +42,13 @@ module.exports = {
 				extension = creep.pos.findClosest(emptyExtensions);
 			}
 
-			debug.log();
+			// debug.log();
 			
 			if ( extension ) {
 				debug = new Debug(creep + "DO WORK", 5);
 				creep.moveTo(extension);
 				creep.transferEnergy(extension);
-				debug.log();
+				// debug.log();
 				
 				return;
 			} else {
@@ -58,7 +59,7 @@ module.exports = {
 					creep.transferEnergy(spawn);
 					return;
 				}
-				debug.log();
+				// debug.log();
 				
 				var upgrader = creep.room.getCreeps("upgrader");
 				if ( upgrader.length ) {

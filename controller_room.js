@@ -9,13 +9,13 @@ function RoomController(gameController, room) {
 }
 
 utils.extend(RoomController.prototype, {
-
+    
     produce: function() {
         var debug = utils.debug("RoomController.process()");
         
         this._controller.factory.produce(this._room, this._controller.roleManager);
         
-        utils.log(debug);
+        // utils.log(debug);
     },
 
     doCreeps: function() {
@@ -28,10 +28,10 @@ utils.extend(RoomController.prototype, {
             
             this._controller.roleManager.process(creep);
             
-            utils.log(debugCreep);
+            // utils.log(debugCreep);
             
         }
-        utils.log(debugCreeps);
+        // utils.log(debugCreeps);
     },
     
     processLinks : function() {
