@@ -199,7 +199,19 @@ module.exports = (function() {
 				return 300 + (this.extensions().length * 50);
 			}
 			return 0;
-		}
+		},
+		
+		getSenderLinks: function() {
+	        var sources = this.sources();
+	        return _.filter(this.getLinks(), function(link) {
+	            for (var s in sources) {
+	                if (link.pos.inRangeTo(sources[s], 5)) {
+	                    return true;
+	                }
+	            }
+	            return false;
+	        })
+	    }
 
 	});
 
