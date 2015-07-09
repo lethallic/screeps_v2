@@ -1,4 +1,4 @@
-var uitls = require("_utils");
+var utils = require("_utils");
 
 module.exports = {
 	
