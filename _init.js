@@ -117,7 +117,6 @@ module.exports = (function() {
 						result.push(Game.getObjectById(sourceId));
 					}
 				}
-				console.log(result);
 				return result;
 			});
 		},
