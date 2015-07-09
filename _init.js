@@ -114,7 +114,11 @@ module.exports = (function() {
 				if (this.memory['sources']) {
 					for (var i in this.memory['sources']) {
 						var sourceId = this.memory['sources'][i];
-						result.push(Game.getObjectById(sourceId));
+						
+						var s = Game.getObjectById(sourceId)
+						if ( !s.defended() ) {
+							result.push(s);
+						}
 					}
 				}
 				return result;

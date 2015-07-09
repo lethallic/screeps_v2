@@ -38,7 +38,7 @@ module.exports = {
 			var extension = null;
 			var emptyExtensions = creep.room.emptyExtensions();
 			if ( emptyExtensions.length ) {
-				extension = creep.pos.findClosest();
+				extension = creep.pos.findClosest(emptyExtensions);
 			}
 
 			debug.log();
