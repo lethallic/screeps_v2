@@ -46,7 +46,7 @@ module.exports = {
 			if ( links.length ) {
 				for ( var l in links ) {
 					var link = links[l];
-					if ( link.energy < link.energyMax ) {
+					if ( link.energy < link.energyCapacity ) {
 						if ( creep.pos.inRangeTo(link, 10) ) {
 							creep.moveTo(link);
 							creep.transferEnergy(link);
