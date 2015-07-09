@@ -16,7 +16,7 @@ module.exports = {
 		}
 		
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
-			// var debug = new Debug("FIND DROPPED ENERGY", 2);
+			var debug = new Debug(creep + "FIND DROPPED ENERGY", 5);
 			
 			var energyList = _.filter(creep.room.droppedEnergy(), function(e) {
 			    return !e.pos.inRangeTo(e.room.controller, 2);
@@ -31,9 +31,9 @@ module.exports = {
 				creep.pickup(energy);
 			}
 			
-			// debug.log();
+			debug.log();
 		} else {
-			// var debug = new Debug("FIND EXTENSION", 5);
+			var debug = new Debug(creep + "FIND EXTENSION", 5);
 			
 			var extension = null;
 			var emptyExtensions = creep.room.emptyExtensions();
@@ -41,23 +41,24 @@ module.exports = {
 				extension = creep.pos.findClosest();
 			}
 
-			//debug.log();
+			debug.log();
 			
 			if ( extension ) {
-				// debug = new Debug("DO WORK", 2);
+				debug = new Debug(creep + "DO WORK", 5);
 				creep.moveTo(extension);
 				creep.transferEnergy(extension);
-				// debug.log();
+				debug.log();
 				
 				return;
 			} else {
-				// debug = new Debug("FIND SPAWN", 2);
+				debug = new Debug(creep + "FIND SPAWN", 5);
 				var spawn = creep.room.getSpawn();
 				if ( spawn && spawn.energy < spawn.energyCapacity ) {
 					creep.moveTo(spawn);
 					creep.transferEnergy(spawn);
 					return;
 				}
+				debug.log();
 				
 				var upgrader = creep.room.getCreeps("upgrader");
 				if ( upgrader.length ) {
@@ -68,7 +69,6 @@ module.exports = {
 						creep.dropEnergy();
 					}
 				}
-				// debug.log();
 			}
 		}
 	}

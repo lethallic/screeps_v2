@@ -1,6 +1,6 @@
 var Debug = require("_debug");
 
-var _debugMinUsed = 5;
+var _debugMinUsed = 10;
 
 var _utils = {
     
