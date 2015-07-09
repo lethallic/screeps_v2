@@ -14,3 +14,4 @@ var gc = new GameController();
 
 gc.doScout();
 gc.processRooms();
+gc.processGlobal();

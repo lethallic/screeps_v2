@@ -64,6 +64,10 @@ utils.extend(GameController.prototype, {
             this.rooms[r].produce();
             this.rooms[r].doCreeps();
         }
+    },
+    
+    processGlobal : function() {
+    	
     }
     
 });
