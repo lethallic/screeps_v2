@@ -62,12 +62,12 @@ module.exports = (function() {
 
 	extend(Room.prototype, Cache);
 	extend(Room.prototype, {
-		getFlags : function() {
+		getFlags: function() {
 			return this._getCached("flags", function() {
 				return this.find(FIND_FLAGS);
-			})	
+			})
 		},
-		
+
 		newSpawn: function() {
 			if (this._spawn == null) {
 				var spawns = this.find(FIND_MY_SPAWNS);
@@ -89,36 +89,37 @@ module.exports = (function() {
 		},
 
 		sources: function() {
+			// var sources = this._getCached("sources", function() {
+			// 	return this.find(FIND_SOURCES, {
+			// 		filter: function(source) {
+			// 			return !source.defended();
+			// 		}
+			// 	});
+			// });
+
+			// return sources;
+
 			var arrSources = [];
-			
-			if ( !this.memory['sources'] ) {
+
+			if (!this.memory['sources']) {
 				var sources = this.find(FIND_SOURCES);
-				for ( var s in sources ) {
+				for (var s in sources) {
 					arrSources.push(sources[s].id);
 				}
 				this.memory['sources'] = arrSources;
 			}
-			
-			var result = [];
-			if ( this.memory['sources'] ) {
-				for ( var i in this.memory['sources'] ) {
-					var sourceId = this.memory['sources'][i];
-					result.push(Game.getObjectById(sourceId));
-					console.log(sourceId);
-				}
-			}
-			// return result;			
-			
-			
-			var sources = this._getCached("sources", function() {
-				return this.find(FIND_SOURCES, {
-					filter: function(source) {
-						return !source.defended();
-					}
-				});
-			});
 
-			return sources;
+			return this._getCached("source", function() {
+				var result = [];
+				if (this.memory['sources']) {
+					for (var i in this.memory['sources']) {
+						var sourceId = this.memory['sources'][i];
+						result.push(Game.getObjectById(sourceId));
+					}
+				}
+				console.log(result);
+				return result;
+			});
 		},
 
 		getCreeps: function(role) {
@@ -167,8 +168,10 @@ module.exports = (function() {
 
 		extensions: function() {
 			return this._getCached("extensions", function() {
-				return _.filter(this.getStructures(), {'structureType' : STRUCTURE_EXTENSION});
-				
+				return _.filter(this.getStructures(), {
+					'structureType': STRUCTURE_EXTENSION
+				});
+
 				// return this.find(FIND_MY_STRUCTURES, {
 				// 	filter: function(s) {
 				// 		return (s.structureType == STRUCTURE_EXTENSION);
@@ -239,10 +242,10 @@ module.exports = (function() {
 
 		getFreeFields: function() {
 			return this._getCached("freeFields", function() {
-				if ( !this.room.memory.maxUpgraders ) {
+				if (!this.room.memory.maxUpgraders) {
 					var pos = this.pos;
 					var count = 0;
-		
+
 					for (var x = -1; x < 2; x++) {
 						for (var y = -1; y < 2; y++) {
 							var terrain = this.room.lookForAt('terrain', pos.x + x, pos.y + y);
@@ -251,10 +254,10 @@ module.exports = (function() {
 							}
 						}
 					}
-		
-					this.room.memory.maxUpgraders = count;	
+
+					this.room.memory.maxUpgraders = count;
 				}
-				
+
 				return this.room.memory.maxUpgraders;
 			});
 		}
