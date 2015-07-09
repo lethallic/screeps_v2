@@ -32,7 +32,7 @@ module.exports = {
 				creep.pickup(energy);
 			}
 			
-			debug.log();
+			// debug.log();
 		} else {
 			var debug = new Debug(creep + "FIND EXTENSION", 5);
 			
