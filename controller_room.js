@@ -1,8 +1,11 @@
+var LinkController = require("controller_link");
 var utils = require("_utils");
 
 function RoomController(gameController, room) {
     this._room = room;
     this._controller = gameController;
+    
+    this.links = new LinkController(room);
 }
 
 utils.extend(RoomController.prototype, {
@@ -29,6 +32,10 @@ utils.extend(RoomController.prototype, {
             
         }
         utils.log(debugCreeps);
+    },
+    
+    processLinks : function() {
+        this.links.transfer();
     }
 
 });
