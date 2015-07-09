@@ -14,8 +14,6 @@ module.exports = {
 			creep.moveTo(flags[0]);
 			return;
 		}
-	
-		var upgrader = creep.room.getCreeps("upgrader");
 		
 		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
 			// var debug = new Debug("FIND DROPPED ENERGY", 2);
@@ -37,8 +35,12 @@ module.exports = {
 		} else {
 			// var debug = new Debug("FIND EXTENSION", 5);
 			
-			var extension = creep.pos.findClosest(creep.room.emptyExtensions());
-			
+			var extension = null;
+			var emptyExtensions = creep.room.emptyExtensions();
+			if ( emptyExtensions.length ) {
+				extension = creep.pos.findClosest();
+			}
+
 			//debug.log();
 			
 			if ( extension ) {
@@ -57,6 +59,7 @@ module.exports = {
 					return;
 				}
 				
+				var upgrader = creep.room.getCreeps("upgrader");
 				if ( upgrader.length ) {
 					creep.moveTo(upgrader[0]);
 					if ( upgrader.energy < upgrader.energyCapacity - 10 ) {
