@@ -5,6 +5,7 @@ module.exports = {
 	_modules : {},
 	
 	process : function(creep) {
+		if ( creep.fatigue > 0 ) return;
 		
 		var role = creep.memory.role;
 		if ( role ) {
