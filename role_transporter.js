@@ -46,9 +46,10 @@ module.exports = {
 			if ( links.length ) {
 				for ( var l in links ) {
 					var link = links[l];
-					console.log(creep.room, link);
+					
 					
 					if ( creep.pos.inRangeTo(links, 10) ) {
+						console.log(creep.room, link);
 						// creep.moveTo(link);
 						// creep.transferEnergy(link);
 						// return;
