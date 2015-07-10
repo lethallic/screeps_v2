@@ -71,11 +71,11 @@ module.exports = {
 		
 		
 		// create one transporter first
-// 		var transporters = room.getCreeps("transporter");
-// 		if ( transporters.length == 0 ) {
-// 			this._createCreep(room, roleManager, "transporter");
-// 			return;
-// 		}
+ 		var transporters = room.getCreeps("transporter");
+ 		if ( transporters.length == 0 ) {
+ 			this._createCreep(room, roleManager, "transporter");
+ 			return;
+ 		}
 		
 		// create a miner for each save resource
 		for ( var s in sources ) {
