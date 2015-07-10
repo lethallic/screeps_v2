@@ -17,7 +17,7 @@ var config = {
 	},
 	
 	"builders" : {
-		"max" : 4
+		"max" : 2
 	}
 	
 };
