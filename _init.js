@@ -222,12 +222,12 @@ module.exports = (function() {
 
 	extend(Source.prototype, {
 		defended: function() {
-			var targets = this.pos.findInRange(FIND_HOSTILE_CREEPS, 10);
+			var targets = this.pos.findInRange(FIND_HOSTILE_CREEPS, 5);
 			if (targets.length) {
 				return true;
 			}
 
-			targets = this.pos.findInRange(FIND_HOSTILE_STRUCTURES, 10);
+			targets = this.pos.findInRange(FIND_HOSTILE_STRUCTURES, 5);
 			if (targets.length) {
 				return true;
 			}
