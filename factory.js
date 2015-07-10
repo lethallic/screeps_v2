@@ -17,7 +17,7 @@ var config = {
 	},
 	
 	"builders" : {
-		"max" : 2
+		"max" : 3
 	}
 	
 };
@@ -57,7 +57,7 @@ module.exports = {
 	produce : function(room, roleManager) {
 		var sources = room.sources();
 		
-		if ( room.getCreeps().length < 3 ) { // || room.maxEnergy() <= 600 ) {
+		if ( room.getCreeps().length < config.builders.max ) { // || room.maxEnergy() <= 600 ) {
 		//if ( room.maxEnergy() <= 600 ) {
 			// just build workers
 			var builders = room.getCreeps("builder");
