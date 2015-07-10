@@ -74,19 +74,21 @@ module.exports = {
 		}
 		else if (creep.energy == 0) {
 			// goto spawn, get energy
-			var links = spawn.pos.findInRange(spawn.room.getLinks(), 3);
+			var spawn = creep.room.getSpawn();
+			
+			var links = spawn.pos.findInRange(creep.room.getLinks(), 3);
 			var link = _.find(links, function(l) {
-				return (ll.energy > 0);
+				return (l.energy > 0);
 			})
 
 			if (link) {
 				creep.moveTo(link);
 				link.transferEnergy
-			}
-			else {
+			} else {
 				creep.moveTo(spawn);
 				spawn.transferEnergy(creep);
 			}
+			
 			creep.target("");
 		}
 	},

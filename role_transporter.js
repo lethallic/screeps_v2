@@ -37,11 +37,17 @@ module.exports = {
 			var extension = null;
 			var emptyExtensions = creep.room.emptyExtensions();
 			if ( emptyExtensions.length ) {
-				extension = creep.pos.findClosest(emptyExtensions);
+				extension = creep.pos.findClosestByRange(emptyExtensions);
 			}
-			
 			var links = creep.room.getSenderLinks();
-			if ( links.length ) {
+			
+			// debug.log();
+			
+			if ( extension ) {
+				creep.moveTo(extension);
+				creep.transferEnergy(extension);
+				return;
+			} else if ( links.length ) {
 				for ( var l in links ) {
 					var link = links[l];
 					if ( link.energy < link.energyCapacity ) {
@@ -52,18 +58,6 @@ module.exports = {
 						}
 					}
 				}
-			}
-			
-
-			// debug.log();
-			
-			if ( extension ) {
-				debug = new Debug(creep + "DO WORK", 5);
-				creep.moveTo(extension);
-				creep.transferEnergy(extension);
-				// debug.log();
-				
-				return;
 			} else {
 				debug = new Debug(creep + "FIND SPAWN", 5);
 				var spawn = creep.room.getSpawn();
