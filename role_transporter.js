@@ -6,6 +6,10 @@ module.exports = {
 	body_small : [MOVE, CARRY],
 	
 	run : function(creep) {
+		this.applyMiner(creep);
+		
+		var minerId = creep.memory.miner || null;
+		var miner = Game.getObjectById(minerId);
 		
 		var flags = _.filter(creep.room.getFlags(), function(f) {
 			return f.color == COLOR_ORANGE;
@@ -16,12 +20,12 @@ module.exports = {
 			return;
 		}
 		
-		if ( creep.energy == 0 ) { // < creep.energyCapacity ) {
-			var debug = new Debug(creep + "FIND DROPPED ENERGY", 5);
-			
+		if ( creep.energy == 0 || miner != null ) { // < creep.energyCapacity ) {
+			var energy = null;
+		
 			var energyList = _.filter(creep.room.droppedEnergy(), function(e) {
-			    return !e.pos.inRangeTo(e.room.controller, 2);
-			});
+		    	return e.pos.inRangeTo(miner, 2);
+			});	
 			
 			if ( energyList.length ) {
 				energy = energyList[0];
@@ -32,7 +36,6 @@ module.exports = {
 				creep.pickup(energy);
 			}
 			
-			// debug.log();
 		} else {
 			var debug = new Debug(creep + "FIND EXTENSION", 5);
 			
@@ -85,6 +88,36 @@ module.exports = {
 						creep.dropEnergy();
 					}
 				}
+			}
+		}
+	},
+	
+	applyMiner : function(creep) {
+		var minerId = creep.memory.minder;
+		var miner = null;
+		
+		if ( minerId && minerId !== "" ) {
+			// check, if miner exists
+			if ( Game.getObjectById(minerId) != null) {
+				return
+			}
+		};
+
+		var transporters = creep.room.getCreeps("transporter");
+		var miners = creep.room.getCreeps("miner");
+			
+		var perMiner = transporters.length / miners.length;
+			
+			
+		for ( var m in miners ) {
+			var miner = miners[m];
+			
+			var tm = _.filter(transporters, function(t){
+				return (t.memory.miner == miner.id);
+			});
+			
+			if ( tm.length < perMiner ) {
+				creep.memory.miner = miner.id;
 			}
 		}
 	}
