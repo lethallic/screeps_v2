@@ -20,7 +20,7 @@ module.exports = {
 			return;
 		}
 		
-		if ( creep.energy == 0 || miner != null ) { // < creep.energyCapacity ) {
+		if ( creep.energy == 0 && miner != null ) { // < creep.energyCapacity ) {
 			var energy = null;
 		
 			var energyList = _.filter(creep.room.droppedEnergy(), function(e) {
