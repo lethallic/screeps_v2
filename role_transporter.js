@@ -5,6 +5,148 @@ module.exports = {
 	body : [MOVE, CARRY, CARRY, MOVE, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY],
 	body_small : [MOVE, CARRY],
 	
+	run : function(creep) {
+	    creep.target("");
+	    
+		this.applyMiner(creep);
+		if ( creep.energy == 0 ) {
+			this._gotoMiner(creep);
+		} else {
+			// transfer energy
+			this._transferEnergy(creep);
+		}
+	},
+	
+	applyMiner : function(creep) {
+		var minerId = creep.memory.minder;
+		var miner = null;
+		
+		if ( minerId && minerId !== "" ) {
+			// check, if miner exists
+			if ( Game.getObjectById(minerId) != null) {
+				return
+			}
+		};
+
+		var transporters = creep.room.getCreeps("transporter");
+		var miners = creep.room.getCreeps("miner");
+			
+		var perMiner = transporters.length / miners.length;
+			
+			
+		for ( var m in miners ) {
+			var miner = miners[m];
+			
+			var tm = _.filter(transporters, function(t){
+				return (t.memory.miner == miner.id);
+			});
+			
+			if ( tm.length < perMiner ) {
+				creep.memory.miner = miner.id;
+			}
+		}
+	},
+	
+	_gotoMiner : function (creep) {
+		var miner = Game.getObjectById(creep.memory.miner || null);
+		if ( miner != null ) {
+			var energy = _.filter(creep.room.droppedEnergy(), function(e) {
+			   	return e.pos.inRangeTo(miner, 2);
+			});	
+		    
+		    
+			if ( energy.length ) {
+		    
+				creep.moveTo(energy[0]);
+				creep.pickup(energy[0]);
+			} else {
+				creep.moveTo(miner);
+			}
+			
+			return true;
+		}
+		
+		return false;
+	},
+	
+	_transferEnergy : function(creep) {
+		
+		var target = Game.getObjectById(creep.target());
+		if ( target && target.structureType ) {
+		    if ( target.energy == target.energyCapacity ) {
+		        target = null;
+		    }
+		}
+		
+		if ( target == null ) {
+			target = this._findTarget(creep);
+			if ( target ) {
+			    creep.target(target.id);
+			}
+		}
+		
+		if ( target ) {
+			var move = false;
+		
+			if ( target.structureType ) {
+			    var r = creep.transferEnergy(target)
+			    if ( r == OK || r == ERR_FULL ) {
+			        creep.target("");    
+			    } else {
+			        move = true;
+			    }
+			} else if ( creep.pos.isNearTo(target) ) {
+				creep.dropEnergy();
+				creep.target("");
+				move = false;
+			}
+
+			if ( move  ) {
+				creep.moveTo(target);
+			}
+		}
+		
+	},
+	
+	_findTarget : function(creep) {
+		var room = creep.room;
+		
+		// find empty extension		
+		var emptyExtensions = _.filter(room.emptyExtensions(), function(e) {
+			return (room.creepsByTarget(e.id, "transporter").length == 0);
+		});
+		if ( emptyExtensions.length ) {
+			return creep.pos.findClosestByRange(emptyExtensions);
+		}
+		
+		// find link
+		var links = creep.room.getSenderLinks();
+		if ( links.length ) {
+			for ( var l in links ) {
+				var link = links[l];
+				if ( link.energy < link.energyCapacity ) {
+					if ( creep.pos.inRangeTo(link, 10) ) {
+						return link;
+					}
+				}
+			}
+		}
+		
+		// find spawn
+		var spawn = creep.room.getSpawn();
+		if ( spawn && spawn.energy < spawn.energyCapacity ) {
+			return spawn;
+		}
+		
+		// find upgrader
+		var upgrader = creep.room.getCreeps("upgrader");
+		if ( upgrader.length ) {
+			return upgrader[0];
+		}
+		
+		return null;
+	},
+	
 	_run : function(creep) {
 		this.applyMiner(creep);
 		
@@ -79,136 +221,6 @@ module.exports = {
 				}
 			}
 		}
-	},
-	
-	applyMiner : function(creep) {
-		var minerId = creep.memory.minder;
-		var miner = null;
-		
-		if ( minerId && minerId !== "" ) {
-			// check, if miner exists
-			if ( Game.getObjectById(minerId) != null) {
-				return
-			}
-		};
-
-		var transporters = creep.room.getCreeps("transporter");
-		var miners = creep.room.getCreeps("miner");
-			
-		var perMiner = transporters.length / miners.length;
-			
-			
-		for ( var m in miners ) {
-			var miner = miners[m];
-			
-			var tm = _.filter(transporters, function(t){
-				return (t.memory.miner == miner.id);
-			});
-			
-			if ( tm.length < perMiner ) {
-				creep.memory.miner = miner.id;
-			}
-		}
-	},
-	
-	run : function(creep) {
-		this.applyMiner(creep);
-		if ( creep.energy == 0 ) {
-			this._gotoMiner(creep);
-		} else {
-			// transfer energy
-			this._transferEnergy(creep);
-		}
-	},
-	
-	
-	_gotoMiner : function (creep) {
-		var miner = Game.getObjectById(creep.memory.miner || null);
-		
-		if ( miner != null ) {
-			var energy = _.filter(creep.room.droppedEnergy(), function(e) {
-			   	return e.pos.inRangeTo(miner, 2);
-			});	
-				
-			if ( energy.length ) {
-				creep.moveTo(energy[0]);
-				creep.pickup(energy[0]);
-			} else {
-				creep.moveTo(miner);
-			}
-			
-			return true;
-		}
-		
-		return false;
-	},
-	
-	_transferEnergy : function(creep) {
-		
-		var target = Game.getObjectById(creep.target());
-		if ( target == null ) {
-			target = this._findTarget(creep);
-		}
-		
-		
-		if ( target ) {
-			var move = false;
-			
-			if ( target.structureType ) {
-				move = (creep.transferEnergy(target) == OK);
-			} else if ( creep.pos.isNearTo(target) ) {
-				creep.dropEnergy();
-				move = false;
-			}
-
-			if ( move ) {
-				creep.moveTo(target);
-				creep.target(target.id);
-			} else {
-				creep.target(null);
-			}
-		}
-		
-	},
-	
-	_findTarget : function(creep) {
-		var room = creep.room;
-		
-		
-		// find empty extension		
-		var emptyExtensions = _.filter(room.emptyExtensions(), function(e) {
-			return (room.creepsByTarget(e.id, "transporter").length == 0);
-		});
-		if ( emptyExtensions.length ) {
-			return creep.pos.findClosestByRange(emptyExtensions);
-		}
-		
-		// find link
-		var links = creep.room.getSenderLinks();
-		if ( links.length ) {
-			for ( var l in links ) {
-				var link = links[l];
-				if ( link.energy < link.energyCapacity ) {
-					if ( creep.pos.inRangeTo(link, 10) ) {
-						return link;
-					}
-				}
-			}
-		}
-		
-		// find spawn
-		var spawn = creep.room.getSpawn();
-		if ( spawn && spawn.energy < spawn.energyCapacity ) {
-			return spawn;
-		}
-		
-		// find upgrader
-		var upgrader = creep.room.getCreeps("upgrader");
-		if ( upgrader.length ) {
-			return upgrader[0];
-		}
-		
-		return null;
 	}
 	
 };
