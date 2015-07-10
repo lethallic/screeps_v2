@@ -21,7 +21,7 @@ module.exports = {
 		var controller = creep.room.controller;
 		if ( controller && controller.my ) {
 			if ( creep.energy == 0 ) {
-			    var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 3);
+			    var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 2);
 				var links = creep.pos.findInRange(creep.room.getLinks(), 3);
 				
 				if ( energy.length ) {
