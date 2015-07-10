@@ -84,7 +84,7 @@ module.exports = {
 		}
 		
 		if ( target ) {
-		    if (!creep.isNearTo(target)) {
+		    if (creep.pos.isNearTo(target) == false) {
 		        creep.moveTo(target);
 		    }
 		    
