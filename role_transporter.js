@@ -115,7 +115,7 @@ module.exports = {
 		if ( emptyExtensions.length ) {
 			return creep.pos.findClosestByRange(emptyExtensions);
 		}	
-	}
+	},
 	
 	_findTarget : function(creep) {
 		var room = creep.room;
