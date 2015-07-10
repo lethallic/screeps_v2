@@ -21,21 +21,16 @@ module.exports = {
 		}
 		
 		if ( creep.energy == 0 && miner != null ) { // < creep.energyCapacity ) {
-			var energy = null;
-		
-			var energyList = _.filter(creep.room.droppedEnergy(), function(e) {
+			var energy = _.filter(creep.room.droppedEnergy(), function(e) {
 		    	return e.pos.inRangeTo(miner, 2);
 			});	
 			
-			if ( energyList.length ) {
-				energy = energyList[0];
+			if ( energy.length ) {
+				creep.moveTo(energy[0]);
+				creep.pickup(energy[0]);
+			} else {
+				creep.moveTo(miner);
 			}
-			
-			if ( typeof energy !== "undefined" ) {
-				creep.moveTo(energy);
-				creep.pickup(energy);
-			}
-			
 		} else {
 			var debug = new Debug(creep + "FIND EXTENSION", 5);
 			
