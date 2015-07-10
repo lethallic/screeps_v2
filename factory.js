@@ -57,7 +57,8 @@ module.exports = {
 	produce : function(room, roleManager) {
 		var sources = room.sources();
 		
-		if ( room.maxEnergy() <= 600) {
+		if ( room.getCreeps().length < 2 ) {
+		//if ( room.maxEnergy() <= 600) {
 			// just build workers
 			var builders = room.getCreeps("builder");
 			
