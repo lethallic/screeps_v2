@@ -31,8 +31,6 @@ var Cache = {
 
 
 module.exports = (function() {
-	// var debug = require("_debug")("_init.js");
-
 	recycleMemory();
 
 	extend(Creep.prototype, {
@@ -281,8 +279,6 @@ module.exports = (function() {
 			});
 		}
 	});
-
-	// debug.log();
 
 	return true;
 })();

@@ -1,5 +1,3 @@
-var Debug = require("_debug")
-
 module.exports = {
 	
 	body : [MOVE, CARRY, CARRY, MOVE, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY],
@@ -168,7 +166,6 @@ module.exports = {
 				creep.moveTo(miner);
 			}
 		} else {
-			var debug = new Debug(creep + "FIND EXTENSION", 5);
 			
 			var extension = null;
 			var emptyExtensions = creep.room.emptyExtensions();
@@ -176,8 +173,6 @@ module.exports = {
 				extension = creep.pos.findClosestByRange(emptyExtensions);
 			}
 			var links = creep.room.getSenderLinks();
-			
-			// debug.log();
 			
 			if ( extension ) {
 				creep.moveTo(extension);
@@ -195,14 +190,12 @@ module.exports = {
 					}
 				}
 			} else {
-				debug = new Debug(creep + "FIND SPAWN", 5);
 				var spawn = creep.room.getSpawn();
 				if ( spawn && spawn.energy < spawn.energyCapacity ) {
 					creep.moveTo(spawn);
 					creep.transferEnergy(spawn);
 					return;
 				}
-				// debug.log();
 				
 				var upgrader = creep.room.getCreeps("upgrader");
 				if ( upgrader.length ) {

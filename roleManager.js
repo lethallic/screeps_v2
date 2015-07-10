@@ -7,12 +7,16 @@ module.exports = {
 	process : function(creep) {
 		if ( creep.fatigue > 0 ) return;
 		
+		
 		var role = creep.memory.role;
 		if ( role ) {
 			var creepModule = this.getRoleModule(role);
 			if ( typeof creepModule !== 'undefined' && creepModule != null ) {
+				var debug = utils.debug("RoleManager.process(" + creep + ")");
 				creepModule.run(creep);
+				utils.log(debug);
 			}
+			
 		}
 	},
 				

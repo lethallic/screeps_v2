@@ -1,4 +1,3 @@
-var Debug = require("_debug");
 module.exports = {
 
 	body: [MOVE, MOVE, MOVE, CARRY, CARRY, WORK],
@@ -6,7 +5,6 @@ module.exports = {
 	body_big: [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, CARRY, CARRY, WORK],
 
 	run: function(creep) {
-		var debug;
 
 		var flags = _.filter(creep.room.getFlags(), function(f) {
 			return f.color == COLOR_BLUE;
@@ -23,7 +21,6 @@ module.exports = {
 
 			if (typeof creep.target() !== "undefined") {
 				// creep has current target
-				debug = new Debug("check target", 1);
 
 				var target = Game.getObjectById(creep.target());
 				if (target && target._type) {
@@ -34,7 +31,6 @@ module.exports = {
 				else {
 					target = null;
 				}
-				debug.log();
 			}
 
 			if (!target) {

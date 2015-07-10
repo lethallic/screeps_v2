@@ -101,34 +101,15 @@ module.exports = {
 		}
 		
 		return null;
-		
-		// var sources = creep.room.sources();
-		// // utils.log(debug);
-
-		// if (sources.length) {
-		// 	var debug = utils.debug(creep + " find sources");
-		// 	var source = utils.getTarget(creep, sources);
-		// 	// var source = creep.pos.findClosest(sources, {
-		// 	// 	"algorithm": "dijkstra" //"astar"
-		// 	// });
-		// 	// utils.log(debug);
-		// 	return source;
-		// }
-		// return null;
 	},
 
 	_findConstruction: function(creep) {
-		var debug = utils.debug(creep + " find constructions");
 		var constructions = creep.room.getConstructionSites();
-		// utils.log(debug);
-
 		if (constructions.length) {
-			debug = utils.debug(creep + " find nearest construction");
 			var c = utils.getTarget(creep, constructions);
 			// creep.pos.findClosest(constructions, {
 			// 	"algorithm": "dijkstra" // astar
 			// });
-			// utils.log(debug);
 			return c;
 		}
 		return null;
