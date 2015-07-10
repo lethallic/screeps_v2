@@ -113,7 +113,14 @@ module.exports = {
 		});
 		if ( emptyExtensions.length ) {
 			return creep.pos.findClosestByRange(emptyExtensions);
-		}	
+		}
+		
+		var spawn = creep.room.getSpawn();
+		if ( spawn != null && (spawn.energy < spawn.energyCapacity) ) {
+			return spawn;
+		}
+		
+		return null;
 	},
 	
 	_findTarget : function(creep) {
