@@ -69,8 +69,8 @@ module.exports = {
 		var target = Game.getObjectById(creep.target());
 		
 		var emptyExtension = this._findExtension(creep);
-		if ( extension != null ) {
-			target = extension;
+		if ( emptyExtension != null ) {
+			target = emptyExtension;
 		} else {
 			var target = Game.getObjectById(creep.target());
 			if ( target && target.structureType ) {
