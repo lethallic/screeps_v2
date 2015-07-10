@@ -97,7 +97,7 @@ module.exports = {
 		});
 		
 		if ( sources.length ) {
-			return utils.getTarget(creep, source);
+			return utils.getTarget(creep, sources);
 		}
 		
 		return null;
