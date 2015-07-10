@@ -134,7 +134,7 @@ module.exports = {
 		
 		// find spawn
 		var spawn = creep.room.getSpawn();
-		if ( spawn && spawn.energy < spawn.energyCapacity ) {
+		if ( spawn != null && (spawn.energy < spawn.energyCapacity) ) {
 			return spawn;
 		}
 		
