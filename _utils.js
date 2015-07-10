@@ -56,7 +56,8 @@ var _utils = {
         if ( targets.length == 1 ) {
             return targets[0];
         }
-        return creep.pos.findClosest(targets);
+        // return creep.pos.findClosest(targets);
+        return creep.pos.findClosestByRange(targets);
     }
 
 };

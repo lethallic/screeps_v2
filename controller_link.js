@@ -23,7 +23,6 @@ utils.extend(LinkController.prototype, {
     getReceivers: function() {
         var sources = this.room.sources();
         return _.filter(this.link, function(link) {
-            // return link.pos.inRangeTo(room.getSpanw(), 5);
             for (var s in sources) {
                 if (!link.pos.inRangeTo(sources[s], 5)) {
                     return true;
@@ -35,13 +34,15 @@ utils.extend(LinkController.prototype, {
     transfer : function() {
         var senders = this.getSenders();
         var receiver = _.find(this.getReceivers(), function(r) {
-            return (r.energy < r.maxEnergy);
+            return (r.energy < r.energyCapacity);
         });
 
+        console.log("transfer", senders, receiver);
+                
         if (receiver != null) {
             for (var s in senders) {
                 var sender = senders[s];
-                if (sender.cooldown == 0 && sender.energy == sender.maxEnergy) {
+                if (sender.cooldown == 0 && sender.energy == sender.energyCapacity) {
                     sender.transferEnergy(receiver);
                 }
             }
