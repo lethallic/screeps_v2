@@ -31,19 +31,19 @@ module.exports = {
 			}
 
 			if (target == null) {
-				var spawn = creep.room.getSpawn();
-				if (spawn) {
-					if (spawn.energy < spawn.energyCapacity) {
-						target = spawn;
-					}
-
-					if (target == null) {
-						var extensions = creep.room.emptyExtensions();
-						if (extensions.length) {
-							target = extensions[0];
+				var extensions = creep.room.emptyExtensions();
+				if (extensions.length) {
+					target = extensions[0];
+				}
+				
+				
+				if (target == null) {
+					var spawn = creep.room.getSpawn();
+					if (spawn) {
+						if (spawn.energy < spawn.energyCapacity) {
+							target = spawn;
 						}
 					}
-
 				}
 			}
 
