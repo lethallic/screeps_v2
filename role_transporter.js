@@ -66,12 +66,18 @@ module.exports = {
 	},
 	
 	_transferEnergy : function(creep) {
-		
 		var target = Game.getObjectById(creep.target());
-		if ( target && target.structureType ) {
-		    if ( target.energy == target.energyCapacity ) {
-		        target = null;
-		    }
+		
+		var emptyExtension = this._findExtension(creep);
+		if ( extension != null ) {
+			target = extension;
+		} else {
+			var target = Game.getObjectById(creep.target());
+			if ( target && target.structureType ) {
+			    if ( target.energy == target.energyCapacity ) {
+			        target = null;
+			    }
+			}	
 		}
 		
 		if ( target == null ) {
@@ -100,16 +106,19 @@ module.exports = {
 		
 	},
 	
-	_findTarget : function(creep) {
+	_findExtension : function(creep) {
 		var room = creep.room;
-		
 		// find empty extension		
 		var emptyExtensions = _.filter(room.emptyExtensions(), function(e) {
 			return (room.creepsByTarget(e.id, "transporter").length == 0);
 		});
 		if ( emptyExtensions.length ) {
 			return creep.pos.findClosestByRange(emptyExtensions);
-		}
+		}	
+	}
+	
+	_findTarget : function(creep) {
+		var room = creep.room;
 		
 		// find link
 		var links = creep.room.getSenderLinks();
