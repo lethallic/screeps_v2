@@ -186,7 +186,7 @@ module.exports = {
 		});
 
 		if (energy.length) {
-			return creep.pos.findClosest(energy);
+			return creep.pos.findClosestByRange(energy);
 		}
 
 		return null;
