@@ -17,12 +17,11 @@ module.exports = {
 	
 	applyMiner : function(creep) {
 		var minerId = creep.memory.minder;
-		var miner = null;
 		
 		if ( minerId && minerId !== "" ) {
 			// check, if miner exists
 			if ( Game.getObjectById(minerId) != null) {
-				return
+				return;
 			}
 		};
 
