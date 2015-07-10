@@ -93,7 +93,7 @@ module.exports = {
 
 	_findSource: function(creep) {
 		var sources = _.filter(creep.room.sources(), function(s){
-			return !source.hasMiner(1);
+			return !s.hasMiner(1);
 		});
 		
 		if ( sources.length ) {
