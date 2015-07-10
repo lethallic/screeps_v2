@@ -20,23 +20,24 @@ module.exports = {
 		
 		var controller = creep.room.controller;
 		if ( controller && controller.my ) {
-			
-		    // if ( creep.energy == 0 && energy.length ) {
-			
 			if ( creep.energy == 0 ) {
-				var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 3);
+			    var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 3);
 				var links = creep.pos.findInRange(creep.room.getLinks(), 3);
 				
 				if ( energy.length ) {
 			    	if ( creep.pickup(energy[0]) != OK ) {
 						creep.moveTo(energy[0]);
+						return;
 			    	}
 				} else if ( links.length ) {
 					if ( links[0].transferEnergy(creep) != OK ) {
 						creep.moveTo(links[0]);
+						return;
 					}
 				}
-		    } else if ( !creep.pos.isNearTo(controller) ) {
+		    }
+		    
+		    if ( !creep.pos.isNearTo(controller) ) {
 				creep.moveTo(controller);
 			} else if ( creep.energy > 0 ) {
 				creep.upgradeController(controller);
