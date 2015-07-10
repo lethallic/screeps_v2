@@ -6,10 +6,9 @@ module.exports = {
 	body_small : [MOVE, CARRY],
 	
 	run : function(creep) {
-	    creep.target("");
-	    
 		this.applyMiner(creep);
-		if ( creep.energy == 0 ) {
+		// if ( creep.energy == 0 ) {
+		if ( creep.energy < 50 ) {
 			this._gotoMiner(creep);
 		} else {
 			// transfer energy
