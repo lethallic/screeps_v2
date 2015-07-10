@@ -7,6 +7,7 @@ module.exports = {
 	
 	run : function(creep) {
 		this.applyMiner(creep);
+		
 		// if ( creep.energy == 0 ) {
 		if ( creep.energy < 50 ) {
 			this._gotoMiner(creep);
@@ -53,9 +54,7 @@ module.exports = {
 			   	return e.pos.inRangeTo(miner, 2);
 			});	
 		    
-		    
 			if ( energy.length ) {
-		    
 				creep.moveTo(energy[0]);
 				creep.pickup(energy[0]);
 			} else {
@@ -85,23 +84,19 @@ module.exports = {
 		}
 		
 		if ( target ) {
-			var move = false;
-		
+		    if (!creep.isNearTo(target)) {
+		        creep.moveTo(target);
+		    }
+		    
 			if ( target.structureType ) {
 			    var r = creep.transferEnergy(target)
 			    if ( r == OK || r == ERR_FULL ) {
 			        creep.target("");    
-			    } else {
-			        move = true;
 			    }
 			} else if ( creep.pos.isNearTo(target) ) {
+			    if ( creep.name == "transporter_115" ) console.log(creep, target, "move" );
 				creep.dropEnergy();
 				creep.target("");
-				move = false;
-			}
-
-			if ( move  ) {
-				creep.moveTo(target);
 			}
 		}
 		
