@@ -23,18 +23,17 @@ module.exports = {
 			
 		    // if ( creep.energy == 0 && energy.length ) {
 			
-			if ( creep.enery == 0 ) {
-				var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 2);
+			if ( creep.energy == 0 ) {
+				var energy = creep.pos.findInRange(FIND_DROPPED_ENERGY, 3);
+				var links = creep.pos.findInRange(creep.room.getLinks(), 3);
+				
 				if ( energy.length ) {
 			    	if ( creep.pickup(energy[0]) != OK ) {
 						creep.moveTo(energy[0]);
 			    	}
-				} else {
-					var link = creep.pos.findInRange(FIND_MY_STRUCTURES, 2, { filter: { structureType: STRUCTURE_LINK } });
-					if ( link ) {
-						if ( link.transferEnergy(creep) != OK ) {
-							creep.moveTo(link);
-						}
+				} else if ( links.length ) {
+					if ( links[0].transferEnergy(creep) != OK ) {
+						creep.moveTo(links[0]);
 					}
 				}
 		    } else if ( !creep.pos.isNearTo(controller) ) {
@@ -43,23 +42,6 @@ module.exports = {
 				creep.upgradeController(controller);
 			}
 		}
-		
-		
-		// if ( creep.energy == 0 ) {
-		// 	// goto spawn
-		// 	var spawn = creep.room.getSpawn();
-		// 	if ( spawn ) {
-		// 		creep.moveTo(spawn);
-		// 		spawn.transferEnergy(creep);
-		// 	}
-		// } else {
-		// 	// upgrade controller
-		// 	var controller = creep.room.controller;
-		// 	if ( controller && controller.my ) {
-		// 		creep.moveTo(controller);
-		// 		creep.upgradeController(controller);
-		// 	}
-		// }
 	}
 	
 };
