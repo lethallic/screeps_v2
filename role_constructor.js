@@ -79,7 +79,7 @@ module.exports = {
 
 			if (link) {
 				creep.moveTo(link);
-				link.transferEnergy
+				link.transferEnergy(creep);
 			} else {
 				creep.moveTo(spawn);
 				spawn.transferEnergy(creep);
