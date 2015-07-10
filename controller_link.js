@@ -34,7 +34,7 @@ utils.extend(LinkController.prototype, {
     transfer : function() {
         var senders = this.getSenders();
         var receiver = _.find(this.getReceivers(), function(r) {
-            return (r.energy == 0); //< r.energyCapacity);
+            return (r.energy < r.energyCapacity - 100);
         });
 
         if (receiver != null) {
