@@ -24,7 +24,7 @@ module.exports = {
 				}
 				else {
 					var source = this._findSource(creep);
-					if (source && !source.hasMiner(1)) {
+					if ( source ) {
 						target = source;
 					}
 				}
@@ -92,20 +92,29 @@ module.exports = {
 	},
 
 	_findSource: function(creep) {
-		var debug = utils.debug(creep + " find sources");
-		var sources = creep.room.sources();
-		// utils.log(debug);
-
-		if (sources.length) {
-			var debug = utils.debug(creep + " find sources");
-			var source = utils.getTarget(creep, sources);
-			// var source = creep.pos.findClosest(sources, {
-			// 	"algorithm": "dijkstra" //"astar"
-			// });
-			// utils.log(debug);
-			return source;
+		var sources = _.filter(creep.room.sources(), function(s){
+			return !source.hasMiner(1);
+		});
+		
+		if ( sources.length ) {
+			return utils.getTarget(creep, source);
 		}
+		
 		return null;
+		
+		// var sources = creep.room.sources();
+		// // utils.log(debug);
+
+		// if (sources.length) {
+		// 	var debug = utils.debug(creep + " find sources");
+		// 	var source = utils.getTarget(creep, sources);
+		// 	// var source = creep.pos.findClosest(sources, {
+		// 	// 	"algorithm": "dijkstra" //"astar"
+		// 	// });
+		// 	// utils.log(debug);
+		// 	return source;
+		// }
+		// return null;
 	},
 
 	_findConstruction: function(creep) {
