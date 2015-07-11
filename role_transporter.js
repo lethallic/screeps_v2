@@ -94,12 +94,12 @@ module.exports = {
 			if ( target.structureType ) {
 			    var r = creep.transferEnergy(target)
 			    if ( r == OK || r == ERR_FULL ) {
-			        creep.target("");    
+			        creep.target(null);    
 			    }
 			} else if ( creep.pos.isNearTo(target) ) {
 			    if ( creep.name == "transporter_115" ) console.log(creep, target, "move" );
 				creep.dropEnergy();
-				creep.target("");
+				creep.target(null);
 			}
 		}
 		

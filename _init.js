@@ -41,7 +41,7 @@ module.exports = (function() {
 			return this.memory.role;
 		},
 		"target": function(newTarget) {
-			if (newTarget) {
+			if ( typeof newTarget != 'undefined' ) {
 				this.memory.target = newTarget;
 			}
 			return this.memory.target;
