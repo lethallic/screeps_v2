@@ -67,17 +67,17 @@ module.exports = {
 	_transferEnergy : function(creep) {
 		var target = Game.getObjectById(creep.target());
 		
-		var emptyExtension = this._findExtension(creep);
-		if ( emptyExtension != null ) {
-			target = emptyExtension;
-		} else {
+		// var emptyExtension = this._findExtension(creep);
+		// if ( emptyExtension != null ) {
+		// 	target = emptyExtension;
+		// } else {
 			var target = Game.getObjectById(creep.target());
 			if ( target && target.structureType ) {
 			    if ( target.energy == target.energyCapacity ) {
 			        target = null;
 			    }
 			}	
-		}
+		// }
 		
 		if ( target == null ) {
 			target = this._findTarget(creep);
@@ -125,6 +125,18 @@ module.exports = {
 	
 	_findTarget : function(creep) {
 		var room = creep.room;
+		
+		var emptyExtensions = _.filter(room.emptyExtensions(), function(e) {
+			return (room.creepsByTarget(e.id, "transporter").length == 0);
+		});
+		if ( emptyExtensions.length ) {
+			return creep.pos.findClosestByRange(emptyExtensions);
+		}
+		
+		var spawn = creep.room.getSpawn();
+		if ( spawn != null && (spawn.energy < spawn.energyCapacity) ) {
+			return spawn;
+		}
 		
 		// find link
 		var links = creep.room.getSenderLinks();
