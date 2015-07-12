@@ -55,8 +55,9 @@ module.exports = {
 					debug.logStep("find structures");
 				}
 			}
-
+			
 			if (target) {
+				debug.logStep("target found");
 				// build / repair target
 				creep.moveTo(target);
 				if (typeof target.progress == "number") {
