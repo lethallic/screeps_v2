@@ -14,7 +14,7 @@ module.exports = {
 			if ( typeof creepModule !== 'undefined' && creepModule != null ) {
 				var debug = utils.debug("RoleManager.process(" + creep + ")");
 				creepModule.run(creep);
-				// utils.log(debug);
+				utils.log(debug);
 			}
 			
 		}
