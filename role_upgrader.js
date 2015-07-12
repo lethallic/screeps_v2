@@ -9,14 +9,14 @@ module.exports = {
 	
 	run : function(creep) {
 		
-		var flags = _.filter(creep.room.getFlags(), function(f) {
-			return f.color == COLOR_YELLOW;
-		});
+		// var flags = _.filter(creep.room.getFlags(), function(f) {
+		// 	return f.color == COLOR_YELLOW;
+		// });
 		
-		if ( flags.length ) {
-			creep.moveTo(flags[0]);
-			return;
-		}
+		// if ( flags.length ) {
+		// 	creep.moveTo(flags[0]);
+		// 	return;
+		// }
 		
 		var controller = creep.room.controller;
 		if ( controller && controller.my ) {
