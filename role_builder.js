@@ -36,7 +36,6 @@ module.exports = {
 					target = extensions[0];
 				}
 				
-				
 				if (target == null) {
 					var spawn = creep.room.getSpawn();
 					if (spawn) {
