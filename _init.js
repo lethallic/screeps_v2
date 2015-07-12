@@ -78,6 +78,13 @@ module.exports = (function() {
 
 		getSpawn: function() {
 			return this._getCached("spawn", function() {
+				for ( var s in Game.spawns ) {
+					var spawn = spawns[s];
+					if ( spawn.room.name == this.room.name ) {
+						console.log(this, spawn);
+					}
+				}
+				
 				var spawns = this.find(FIND_MY_SPAWNS);
 				if (spawns.length) {
 					return spawns[0];
