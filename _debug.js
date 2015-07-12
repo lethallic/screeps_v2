@@ -22,7 +22,7 @@ module.exports = function(name, minUsed) {
         },
         logStep : function(step) {
             var now = Game.getUsedCpu();
-            var used = now - _stepUsed
+            var used = now - _stepUsed;
             if ( used > _minUsed ) {
                 console.log("!debug", this.name(), step, used, now, _stepUsed);
             }

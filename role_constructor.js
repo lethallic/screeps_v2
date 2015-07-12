@@ -66,6 +66,7 @@ module.exports = {
 					creep.repair(target);
 				}
 				creep.target(target.id);
+				debug.log();
 				return;
 			}
 
