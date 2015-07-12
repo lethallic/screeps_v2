@@ -7,7 +7,7 @@ module.exports = {
 	body_big: [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, CARRY, CARRY, WORK],
 
 	run: function(creep) {
-		var debug = new Debug(creep.name + " " + creep.role(), 5);
+		var debug = new Debug(creep.name + " " + creep.role(), 0);
 
 		// var flags = _.filter(creep.room.getFlags(), function(f) {
 		// 	return f.color == COLOR_BLUE;
@@ -77,10 +77,10 @@ module.exports = {
 			debug.logStep("find spawn");
 			
 			var links = spawn.pos.findInRange(creep.room.getLinks(), 3);
-			debug.logStep("find link");
 			var link = _.find(links, function(l) {
 				return (l.energy > 0);
 			})
+			debug.logStep("find link");
 
 			if (link) {
 				creep.moveTo(link);
