@@ -5,7 +5,7 @@ module.exports = function(name, minUsed) {
     var _start = Game.getUsedCpu();
     var _name = name;
     var _minUsed = minUsed || 0;
-    var _stepUsed = 0;
+    var _stepUsed = _start;
     
     return {
         name : function() {
