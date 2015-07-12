@@ -60,7 +60,15 @@ module.exports = {
 	
 	_gotoMiner : function (creep) {
 		var miner = Game.getObjectById(creep.memory.miner || null);
+		
 		if ( miner != null ) {
+			
+			// check, if miner has source and is near
+			var minerSource = Game.getObjectById(miner.target());
+			if ( minerSource == null || !miner.pos.isNearTo(minerSource) ) {
+				return;
+			}
+			
 			var energy = _.filter(creep.room.droppedEnergy(), function(e) {
 			   	return e.pos.inRangeTo(miner, 2);
 			});	
