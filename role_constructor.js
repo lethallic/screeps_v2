@@ -1,3 +1,5 @@
+var Debug = require("_debug");
+
 module.exports = {
 
 	body: [MOVE, MOVE, MOVE, CARRY, CARRY, WORK],
@@ -5,6 +7,7 @@ module.exports = {
 	body_big: [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, CARRY, CARRY, WORK],
 
 	run: function(creep) {
+		var debug = console.log(creep.name + " " + creep.role(), 5);
 
 		var flags = _.filter(creep.room.getFlags(), function(f) {
 			return f.color == COLOR_BLUE;
@@ -14,7 +17,7 @@ module.exports = {
 			creep.moveTo(flags[0]);
 			return;
 		}
-
+		debug.logStep("find flag");
 
 		if (creep.energy > 0) {
 			var target = null;
@@ -26,9 +29,9 @@ module.exports = {
 				if (target && target._type) {
 					if (target._type == "structure" && !target.needsRepair()) {
 						target = null;
+						debug.logSteps("reset target");
 					}
-				}
-				else {
+				} else {
 					target = null;
 				}
 			}
@@ -37,19 +40,19 @@ module.exports = {
 				var constructions = creep.room.getConstructionSites();
 				if (constructions.length > 0) {
 					target = constructions[0];
-				}
-				else {
-
+					debug.logSteps("find constructions");
+				} else {
 					var structures = _.filter(creep.room.getStructures(), function(s) {
 						return s.needsRepair();
 					});
-
+	
 					if (structures.length) {
 						target = _.min(structures, function(e) {
 							var p = (e.hits * 100 / e.hitsMax);
 							return p;
 						});
 					}
+					debug.logSteps("find structures");
 
 				}
 			}
@@ -71,8 +74,10 @@ module.exports = {
 		else if (creep.energy == 0) {
 			// goto spawn, get energy
 			var spawn = creep.room.getSpawn();
+			debug.logSteps("find spawn");
 			
 			var links = spawn.pos.findInRange(creep.room.getLinks(), 3);
+			debug.logSteps("find link");
 			var link = _.find(links, function(l) {
 				return (l.energy > 0);
 			})
@@ -87,6 +92,8 @@ module.exports = {
 			
 			creep.target("");
 		}
+		
+		debug.log();
 	},
 
 
