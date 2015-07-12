@@ -102,7 +102,6 @@ module.exports = {
 			        creep.target(null);    
 			    }
 			} else if ( creep.pos.isNearTo(target) ) {
-			    if ( creep.name == "transporter_115" ) console.log(creep, target, "move" );
 				creep.dropEnergy();
 				creep.target(null);
 			}

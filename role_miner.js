@@ -1,6 +1,6 @@
 var moveOptions = {
     'maxOps' : 1000,
-    'heuristicWeight' : 5
+    'heuristicWeight' : 1
 };
 
 module.exports = {
