@@ -32,7 +32,6 @@ module.exports = {
 				if (target && target._type) {
 					if (target._type == "structure" && !target.needsRepair()) {
 						target = null;
-						debug.logStep("check target");
 					}
 				} else {
 					target = null;
@@ -60,7 +59,6 @@ module.exports = {
 			}
 			
 			if (target) {
-				debug.logStep("target found");
 				// build / repair target
 				creep.moveTo(target);
 				if (typeof target.progress == "number") {
@@ -70,7 +68,6 @@ module.exports = {
 					creep.repair(target);
 				}
 				creep.target(target.id);
-				debug.log();
 				return;
 			}
 
@@ -83,8 +80,7 @@ module.exports = {
 			var link = _.find(links, function(l) {
 				return (l.energy > 0);
 			})
-			debug.logStep("find link");
-
+			
 			if (link) {
 				creep.moveTo(link);
 				link.transferEnergy(creep);
@@ -93,7 +89,7 @@ module.exports = {
 				spawn.transferEnergy(creep);
 			}
 			
-			creep.target("");
+			creep.target(null);
 		}
 		
 		debug.log();
