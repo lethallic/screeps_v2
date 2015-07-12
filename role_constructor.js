@@ -29,11 +29,11 @@ module.exports = {
 				if (target && target._type) {
 					if (target._type == "structure" && !target.needsRepair()) {
 						target = null;
-						debug.logStep("reset target");
 					}
 				} else {
 					target = null;
 				}
+				debug.logStep("check target");
 			}
 
 			if (!target) {
@@ -53,7 +53,6 @@ module.exports = {
 						});
 					}
 					debug.logStep("find structures");
-
 				}
 			}
 
@@ -70,8 +69,7 @@ module.exports = {
 				return;
 			}
 
-		}
-		else if (creep.energy == 0) {
+		} else if (creep.energy == 0) {
 			// goto spawn, get energy
 			var spawn = creep.room.getSpawn();
 			debug.logStep("find spawn");
