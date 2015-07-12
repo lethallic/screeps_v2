@@ -60,7 +60,10 @@ module.exports = {
 			
 			if (target) {
 				// build / repair target
-				creep.moveTo(target);
+				creep.moveTo(target, {
+				    'maxOps' : 750,
+				    'heuristicWeight' : 5
+				});
 				if (typeof target.progress == "number") {
 					creep.build(target);
 				}
