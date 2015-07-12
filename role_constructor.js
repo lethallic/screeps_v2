@@ -21,11 +21,13 @@ module.exports = {
 
 		if (creep.energy > 0) {
 			var target = null;
-
-			if (typeof creep.target() !== "undefined") {
+			
+			var targetId = creep.target();
+			
+			if (typeof targetId !== "undefined" && targetId != null) {
 				// creep has current target
 
-				var target = Game.getObjectById(creep.target());
+				var target = Game.getObjectById(targetId);
 				debug.logStep("get target");
 				if (target && target._type) {
 					if (target._type == "structure" && !target.needsRepair()) {
