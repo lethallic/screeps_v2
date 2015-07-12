@@ -81,14 +81,14 @@ module.exports = (function() {
 				for ( var s in Game.spawns ) {
 					var spawn = Game.spawns[s];
 					if ( spawn.room.name == this.name ) {
-						console.log(this, spawn);
+						return spawn;
 					}
 				}
 				
-				var spawns = this.find(FIND_MY_SPAWNS);
-				if (spawns.length) {
-					return spawns[0];
-				}
+				// var spawns = this.find(FIND_MY_SPAWNS);
+				// if (spawns.length) {
+				// 	return spawns[0];
+				// }
 				return null;
 			})
 		},
