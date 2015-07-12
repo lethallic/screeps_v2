@@ -80,7 +80,7 @@ module.exports = (function() {
 			return this._getCached("spawn", function() {
 				for ( var s in Game.spawns ) {
 					var spawn = Game.spawns[s];
-					if ( spawn.room.name == this.room.name ) {
+					if ( spawn.room.name == this.name ) {
 						console.log(this, spawn);
 					}
 				}
