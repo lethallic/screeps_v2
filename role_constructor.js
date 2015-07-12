@@ -7,7 +7,7 @@ module.exports = {
 	body_big: [MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, CARRY, CARRY, WORK, CARRY, CARRY, WORK],
 
 	run: function(creep) {
-		var debug = console.log(creep.name + " " + creep.role(), 5);
+		var debug = new Debug(creep.name + " " + creep.role(), 5);
 
 		var flags = _.filter(creep.room.getFlags(), function(f) {
 			return f.color == COLOR_BLUE;
