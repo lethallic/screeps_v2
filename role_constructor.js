@@ -10,15 +10,15 @@ module.exports = {
 		var debug = new Debug(creep.name + " " + creep.role(), 5);
 		console.log(debug);
 
-		var flags = _.filter(creep.room.getFlags(), function(f) {
-			return f.color == COLOR_BLUE;
-		});
-		if (flags.length) {
-			creep.target("");
-			creep.moveTo(flags[0]);
-			return;
-		}
-		debug.logStep("find flag");
+		// var flags = _.filter(creep.room.getFlags(), function(f) {
+		// 	return f.color == COLOR_BLUE;
+		// });
+		// if (flags.length) {
+		// 	creep.target("");
+		// 	creep.moveTo(flags[0]);
+		// 	return;
+		// }
+		// debug.logStep("find flag");
 
 		if (creep.energy > 0) {
 			var target = null;
