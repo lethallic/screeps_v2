@@ -1,3 +1,8 @@
+var moveOptions = {
+    'maxOps' : 1000,
+    'heuristicWeight' : 5
+};
+
 module.exports = {
 	
 	body : [MOVE, CARRY, CARRY, WORK, WORK, WORK, WORK, WORK],
@@ -26,19 +31,19 @@ module.exports = {
 				
 				if ( energy.length ) {
 			    	if ( creep.pickup(energy[0]) != OK ) {
-						creep.moveTo(energy[0]);
+						creep.moveTo(energy[0], moveOptions);
 						return;
 			    	}
 				} else if ( links.length ) {
 					if ( links[0].transferEnergy(creep) != OK ) {
-						creep.moveTo(links[0]);
+						creep.moveTo(links[0], moveOptions);
 						return;
 					}
 				}
 		    }
 		    
 		    if ( !creep.pos.isNearTo(controller) ) {
-				creep.moveTo(controller);
+				creep.moveTo(controller, moveOptions);
 			} else if ( creep.energy > 0 ) {
 				creep.upgradeController(controller);
 			}
