@@ -11,6 +11,15 @@ module.exports = {
 	run : function(creep) {
 		this.applyMiner(creep);
 		
+		var flags = _.filter(creep.room.getFlags(), function(f) {
+			return f.color == COLOR_ORANGE;
+		});
+		
+		if ( flags.length ) {
+			creep.moveTo(flags[0]);
+			return;
+		}
+		
 		// if ( creep.energy == 0 ) {
 		if ( creep.energy < 50 ) {
 			this._gotoMiner(creep);
