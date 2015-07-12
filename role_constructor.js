@@ -8,7 +8,6 @@ module.exports = {
 
 	run: function(creep) {
 		var debug = new Debug(creep.name + " " + creep.role(), 5);
-		console.log(debug);
 
 		// var flags = _.filter(creep.room.getFlags(), function(f) {
 		// 	return f.color == COLOR_BLUE;
