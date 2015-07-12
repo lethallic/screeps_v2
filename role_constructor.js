@@ -1,5 +1,10 @@
 var Debug = require("_debug");
 
+var moveOptions = {
+    'maxOps' : 1000,
+    'heuristicWeight' : 5
+};
+
 module.exports = {
 
 	body: [MOVE, MOVE, MOVE, CARRY, CARRY, WORK],
@@ -60,10 +65,7 @@ module.exports = {
 			
 			if (target) {
 				// build / repair target
-				creep.moveTo(target, {
-				    'maxOps' : 750,
-				    'heuristicWeight' : 5
-				});
+				creep.moveTo(target,  moveOptions);
 				if (typeof target.progress == "number") {
 					creep.build(target);
 				}
@@ -85,10 +87,10 @@ module.exports = {
 			})
 			
 			if (link) {
-				creep.moveTo(link);
+				creep.moveTo(link, moveOptions);
 				link.transferEnergy(creep);
 			} else {
-				creep.moveTo(spawn);
+				creep.moveTo(spawn, moveOptions);
 				spawn.transferEnergy(creep);
 			}
 			
@@ -96,7 +98,11 @@ module.exports = {
 		}
 		
 		// debug.log();
-	},
+	}
+};
+
+/**
+,
 
 
 	_doWork: function(creep) {
@@ -212,5 +218,4 @@ module.exports = {
 		}
 		return null;
 	}
-
-};
+*/
