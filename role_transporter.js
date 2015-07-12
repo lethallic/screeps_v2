@@ -1,3 +1,8 @@
+var moveOptions = {
+    'maxOps' : 1000,
+    'heuristicWeight' : 5
+};
+
 module.exports = {
 	
 	body : [MOVE, CARRY, CARRY, MOVE, MOVE, CARRY, MOVE, CARRY, MOVE, CARRY],
@@ -52,10 +57,10 @@ module.exports = {
 			});	
 		    
 			if ( energy.length ) {
-				creep.moveTo(energy[0]);
+				creep.moveTo(energy[0], moveOptions);
 				creep.pickup(energy[0]);
 			} else {
-				creep.moveTo(miner);
+				creep.moveTo(miner, moveOptions);
 			}
 			
 			return true;
@@ -88,7 +93,7 @@ module.exports = {
 		
 		if ( target ) {
 		    if (creep.pos.isNearTo(target) == false) {
-		        creep.moveTo(target);
+		        creep.moveTo(target, moveOptions);
 		    }
 		    
 			if ( target.structureType ) {
