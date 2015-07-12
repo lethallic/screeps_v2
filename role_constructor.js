@@ -26,14 +26,15 @@ module.exports = {
 				// creep has current target
 
 				var target = Game.getObjectById(creep.target());
+				debug.logStep("get target");
 				if (target && target._type) {
 					if (target._type == "structure" && !target.needsRepair()) {
 						target = null;
+						debug.logStep("check target");
 					}
 				} else {
 					target = null;
 				}
-				debug.logStep("check target");
 			}
 
 			if (!target) {
