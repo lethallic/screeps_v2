@@ -1,5 +1,7 @@
 var utils = require("_utils");
 
+var RANGE_TO_SOURCE = 3;
+
 function LinkController(room) {
     this.room = room;
     this.links = room.getLinks();
@@ -12,7 +14,7 @@ utils.extend(LinkController.prototype, {
         var sources = this.room.sources();
         return _.filter(this.links, function(link) {
             for (var s in sources) {
-                if (link.pos.inRangeTo(sources[s], 5)) {
+                if (link.pos.inRangeTo(sources[s], RANGE_TO_SOURCE)) {
                     return true;
                 }
             }
@@ -24,7 +26,7 @@ utils.extend(LinkController.prototype, {
         var sources = this.room.sources();
         return _.filter(this.links, function(link) {
             for (var s in sources) {
-                if (!link.pos.inRangeTo(sources[s], 5)) {
+                if (!link.pos.inRangeTo(sources[s], RANGE_TO_SOURCE)) {
                     return true;
                 }
             }

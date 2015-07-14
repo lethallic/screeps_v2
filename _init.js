@@ -1,6 +1,8 @@
 var Debug = require("_debug");
 var extend = require("extend");
 
+var RANGE_TO_SOURCE = 3;
+
 function recycleMemory() {
 	for (var i in Memory.creeps) {
 		if (!Game.creeps[i]) {
@@ -210,7 +212,7 @@ module.exports = (function() {
 	        var sources = this.sources();
 	        return _.filter(this.getLinks(), function(link) {
 	            for (var s in sources) {
-	                if (link.pos.inRangeTo(sources[s], 5)) {
+	                if (link.pos.inRangeTo(sources[s], RANGE_TO_SOURCE)) {
 	                    return true;
 	                }
 	            }
