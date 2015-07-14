@@ -149,7 +149,7 @@ module.exports = (function() {
 		getStructures: function() {
 			return this._getCached("structures", function() {
 				return _.filter(this.find(FIND_STRUCTURES), function(s) {
-					return (s.my || s.structureType == STRUCTURE_ROAD);
+					return (s.my || s.structureType == STRUCTURE_ROAD || s.structureType == STRUCTURE_WALL);
 				});
 			})
 		},
