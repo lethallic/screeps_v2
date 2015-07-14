@@ -1,6 +1,6 @@
 var utils = require("_utils");
 
-var RANGE_TO_SOURCE = 3;
+var RANGE_TO_SOURCE = 4;
 
 function LinkController(room) {
     this.room = room;

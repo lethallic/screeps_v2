@@ -1,7 +1,7 @@
 var Debug = require("_debug");
 var extend = require("extend");
 
-var RANGE_TO_SOURCE = 3;
+var RANGE_TO_SOURCE = 4;
 
 function recycleMemory() {
 	for (var i in Memory.creeps) {
