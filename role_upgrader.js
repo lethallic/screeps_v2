@@ -42,11 +42,16 @@ module.exports = {
 				}
 		    }
 		    
-		    if ( !creep.pos.isNearTo(controller) ) {
-				creep.moveTo(controller, moveOptions);
-			} else if ( creep.energy > 0 ) {
+			creep.moveTo(controller, moveOptions);
+			if ( creep.energy > 0 ) {
 				creep.upgradeController(controller);
 			}
+
+		 	// if ( !creep.pos.isNearTo(controller) ) {
+			// 	creep.moveTo(controller, moveOptions);
+			// } else if ( creep.energy > 0 ) {
+			// 	creep.upgradeController(controller);
+			// }
 		}
 	}
 	
