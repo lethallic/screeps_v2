@@ -34,7 +34,10 @@ utils.extend(RoomController.prototype, {
         
         var flag = _.find(this._room.getFlags(), {color : COLOR_GREY});
         if ( flag != null ) {
-            console.log(this._room, "grey flag found");
+            var hostileUnits = flag.pos.findInRange(FIND_HOSTILE_CREEPS, 5);
+            if ( hostileUnits.length ) {
+                console.log(this._room, "grey flag found", hostileUnits);    
+            }
             
         }
     }
