@@ -30,12 +30,13 @@ utils.extend(RoomController.prototype, {
     
     attackSourceKeeper : function() {
         if ( this._room.getLevel() < 5 ) return;
-        if ( Game.time % 10 != 0 ) return;
+        // if ( Game.time % 10 != 0 ) return;
         
         var flag = _.find(this._room.getFlags(), {color : COLOR_GREY});
-        console.log(flag);
-        
-        
+        if ( flag != null ) {
+            console.log(this._room, "grey flag found");
+            
+        }
     }
 
 });
