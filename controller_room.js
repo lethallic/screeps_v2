@@ -29,19 +29,25 @@ utils.extend(RoomController.prototype, {
     },
     
     attackSourceKeeper : function() {
+        return;
+        
         if ( this._room.getLevel() < 5 ) return;
-        // if ( Game.time % 10 != 0 ) return;
+        if ( Game.time % 10 != 0 ) return;
         
         var flag = _.find(this._room.getFlags(), {color : COLOR_GREY});
         if ( flag != null ) {
             var hostileUnits = flag.pos.findInRange(FIND_HOSTILE_CREEPS, 5);
             if ( hostileUnits.length ) {
+                var m = {
+                    role : "sourceAttacker",
+                    flag : flag.id
+                }
                 console.log(this._room, "grey flag found", hostileUnits);    
             }
-            
         }
-    }
-
+    },
+    
+    
 });
 
 module.exports = RoomController;
