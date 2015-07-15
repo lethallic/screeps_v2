@@ -26,6 +26,16 @@ utils.extend(RoomController.prototype, {
     
     processLinks : function() {
         this.links.transfer();
+    },
+    
+    attackSourceKeeper : function() {
+        if ( this._room.getLevel() < 5 ) return;
+        if ( Game.time % 10 != 0 ) return;
+        
+        var flag = _.find(this.getFlags(), {color : COLOR_BLUE});
+        console.log(flag);
+        
+        
     }
 
 });

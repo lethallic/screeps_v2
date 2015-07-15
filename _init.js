@@ -62,6 +62,13 @@ module.exports = (function() {
 
 	extend(Room.prototype, Cache);
 	extend(Room.prototype, {
+		getLevel : function() {
+			if ( this.controller && this.controller.my ) {
+				return this.controller.level;
+			}
+			return null;
+		},
+		
 		getFlags: function() {
 			return this._getCached("flags", function() {
 				return this.find(FIND_FLAGS);

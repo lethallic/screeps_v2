@@ -61,9 +61,13 @@ utils.extend(GameController.prototype, {
     
     processRooms : function() {
         for ( var r in this.rooms ) {
-        	this.rooms[r].processLinks();
-            this.rooms[r].produce();
-            this.rooms[r].doCreeps();
+        	var rc = this.rooms[r];
+        	
+        	rc.processLinks();
+            rc.produce();
+            rc.doCreeps();
+            
+            rc.attackSourceKeeper();
         }
     },
     
