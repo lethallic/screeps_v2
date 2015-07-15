@@ -32,7 +32,7 @@ utils.extend(RoomController.prototype, {
         if ( this._room.getLevel() < 5 ) return;
         if ( Game.time % 10 != 0 ) return;
         
-        var flag = _.find(this._room.getFlags(), {color : COLOR_BLUE});
+        var flag = _.find(this._room.getFlags(), {color : COLOR_GREY});
         console.log(flag);
         
         
