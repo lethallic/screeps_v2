@@ -45,7 +45,7 @@ utils.extend(RoomController.prototype, {
                 console.log(this._room, "grey flag found", hostileUnits);    
             }
         }
-    },
+    }
     
     
 });
